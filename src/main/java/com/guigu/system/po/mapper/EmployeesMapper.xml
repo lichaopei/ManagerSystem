@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guigu.system.po.mapper.EmployeesMapper" >
+  <resultMap id="BaseResultMap" type="com.guigu.system.po.Employees" >
+    <id column="Employee_ID" property="employeeId" jdbcType="INTEGER" />
+    <result column="Employee_Name" property="employeeName" jdbcType="VARCHAR" />
+    <result column="Employee_Gender" property="employeeGender" jdbcType="VARCHAR" />
+    <result column="Position" property="position" jdbcType="INTEGER" />
+    <result column="Department" property="department" jdbcType="INTEGER" />
+    <result column="Card_Number" property="cardNumber" jdbcType="VARCHAR" />
+    <result column="Employee_State" property="employeeState" jdbcType="CHAR" />
+    <result column="Phone" property="phone" jdbcType="VARCHAR" />
+    <result column="Address" property="address" jdbcType="VARCHAR" />
+    <result column="Employee_Memo" property="employeeMemo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Employee_ID, Employee_Name, Employee_Gender, Position, Department, Card_Number, Employee_State, 
+    Phone, Address, Employee_Memo
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.guigu.system.po.EmployeesExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from employees
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from employees
+    where Employee_ID = #{employeeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from employees
+    where Employee_ID = #{employeeId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.guigu.system.po.EmployeesExample" >
+    delete from employees
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.guigu.system.po.Employees" >
+    insert into employees (Employee_ID, Employee_Name, Employee_Gender, 
+      Position, Department, Card_Number, 
+      Employee_State, Phone, Address, 
+      Employee_Memo)
+    values (#{employeeId,jdbcType=INTEGER}, #{employeeName,jdbcType=VARCHAR}, #{employeeGender,jdbcType=VARCHAR}, 
+      #{position,jdbcType=INTEGER}, #{department,jdbcType=INTEGER}, #{cardNumber,jdbcType=VARCHAR}, 
+      #{employeeState,jdbcType=CHAR}, #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{employeeMemo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.guigu.system.po.Employees" >
+    insert into employees
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="employeeId != null" >
+        Employee_ID,
+      </if>
+      <if test="employeeName != null" >
+        Employee_Name,
+      </if>
+      <if test="employeeGender != null" >
+        Employee_Gender,
+      </if>
+      <if test="position != null" >
+        Position,
+      </if>
+      <if test="department != null" >
+        Department,
+      </if>
+      <if test="cardNumber != null" >
+        Card_Number,
+      </if>
+      <if test="employeeState != null" >
+        Employee_State,
+      </if>
+      <if test="phone != null" >
+        Phone,
+      </if>
+      <if test="address != null" >
+        Address,
+      </if>
+      <if test="employeeMemo != null" >
+        Employee_Memo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="employeeId != null" >
+        #{employeeId,jdbcType=INTEGER},
+      </if>
+      <if test="employeeName != null" >
+        #{employeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeGender != null" >
+        #{employeeGender,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=INTEGER},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=INTEGER},
+      </if>
+      <if test="cardNumber != null" >
+        #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeState != null" >
+        #{employeeState,jdbcType=CHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeMemo != null" >
+        #{employeeMemo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.guigu.system.po.EmployeesExample" resultType="java.lang.Integer" >
+    select count(*) from employees
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update employees
+    <set >
+      <if test="record.employeeId != null" >
+        Employee_ID = #{record.employeeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.employeeName != null" >
+        Employee_Name = #{record.employeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.employeeGender != null" >
+        Employee_Gender = #{record.employeeGender,jdbcType=VARCHAR},
+      </if>
+      <if test="record.position != null" >
+        Position = #{record.position,jdbcType=INTEGER},
+      </if>
+      <if test="record.department != null" >
+        Department = #{record.department,jdbcType=INTEGER},
+      </if>
+      <if test="record.cardNumber != null" >
+        Card_Number = #{record.cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.employeeState != null" >
+        Employee_State = #{record.employeeState,jdbcType=CHAR},
+      </if>
+      <if test="record.phone != null" >
+        Phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.address != null" >
+        Address = #{record.address,jdbcType=VARCHAR},
+      </if>
+      <if test="record.employeeMemo != null" >
+        Employee_Memo = #{record.employeeMemo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update employees
+    set Employee_ID = #{record.employeeId,jdbcType=INTEGER},
+      Employee_Name = #{record.employeeName,jdbcType=VARCHAR},
+      Employee_Gender = #{record.employeeGender,jdbcType=VARCHAR},
+      Position = #{record.position,jdbcType=INTEGER},
+      Department = #{record.department,jdbcType=INTEGER},
+      Card_Number = #{record.cardNumber,jdbcType=VARCHAR},
+      Employee_State = #{record.employeeState,jdbcType=CHAR},
+      Phone = #{record.phone,jdbcType=VARCHAR},
+      Address = #{record.address,jdbcType=VARCHAR},
+      Employee_Memo = #{record.employeeMemo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.guigu.system.po.Employees" >
+    update employees
+    <set >
+      <if test="employeeName != null" >
+        Employee_Name = #{employeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeGender != null" >
+        Employee_Gender = #{employeeGender,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        Position = #{position,jdbcType=INTEGER},
+      </if>
+      <if test="department != null" >
+        Department = #{department,jdbcType=INTEGER},
+      </if>
+      <if test="cardNumber != null" >
+        Card_Number = #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeState != null" >
+        Employee_State = #{employeeState,jdbcType=CHAR},
+      </if>
+      <if test="phone != null" >
+        Phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        Address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeMemo != null" >
+        Employee_Memo = #{employeeMemo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Employee_ID = #{employeeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.guigu.system.po.Employees" >
+    update employees
+    set Employee_Name = #{employeeName,jdbcType=VARCHAR},
+      Employee_Gender = #{employeeGender,jdbcType=VARCHAR},
+      Position = #{position,jdbcType=INTEGER},
+      Department = #{department,jdbcType=INTEGER},
+      Card_Number = #{cardNumber,jdbcType=VARCHAR},
+      Employee_State = #{employeeState,jdbcType=CHAR},
+      Phone = #{phone,jdbcType=VARCHAR},
+      Address = #{address,jdbcType=VARCHAR},
+      Employee_Memo = #{employeeMemo,jdbcType=VARCHAR}
+    where Employee_ID = #{employeeId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guigu.system.po.mapper.EmpSalaryMapper" >
+  <resultMap id="BaseResultMap" type="com.guigu.system.po.EmpSalary" >
+    <id column="salary_id" property="salaryId" jdbcType="INTEGER" />
+    <result column="emp_Id" property="empId" jdbcType="VARCHAR" />
+    <result column="base_Salary" property="baseSalary" jdbcType="DOUBLE" />
+    <result column="test_Salary" property="testSalary" jdbcType="DOUBLE" />
+    <result column="benefits" property="benefits" jdbcType="DOUBLE" />
+    <result column="scottare" property="scottare" jdbcType="DOUBLE" />
+    <result column="real_salary" property="realSalary" jdbcType="DOUBLE" />
+    <result column="year_month" property="yearMonth" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    salary_id, emp_Id, base_Salary, test_Salary, benefits, scottare, real_salary, year_month
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.guigu.system.po.EmpSalaryExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from emp_salary
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from emp_salary
+    where salary_id = #{salaryId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from emp_salary
+    where salary_id = #{salaryId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.guigu.system.po.EmpSalaryExample" >
+    delete from emp_salary
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.guigu.system.po.EmpSalary" >
+    insert into emp_salary (salary_id, emp_Id, base_Salary, 
+      test_Salary, benefits, scottare, 
+      real_salary, year_month)
+    values (#{salaryId,jdbcType=INTEGER}, #{empId,jdbcType=VARCHAR}, #{baseSalary,jdbcType=DOUBLE}, 
+      #{testSalary,jdbcType=DOUBLE}, #{benefits,jdbcType=DOUBLE}, #{scottare,jdbcType=DOUBLE}, 
+      #{realSalary,jdbcType=DOUBLE}, #{yearMonth,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.guigu.system.po.EmpSalary" >
+    insert into emp_salary
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="salaryId != null" >
+        salary_id,
+      </if>
+      <if test="empId != null" >
+        emp_Id,
+      </if>
+      <if test="baseSalary != null" >
+        base_Salary,
+      </if>
+      <if test="testSalary != null" >
+        test_Salary,
+      </if>
+      <if test="benefits != null" >
+        benefits,
+      </if>
+      <if test="scottare != null" >
+        scottare,
+      </if>
+      <if test="realSalary != null" >
+        real_salary,
+      </if>
+      <if test="yearMonth != null" >
+        year_month,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="salaryId != null" >
+        #{salaryId,jdbcType=INTEGER},
+      </if>
+      <if test="empId != null" >
+        #{empId,jdbcType=VARCHAR},
+      </if>
+      <if test="baseSalary != null" >
+        #{baseSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="testSalary != null" >
+        #{testSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="benefits != null" >
+        #{benefits,jdbcType=DOUBLE},
+      </if>
+      <if test="scottare != null" >
+        #{scottare,jdbcType=DOUBLE},
+      </if>
+      <if test="realSalary != null" >
+        #{realSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="yearMonth != null" >
+        #{yearMonth,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.guigu.system.po.EmpSalaryExample" resultType="java.lang.Integer" >
+    select count(*) from emp_salary
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update emp_salary
+    <set >
+      <if test="record.salaryId != null" >
+        salary_id = #{record.salaryId,jdbcType=INTEGER},
+      </if>
+      <if test="record.empId != null" >
+        emp_Id = #{record.empId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.baseSalary != null" >
+        base_Salary = #{record.baseSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="record.testSalary != null" >
+        test_Salary = #{record.testSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="record.benefits != null" >
+        benefits = #{record.benefits,jdbcType=DOUBLE},
+      </if>
+      <if test="record.scottare != null" >
+        scottare = #{record.scottare,jdbcType=DOUBLE},
+      </if>
+      <if test="record.realSalary != null" >
+        real_salary = #{record.realSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="record.yearMonth != null" >
+        year_month = #{record.yearMonth,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update emp_salary
+    set salary_id = #{record.salaryId,jdbcType=INTEGER},
+      emp_Id = #{record.empId,jdbcType=VARCHAR},
+      base_Salary = #{record.baseSalary,jdbcType=DOUBLE},
+      test_Salary = #{record.testSalary,jdbcType=DOUBLE},
+      benefits = #{record.benefits,jdbcType=DOUBLE},
+      scottare = #{record.scottare,jdbcType=DOUBLE},
+      real_salary = #{record.realSalary,jdbcType=DOUBLE},
+      year_month = #{record.yearMonth,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.guigu.system.po.EmpSalary" >
+    update emp_salary
+    <set >
+      <if test="empId != null" >
+        emp_Id = #{empId,jdbcType=VARCHAR},
+      </if>
+      <if test="baseSalary != null" >
+        base_Salary = #{baseSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="testSalary != null" >
+        test_Salary = #{testSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="benefits != null" >
+        benefits = #{benefits,jdbcType=DOUBLE},
+      </if>
+      <if test="scottare != null" >
+        scottare = #{scottare,jdbcType=DOUBLE},
+      </if>
+      <if test="realSalary != null" >
+        real_salary = #{realSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="yearMonth != null" >
+        year_month = #{yearMonth,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where salary_id = #{salaryId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.guigu.system.po.EmpSalary" >
+    update emp_salary
+    set emp_Id = #{empId,jdbcType=VARCHAR},
+      base_Salary = #{baseSalary,jdbcType=DOUBLE},
+      test_Salary = #{testSalary,jdbcType=DOUBLE},
+      benefits = #{benefits,jdbcType=DOUBLE},
+      scottare = #{scottare,jdbcType=DOUBLE},
+      real_salary = #{realSalary,jdbcType=DOUBLE},
+      year_month = #{yearMonth,jdbcType=VARCHAR}
+    where salary_id = #{salaryId,jdbcType=INTEGER}
+  </update>
+</mapper>

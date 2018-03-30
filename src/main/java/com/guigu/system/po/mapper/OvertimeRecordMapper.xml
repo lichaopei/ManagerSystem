@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guigu.system.po.mapper.OvertimeRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.guigu.system.po.OvertimeRecord" >
+    <id column="OverTime_ID" property="overtimeId" jdbcType="INTEGER" />
+    <result column="Employee_ID" property="employeeId" jdbcType="INTEGER" />
+    <result column="Overtime_Date" property="overtimeDate" jdbcType="TIMESTAMP" />
+    <result column="Overtime_Flag" property="overtimeFlag" jdbcType="CHAR" />
+    <result column="Overtime_State" property="overtimeState" jdbcType="CHAR" />
+    <result column="Is_Verify" property="isVerify" jdbcType="BIT" />
+    <result column="Overtime_Memo" property="overtimeMemo" jdbcType="VARCHAR" />
+    <result column="Operator_ID" property="operatorId" jdbcType="INTEGER" />
+    <result column="Note_ID" property="noteId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    OverTime_ID, Employee_ID, Overtime_Date, Overtime_Flag, Overtime_State, Is_Verify, 
+    Overtime_Memo, Operator_ID, Note_ID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.guigu.system.po.OvertimeRecordExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from overtime_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from overtime_record
+    where OverTime_ID = #{overtimeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from overtime_record
+    where OverTime_ID = #{overtimeId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.guigu.system.po.OvertimeRecordExample" >
+    delete from overtime_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.guigu.system.po.OvertimeRecord" >
+    insert into overtime_record (OverTime_ID, Employee_ID, Overtime_Date, 
+      Overtime_Flag, Overtime_State, Is_Verify, 
+      Overtime_Memo, Operator_ID, Note_ID
+      )
+    values (#{overtimeId,jdbcType=INTEGER}, #{employeeId,jdbcType=INTEGER}, #{overtimeDate,jdbcType=TIMESTAMP}, 
+      #{overtimeFlag,jdbcType=CHAR}, #{overtimeState,jdbcType=CHAR}, #{isVerify,jdbcType=BIT}, 
+      #{overtimeMemo,jdbcType=VARCHAR}, #{operatorId,jdbcType=INTEGER}, #{noteId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.guigu.system.po.OvertimeRecord" >
+    insert into overtime_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="overtimeId != null" >
+        OverTime_ID,
+      </if>
+      <if test="employeeId != null" >
+        Employee_ID,
+      </if>
+      <if test="overtimeDate != null" >
+        Overtime_Date,
+      </if>
+      <if test="overtimeFlag != null" >
+        Overtime_Flag,
+      </if>
+      <if test="overtimeState != null" >
+        Overtime_State,
+      </if>
+      <if test="isVerify != null" >
+        Is_Verify,
+      </if>
+      <if test="overtimeMemo != null" >
+        Overtime_Memo,
+      </if>
+      <if test="operatorId != null" >
+        Operator_ID,
+      </if>
+      <if test="noteId != null" >
+        Note_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="overtimeId != null" >
+        #{overtimeId,jdbcType=INTEGER},
+      </if>
+      <if test="employeeId != null" >
+        #{employeeId,jdbcType=INTEGER},
+      </if>
+      <if test="overtimeDate != null" >
+        #{overtimeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="overtimeFlag != null" >
+        #{overtimeFlag,jdbcType=CHAR},
+      </if>
+      <if test="overtimeState != null" >
+        #{overtimeState,jdbcType=CHAR},
+      </if>
+      <if test="isVerify != null" >
+        #{isVerify,jdbcType=BIT},
+      </if>
+      <if test="overtimeMemo != null" >
+        #{overtimeMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorId != null" >
+        #{operatorId,jdbcType=INTEGER},
+      </if>
+      <if test="noteId != null" >
+        #{noteId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.guigu.system.po.OvertimeRecordExample" resultType="java.lang.Integer" >
+    select count(*) from overtime_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update overtime_record
+    <set >
+      <if test="record.overtimeId != null" >
+        OverTime_ID = #{record.overtimeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.employeeId != null" >
+        Employee_ID = #{record.employeeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.overtimeDate != null" >
+        Overtime_Date = #{record.overtimeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.overtimeFlag != null" >
+        Overtime_Flag = #{record.overtimeFlag,jdbcType=CHAR},
+      </if>
+      <if test="record.overtimeState != null" >
+        Overtime_State = #{record.overtimeState,jdbcType=CHAR},
+      </if>
+      <if test="record.isVerify != null" >
+        Is_Verify = #{record.isVerify,jdbcType=BIT},
+      </if>
+      <if test="record.overtimeMemo != null" >
+        Overtime_Memo = #{record.overtimeMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operatorId != null" >
+        Operator_ID = #{record.operatorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.noteId != null" >
+        Note_ID = #{record.noteId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update overtime_record
+    set OverTime_ID = #{record.overtimeId,jdbcType=INTEGER},
+      Employee_ID = #{record.employeeId,jdbcType=INTEGER},
+      Overtime_Date = #{record.overtimeDate,jdbcType=TIMESTAMP},
+      Overtime_Flag = #{record.overtimeFlag,jdbcType=CHAR},
+      Overtime_State = #{record.overtimeState,jdbcType=CHAR},
+      Is_Verify = #{record.isVerify,jdbcType=BIT},
+      Overtime_Memo = #{record.overtimeMemo,jdbcType=VARCHAR},
+      Operator_ID = #{record.operatorId,jdbcType=INTEGER},
+      Note_ID = #{record.noteId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.guigu.system.po.OvertimeRecord" >
+    update overtime_record
+    <set >
+      <if test="employeeId != null" >
+        Employee_ID = #{employeeId,jdbcType=INTEGER},
+      </if>
+      <if test="overtimeDate != null" >
+        Overtime_Date = #{overtimeDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="overtimeFlag != null" >
+        Overtime_Flag = #{overtimeFlag,jdbcType=CHAR},
+      </if>
+      <if test="overtimeState != null" >
+        Overtime_State = #{overtimeState,jdbcType=CHAR},
+      </if>
+      <if test="isVerify != null" >
+        Is_Verify = #{isVerify,jdbcType=BIT},
+      </if>
+      <if test="overtimeMemo != null" >
+        Overtime_Memo = #{overtimeMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorId != null" >
+        Operator_ID = #{operatorId,jdbcType=INTEGER},
+      </if>
+      <if test="noteId != null" >
+        Note_ID = #{noteId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where OverTime_ID = #{overtimeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.guigu.system.po.OvertimeRecord" >
+    update overtime_record
+    set Employee_ID = #{employeeId,jdbcType=INTEGER},
+      Overtime_Date = #{overtimeDate,jdbcType=TIMESTAMP},
+      Overtime_Flag = #{overtimeFlag,jdbcType=CHAR},
+      Overtime_State = #{overtimeState,jdbcType=CHAR},
+      Is_Verify = #{isVerify,jdbcType=BIT},
+      Overtime_Memo = #{overtimeMemo,jdbcType=VARCHAR},
+      Operator_ID = #{operatorId,jdbcType=INTEGER},
+      Note_ID = #{noteId,jdbcType=INTEGER}
+    where OverTime_ID = #{overtimeId,jdbcType=INTEGER}
+  </update>
+</mapper>

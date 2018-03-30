@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guigu.system.po.mapper.PopedomVOMapper">
+<resultMap id="BaseResultMap" type="com.guigu.system.po.PopedomVO" >
+    <id column="Popedom_ID" property="popedomId" jdbcType="INTEGER" />
+    <result column="Department_ID" property="departmentId" jdbcType="INTEGER" />
+    <result column="Admin_ID" property="adminId" jdbcType="INTEGER" />
+    <result column="Department_Name" property="departmentName" jdbcType="VARCHAR" />
+    <result column="Admin_Name" property="adminName" jdbcType="VARCHAR" />
+</resultMap>
+<select id="findList" parameterType="com.guigu.system.po.PopedomVO" resultMap="BaseResultMap">
+	select s.* from (select p.*,a.Admin_Name,d.Department_Name from Admin_Popedom p,Admin a,Department d
+	where p.Admin_ID=a.Admin_ID and p.Department_ID=d.Department_ID) s
+	<where>
+		<if test="adminName!=null">
+			s.Admin_Name like #{adminName}
+		</if>
+		<if test="departmentName!=null">
+			s.Department_Name like #{departmentName}
+		</if>
+	</where>
+</select>
+
+<insert id="save" parameterType="com.guigu.system.po.PopedomVO">
+	insert into Admin_Popedom(Department_ID,Admin_ID) values(#{departmentId},#{adminId})
+</insert>
+
+</mapper>

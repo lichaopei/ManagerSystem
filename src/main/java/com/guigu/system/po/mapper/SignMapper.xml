@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guigu.system.po.mapper.SignMapper" >
+  <resultMap id="BaseResultMap" type="com.guigu.system.po.Sign" >
+    <result column="Employee_ID" property="employeeId" jdbcType="INTEGER" />
+    <result column="Sign" property="sign" jdbcType="INTEGER" />
+    <result column="Un_Sign" property="unSign" jdbcType="INTEGER" />
+    <result column="Year_Month" property="yearMonth" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Employee_ID, Sign, Un_Sign, Year_Month
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.guigu.system.po.SignExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sign
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.guigu.system.po.SignExample" >
+    delete from sign
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.guigu.system.po.Sign" >
+    insert into sign (Employee_ID, Sign, Un_Sign, 
+      Year_Month)
+    values (#{employeeId,jdbcType=INTEGER}, #{sign,jdbcType=INTEGER}, #{unSign,jdbcType=INTEGER}, 
+      #{yearMonth,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.guigu.system.po.Sign" >
+    insert into sign
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="employeeId != null" >
+        Employee_ID,
+      </if>
+      <if test="sign != null" >
+        Sign,
+      </if>
+      <if test="unSign != null" >
+        Un_Sign,
+      </if>
+      <if test="yearMonth != null" >
+        Year_Month,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="employeeId != null" >
+        #{employeeId,jdbcType=INTEGER},
+      </if>
+      <if test="sign != null" >
+        #{sign,jdbcType=INTEGER},
+      </if>
+      <if test="unSign != null" >
+        #{unSign,jdbcType=INTEGER},
+      </if>
+      <if test="yearMonth != null" >
+        #{yearMonth,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.guigu.system.po.SignExample" resultType="java.lang.Integer" >
+    select count(*) from sign
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update sign
+    <set >
+      <if test="record.employeeId != null" >
+        Employee_ID = #{record.employeeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sign != null" >
+        Sign = #{record.sign,jdbcType=INTEGER},
+      </if>
+      <if test="record.unSign != null" >
+        Un_Sign = #{record.unSign,jdbcType=INTEGER},
+      </if>
+      <if test="record.yearMonth != null" >
+        Year_Month = #{record.yearMonth,jdbcType=DATE},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update sign
+    set Employee_ID = #{record.employeeId,jdbcType=INTEGER},
+      Sign = #{record.sign,jdbcType=INTEGER},
+      Un_Sign = #{record.unSign,jdbcType=INTEGER},
+      Year_Month = #{record.yearMonth,jdbcType=DATE}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

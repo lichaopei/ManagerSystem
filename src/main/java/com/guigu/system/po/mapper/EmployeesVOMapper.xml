@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guigu.system.po.mapper.EmployeesVOMapper" >
+<resultMap id="BaseResultMap" type="com.guigu.system.po.EmployeesVO" >
+    <id column="Employee_ID" property="employeeId" jdbcType="INTEGER" />
+    <result column="Employee_Name" property="employeeName" jdbcType="VARCHAR" />
+   <result column="Employee_Gender" property="employeeGender" jdbcType="CHAR" />
+    <result column="Position" property="position" jdbcType="INTEGER" />
+    <result column="Department" property="department" jdbcType="INTEGER" />
+    <result column="Card_Number" property="cardNumber" jdbcType="VARCHAR" />
+    <result column="Employee_State" property="employeeState" jdbcType="CHAR" />
+    <result column="Employee_Memo" property="employeeMemo" jdbcType="VARCHAR" />
+    <result column="Position_Name" property="positionName" jdbcType="VARCHAR" />
+    <result column="Department_Name" property="departmentName" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="findList" parameterType="com.guigu.system.po.EmployeesVO" resultMap="BaseResultMap">
+	select s.* from (select e.*,p.Position_Name,d.Department_Name from Employees e,Position p,Department d
+	where p.Position_ID=e.Position and e.Department=d.Department_ID) s
+	<where>
+		<if test="positionName!=null">
+			s.Position_Name like #{positionName}
+		</if>
+		<if test="departmentName!=null">
+			s.Department_Name like #{departmentName}
+		</if>
+	</where>
+</select>
+
+<insert id="save" parameterType="com.guigu.system.po.EmployeesVO">
+	insert into employees (Employee_ID, Employee_Name, Employee_Gender, 
+      Position, Department, Card_Number, 
+      Employee_State, Phone, Address, 
+      Employee_Memo)
+   values (#{employeeId,jdbcType=INTEGER}, #{employeeName,jdbcType=VARCHAR}, #{employeeGender,jdbcType=VARCHAR}, 
+      #{position,jdbcType=INTEGER}, #{department,jdbcType=INTEGER}, #{cardNumber,jdbcType=VARCHAR}, 
+      #{employeeState,jdbcType=CHAR}, #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{employeeMemo,jdbcType=VARCHAR})
+</insert>
+
+<select id="findCount" parameterType="Integer" resultType="Integer">
+  select count(*) from employees e where e.Department=${departmentId} 
+
+</select>
+</mapper>

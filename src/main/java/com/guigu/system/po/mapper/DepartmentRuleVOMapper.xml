@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guigu.system.po.mapper.DepartmentRuleVOMapper" >
+  <resultMap id="BaseResultMap" type="com.guigu.system.po.DepartmentRuleVO" >
+    <id column="Rule_ID" property="ruleId" jdbcType="INTEGER" />
+    <result column="Department_ID" property="departmentId" jdbcType="INTEGER" />
+    <result column="Department_Name" property="departmentName" jdbcType="VARCHAR" />
+    <result column="Start_Time_AM" property="startTimeAm" jdbcType="TIME" />
+    <result column="End_Time_AM" property="endTimeAm" jdbcType="TIME" />
+    <result column="Start_Time_PM" property="startTimePm" jdbcType="TIME" />
+    <result column="End_Time_PM" property="endTimePm" jdbcType="TIME" />
+</resultMap>
+
+	<select id="findList"  parameterType="com.guigu.system.po.DepartmentRuleVO"  resultMap="BaseResultMap">
+		select a.*,d.department_Name from Attendance_Rule a,department d
+		where a.department_Id=d.department_Id
+		<if test="departmentName!=null">
+			and d.department_name like #{departmentName}
+		</if>
+	
+	</select>
+	<insert id="save" parameterType="com.guigu.system.po.DepartmentRuleVO">
+	 insert into attendance_rule (Department_ID, Start_Time_AM, 
+      End_Time_AM, Start_Time_PM, End_Time_PM
+      )
+    values ( #{departmentId,jdbcType=INTEGER}, #{startTimeAm,jdbcType=TIME}, 
+      #{endTimeAm,jdbcType=TIME}, #{startTimePm,jdbcType=TIME}, #{endTimePm,jdbcType=TIME}
+      )
+	</insert>
+</mapper>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guigu.system.po.mapper.PositionMapper" >
+  <resultMap id="BaseResultMap" type="com.guigu.system.po.Position" >
+    <id column="Position_Id" property="positionId" jdbcType="INTEGER" />
+    <result column="Position_Name" property="positionName" jdbcType="VARCHAR" />
+    <result column="Position_Memo" property="positionMemo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Position_Id, Position_Name, Position_Memo
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.guigu.system.po.PositionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from position
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from position
+    where Position_Id = #{positionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from position
+    where Position_Id = #{positionId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.guigu.system.po.PositionExample" >
+    delete from position
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.guigu.system.po.Position" >
+    insert into position (Position_Id, Position_Name, Position_Memo
+      )
+    values (#{positionId,jdbcType=INTEGER}, #{positionName,jdbcType=VARCHAR}, #{positionMemo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.guigu.system.po.Position" >
+    insert into position
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="positionId != null" >
+        Position_Id,
+      </if>
+      <if test="positionName != null" >
+        Position_Name,
+      </if>
+      <if test="positionMemo != null" >
+        Position_Memo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="positionId != null" >
+        #{positionId,jdbcType=INTEGER},
+      </if>
+      <if test="positionName != null" >
+        #{positionName,jdbcType=VARCHAR},
+      </if>
+      <if test="positionMemo != null" >
+        #{positionMemo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.guigu.system.po.PositionExample" resultType="java.lang.Integer" >
+    select count(*) from position
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update position
+    <set >
+      <if test="record.positionId != null" >
+        Position_Id = #{record.positionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.positionName != null" >
+        Position_Name = #{record.positionName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.positionMemo != null" >
+        Position_Memo = #{record.positionMemo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update position
+    set Position_Id = #{record.positionId,jdbcType=INTEGER},
+      Position_Name = #{record.positionName,jdbcType=VARCHAR},
+      Position_Memo = #{record.positionMemo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.guigu.system.po.Position" >
+    update position
+    <set >
+      <if test="positionName != null" >
+        Position_Name = #{positionName,jdbcType=VARCHAR},
+      </if>
+      <if test="positionMemo != null" >
+        Position_Memo = #{positionMemo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Position_Id = #{positionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.guigu.system.po.Position" >
+    update position
+    set Position_Name = #{positionName,jdbcType=VARCHAR},
+      Position_Memo = #{positionMemo,jdbcType=VARCHAR}
+    where Position_Id = #{positionId,jdbcType=INTEGER}
+  </update>
+</mapper>

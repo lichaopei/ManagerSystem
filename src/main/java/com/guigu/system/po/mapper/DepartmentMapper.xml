@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guigu.system.po.mapper.DepartmentMapper" >
+  <resultMap id="BaseResultMap" type="com.guigu.system.po.Department" >
+    <id column="Department_ID" property="departmentId" jdbcType="INTEGER" />
+    <result column="Department_Name" property="departmentName" jdbcType="VARCHAR" />
+    <result column="Phone" property="phone" jdbcType="VARCHAR" />
+    <result column="Emp_Number" property="empNumber" jdbcType="INTEGER" />
+    <result column="Remarks" property="remarks" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Department_ID, Department_Name, Phone, Emp_Number, Remarks
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.guigu.system.po.DepartmentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from department
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from department
+    where Department_ID = #{departmentId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from department
+    where Department_ID = #{departmentId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.guigu.system.po.DepartmentExample" >
+    delete from department
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.guigu.system.po.Department" >
+    insert into department (Department_ID, Department_Name, Phone, 
+      Emp_Number, Remarks)
+    values (#{departmentId,jdbcType=INTEGER}, #{departmentName,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{empNumber,jdbcType=INTEGER}, #{remarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.guigu.system.po.Department" >
+    insert into department
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="departmentId != null" >
+        Department_ID,
+      </if>
+      <if test="departmentName != null" >
+        Department_Name,
+      </if>
+      <if test="phone != null" >
+        Phone,
+      </if>
+      <if test="empNumber != null" >
+        Emp_Number,
+      </if>
+      <if test="remarks != null" >
+        Remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="departmentId != null" >
+        #{departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="departmentName != null" >
+        #{departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="empNumber != null" >
+        #{empNumber,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.guigu.system.po.DepartmentExample" resultType="java.lang.Integer" >
+    select count(*) from department
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update department
+    <set >
+      <if test="record.departmentId != null" >
+        Department_ID = #{record.departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.departmentName != null" >
+        Department_Name = #{record.departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        Phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.empNumber != null" >
+        Emp_Number = #{record.empNumber,jdbcType=INTEGER},
+      </if>
+      <if test="record.remarks != null" >
+        Remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update department
+    set Department_ID = #{record.departmentId,jdbcType=INTEGER},
+      Department_Name = #{record.departmentName,jdbcType=VARCHAR},
+      Phone = #{record.phone,jdbcType=VARCHAR},
+      Emp_Number = #{record.empNumber,jdbcType=INTEGER},
+      Remarks = #{record.remarks,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.guigu.system.po.Department" >
+    update department
+    <set >
+      <if test="departmentName != null" >
+        Department_Name = #{departmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        Phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="empNumber != null" >
+        Emp_Number = #{empNumber,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        Remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Department_ID = #{departmentId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.guigu.system.po.Department" >
+    update department
+    set Department_Name = #{departmentName,jdbcType=VARCHAR},
+      Phone = #{phone,jdbcType=VARCHAR},
+      Emp_Number = #{empNumber,jdbcType=INTEGER},
+      Remarks = #{remarks,jdbcType=VARCHAR}
+    where Department_ID = #{departmentId,jdbcType=INTEGER}
+  </update>
+</mapper>

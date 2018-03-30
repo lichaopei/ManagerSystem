@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guigu.system.po.mapper.AttendanceRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.guigu.system.po.AttendanceRecord" >
+    <id column="Attendance_ID" property="attendanceId" jdbcType="INTEGER" />
+    <result column="Employee_ID" property="employeeId" jdbcType="INTEGER" />
+    <result column="Card_Number" property="cardNumber" jdbcType="VARCHAR" />
+    <result column="Attendance_Date" property="attendanceDate" jdbcType="TIMESTAMP" />
+    <result column="Attendance_Type" property="attendanceType" jdbcType="INTEGER" />
+    <result column="Attendance_Memo" property="attendanceMemo" jdbcType="VARCHAR" />
+    <result column="Admin_ID" property="adminId" jdbcType="INTEGER" />
+    <result column="Temp_Department_ID" property="tempDepartmentId" jdbcType="INTEGER" />
+    <result column="Node_ID" property="nodeId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Attendance_ID, Employee_ID, Card_Number, Attendance_Date, Attendance_Type, Attendance_Memo, 
+    Admin_ID, Temp_Department_ID, Node_ID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.guigu.system.po.AttendanceRecordExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from attendance_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from attendance_record
+    where Attendance_ID = #{attendanceId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from attendance_record
+    where Attendance_ID = #{attendanceId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.guigu.system.po.AttendanceRecordExample" >
+    delete from attendance_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.guigu.system.po.AttendanceRecord" >
+    insert into attendance_record (Attendance_ID, Employee_ID, Card_Number, 
+      Attendance_Date, Attendance_Type, Attendance_Memo, 
+      Admin_ID, Temp_Department_ID, Node_ID
+      )
+    values (#{attendanceId,jdbcType=INTEGER}, #{employeeId,jdbcType=INTEGER}, #{cardNumber,jdbcType=VARCHAR}, 
+      #{attendanceDate,jdbcType=TIMESTAMP}, #{attendanceType,jdbcType=INTEGER}, #{attendanceMemo,jdbcType=VARCHAR}, 
+      #{adminId,jdbcType=INTEGER}, #{tempDepartmentId,jdbcType=INTEGER}, #{nodeId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.guigu.system.po.AttendanceRecord" >
+    insert into attendance_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="attendanceId != null" >
+        Attendance_ID,
+      </if>
+      <if test="employeeId != null" >
+        Employee_ID,
+      </if>
+      <if test="cardNumber != null" >
+        Card_Number,
+      </if>
+      <if test="attendanceDate != null" >
+        Attendance_Date,
+      </if>
+      <if test="attendanceType != null" >
+        Attendance_Type,
+      </if>
+      <if test="attendanceMemo != null" >
+        Attendance_Memo,
+      </if>
+      <if test="adminId != null" >
+        Admin_ID,
+      </if>
+      <if test="tempDepartmentId != null" >
+        Temp_Department_ID,
+      </if>
+      <if test="nodeId != null" >
+        Node_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="attendanceId != null" >
+        #{attendanceId,jdbcType=INTEGER},
+      </if>
+      <if test="employeeId != null" >
+        #{employeeId,jdbcType=INTEGER},
+      </if>
+      <if test="cardNumber != null" >
+        #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="attendanceDate != null" >
+        #{attendanceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="attendanceType != null" >
+        #{attendanceType,jdbcType=INTEGER},
+      </if>
+      <if test="attendanceMemo != null" >
+        #{attendanceMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="adminId != null" >
+        #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="tempDepartmentId != null" >
+        #{tempDepartmentId,jdbcType=INTEGER},
+      </if>
+      <if test="nodeId != null" >
+        #{nodeId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.guigu.system.po.AttendanceRecordExample" resultType="java.lang.Integer" >
+    select count(*) from attendance_record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update attendance_record
+    <set >
+      <if test="record.attendanceId != null" >
+        Attendance_ID = #{record.attendanceId,jdbcType=INTEGER},
+      </if>
+      <if test="record.employeeId != null" >
+        Employee_ID = #{record.employeeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cardNumber != null" >
+        Card_Number = #{record.cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attendanceDate != null" >
+        Attendance_Date = #{record.attendanceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.attendanceType != null" >
+        Attendance_Type = #{record.attendanceType,jdbcType=INTEGER},
+      </if>
+      <if test="record.attendanceMemo != null" >
+        Attendance_Memo = #{record.attendanceMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adminId != null" >
+        Admin_ID = #{record.adminId,jdbcType=INTEGER},
+      </if>
+      <if test="record.tempDepartmentId != null" >
+        Temp_Department_ID = #{record.tempDepartmentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.nodeId != null" >
+        Node_ID = #{record.nodeId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update attendance_record
+    set Attendance_ID = #{record.attendanceId,jdbcType=INTEGER},
+      Employee_ID = #{record.employeeId,jdbcType=INTEGER},
+      Card_Number = #{record.cardNumber,jdbcType=VARCHAR},
+      Attendance_Date = #{record.attendanceDate,jdbcType=TIMESTAMP},
+      Attendance_Type = #{record.attendanceType,jdbcType=INTEGER},
+      Attendance_Memo = #{record.attendanceMemo,jdbcType=VARCHAR},
+      Admin_ID = #{record.adminId,jdbcType=INTEGER},
+      Temp_Department_ID = #{record.tempDepartmentId,jdbcType=INTEGER},
+      Node_ID = #{record.nodeId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.guigu.system.po.AttendanceRecord" >
+    update attendance_record
+    <set >
+      <if test="employeeId != null" >
+        Employee_ID = #{employeeId,jdbcType=INTEGER},
+      </if>
+      <if test="cardNumber != null" >
+        Card_Number = #{cardNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="attendanceDate != null" >
+        Attendance_Date = #{attendanceDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="attendanceType != null" >
+        Attendance_Type = #{attendanceType,jdbcType=INTEGER},
+      </if>
+      <if test="attendanceMemo != null" >
+        Attendance_Memo = #{attendanceMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="adminId != null" >
+        Admin_ID = #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="tempDepartmentId != null" >
+        Temp_Department_ID = #{tempDepartmentId,jdbcType=INTEGER},
+      </if>
+      <if test="nodeId != null" >
+        Node_ID = #{nodeId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where Attendance_ID = #{attendanceId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.guigu.system.po.AttendanceRecord" >
+    update attendance_record
+    set Employee_ID = #{employeeId,jdbcType=INTEGER},
+      Card_Number = #{cardNumber,jdbcType=VARCHAR},
+      Attendance_Date = #{attendanceDate,jdbcType=TIMESTAMP},
+      Attendance_Type = #{attendanceType,jdbcType=INTEGER},
+      Attendance_Memo = #{attendanceMemo,jdbcType=VARCHAR},
+      Admin_ID = #{adminId,jdbcType=INTEGER},
+      Temp_Department_ID = #{tempDepartmentId,jdbcType=INTEGER},
+      Node_ID = #{nodeId,jdbcType=INTEGER}
+    where Attendance_ID = #{attendanceId,jdbcType=INTEGER}
+  </update>
+</mapper>

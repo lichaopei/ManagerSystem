@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guigu.system.po.mapper.AdminMapper" >
+  <resultMap id="BaseResultMap" type="com.guigu.system.po.Admin" >
+    <id column="Admin_ID" property="adminId" jdbcType="INTEGER" />
+    <result column="Admin_Account" property="adminAccount" jdbcType="VARCHAR" />
+    <result column="Admin_Pwd" property="adminPwd" jdbcType="VARCHAR" />
+    <result column="Admin_State" property="adminState" jdbcType="CHAR" />
+    <result column="Admin_Right" property="adminRight" jdbcType="CHAR" />
+    <result column="Admin_Name" property="adminName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Admin_ID, Admin_Account, Admin_Pwd, Admin_State, Admin_Right, Admin_Name
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.guigu.system.po.AdminExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from admin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from admin
+    where Admin_ID = #{adminId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from admin
+    where Admin_ID = #{adminId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.guigu.system.po.AdminExample" >
+    delete from admin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.guigu.system.po.Admin" >
+    insert into admin (Admin_ID, Admin_Account, Admin_Pwd, 
+      Admin_State, Admin_Right, Admin_Name
+      )
+    values (#{adminId,jdbcType=INTEGER}, #{adminAccount,jdbcType=VARCHAR}, #{adminPwd,jdbcType=VARCHAR}, 
+      #{adminState,jdbcType=CHAR}, #{adminRight,jdbcType=CHAR}, #{adminName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.guigu.system.po.Admin" >
+    insert into admin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="adminId != null" >
+        Admin_ID,
+      </if>
+      <if test="adminAccount != null" >
+        Admin_Account,
+      </if>
+      <if test="adminPwd != null" >
+        Admin_Pwd,
+      </if>
+      <if test="adminState != null" >
+        Admin_State,
+      </if>
+      <if test="adminRight != null" >
+        Admin_Right,
+      </if>
+      <if test="adminName != null" >
+        Admin_Name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="adminId != null" >
+        #{adminId,jdbcType=INTEGER},
+      </if>
+      <if test="adminAccount != null" >
+        #{adminAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPwd != null" >
+        #{adminPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="adminState != null" >
+        #{adminState,jdbcType=CHAR},
+      </if>
+      <if test="adminRight != null" >
+        #{adminRight,jdbcType=CHAR},
+      </if>
+      <if test="adminName != null" >
+        #{adminName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.guigu.system.po.AdminExample" resultType="java.lang.Integer" >
+    select count(*) from admin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update admin
+    <set >
+      <if test="record.adminId != null" >
+        Admin_ID = #{record.adminId,jdbcType=INTEGER},
+      </if>
+      <if test="record.adminAccount != null" >
+        Admin_Account = #{record.adminAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adminPwd != null" >
+        Admin_Pwd = #{record.adminPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adminState != null" >
+        Admin_State = #{record.adminState,jdbcType=CHAR},
+      </if>
+      <if test="record.adminRight != null" >
+        Admin_Right = #{record.adminRight,jdbcType=CHAR},
+      </if>
+      <if test="record.adminName != null" >
+        Admin_Name = #{record.adminName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update admin
+    set Admin_ID = #{record.adminId,jdbcType=INTEGER},
+      Admin_Account = #{record.adminAccount,jdbcType=VARCHAR},
+      Admin_Pwd = #{record.adminPwd,jdbcType=VARCHAR},
+      Admin_State = #{record.adminState,jdbcType=CHAR},
+      Admin_Right = #{record.adminRight,jdbcType=CHAR},
+      Admin_Name = #{record.adminName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.guigu.system.po.Admin" >
+    update admin
+    <set >
+      <if test="adminAccount != null" >
+        Admin_Account = #{adminAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPwd != null" >
+        Admin_Pwd = #{adminPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="adminState != null" >
+        Admin_State = #{adminState,jdbcType=CHAR},
+      </if>
+      <if test="adminRight != null" >
+        Admin_Right = #{adminRight,jdbcType=CHAR},
+      </if>
+      <if test="adminName != null" >
+        Admin_Name = #{adminName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where Admin_ID = #{adminId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.guigu.system.po.Admin" >
+    update admin
+    set Admin_Account = #{adminAccount,jdbcType=VARCHAR},
+      Admin_Pwd = #{adminPwd,jdbcType=VARCHAR},
+      Admin_State = #{adminState,jdbcType=CHAR},
+      Admin_Right = #{adminRight,jdbcType=CHAR},
+      Admin_Name = #{adminName,jdbcType=VARCHAR}
+    where Admin_ID = #{adminId,jdbcType=INTEGER}
+  </update>
+</mapper>

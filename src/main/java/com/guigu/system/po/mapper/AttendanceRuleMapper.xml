@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guigu.system.po.mapper.AttendanceRuleMapper" >
+  <resultMap id="BaseResultMap" type="com.guigu.system.po.AttendanceRule" >
+    <id column="Rule_ID" property="ruleId" jdbcType="INTEGER" />
+    <result column="Department_ID" property="departmentId" jdbcType="INTEGER" />
+    <result column="Start_Time_AM" property="startTimeAm" jdbcType="TIME" />
+    <result column="End_Time_AM" property="endTimeAm" jdbcType="TIME" />
+    <result column="Start_Time_PM" property="startTimePm" jdbcType="TIME" />
+    <result column="End_Time_PM" property="endTimePm" jdbcType="TIME" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Rule_ID, Department_ID, Start_Time_AM, End_Time_AM, Start_Time_PM, End_Time_PM
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.guigu.system.po.AttendanceRuleExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from attendance_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from attendance_rule
+    where Rule_ID = #{ruleId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from attendance_rule
+    where Rule_ID = #{ruleId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.guigu.system.po.AttendanceRuleExample" >
+    delete from attendance_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.guigu.system.po.AttendanceRule" >
+    insert into attendance_rule (Rule_ID, Department_ID, Start_Time_AM, 
+      End_Time_AM, Start_Time_PM, End_Time_PM
+      )
+    values (#{ruleId,jdbcType=INTEGER}, #{departmentId,jdbcType=INTEGER}, #{startTimeAm,jdbcType=TIME}, 
+      #{endTimeAm,jdbcType=TIME}, #{startTimePm,jdbcType=TIME}, #{endTimePm,jdbcType=TIME}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.guigu.system.po.AttendanceRule" >
+    insert into attendance_rule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ruleId != null" >
+        Rule_ID,
+      </if>
+      <if test="departmentId != null" >
+        Department_ID,
+      </if>
+      <if test="startTimeAm != null" >
+        Start_Time_AM,
+      </if>
+      <if test="endTimeAm != null" >
+        End_Time_AM,
+      </if>
+      <if test="startTimePm != null" >
+        Start_Time_PM,
+      </if>
+      <if test="endTimePm != null" >
+        End_Time_PM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ruleId != null" >
+        #{ruleId,jdbcType=INTEGER},
+      </if>
+      <if test="departmentId != null" >
+        #{departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="startTimeAm != null" >
+        #{startTimeAm,jdbcType=TIME},
+      </if>
+      <if test="endTimeAm != null" >
+        #{endTimeAm,jdbcType=TIME},
+      </if>
+      <if test="startTimePm != null" >
+        #{startTimePm,jdbcType=TIME},
+      </if>
+      <if test="endTimePm != null" >
+        #{endTimePm,jdbcType=TIME},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.guigu.system.po.AttendanceRuleExample" resultType="java.lang.Integer" >
+    select count(*) from attendance_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update attendance_rule
+    <set >
+      <if test="record.ruleId != null" >
+        Rule_ID = #{record.ruleId,jdbcType=INTEGER},
+      </if>
+      <if test="record.departmentId != null" >
+        Department_ID = #{record.departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.startTimeAm != null" >
+        Start_Time_AM = #{record.startTimeAm,jdbcType=TIME},
+      </if>
+      <if test="record.endTimeAm != null" >
+        End_Time_AM = #{record.endTimeAm,jdbcType=TIME},
+      </if>
+      <if test="record.startTimePm != null" >
+        Start_Time_PM = #{record.startTimePm,jdbcType=TIME},
+      </if>
+      <if test="record.endTimePm != null" >
+        End_Time_PM = #{record.endTimePm,jdbcType=TIME},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update attendance_rule
+    set Rule_ID = #{record.ruleId,jdbcType=INTEGER},
+      Department_ID = #{record.departmentId,jdbcType=INTEGER},
+      Start_Time_AM = #{record.startTimeAm,jdbcType=TIME},
+      End_Time_AM = #{record.endTimeAm,jdbcType=TIME},
+      Start_Time_PM = #{record.startTimePm,jdbcType=TIME},
+      End_Time_PM = #{record.endTimePm,jdbcType=TIME}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.guigu.system.po.AttendanceRule" >
+    update attendance_rule
+    <set >
+      <if test="departmentId != null" >
+        Department_ID = #{departmentId,jdbcType=INTEGER},
+      </if>
+      <if test="startTimeAm != null" >
+        Start_Time_AM = #{startTimeAm,jdbcType=TIME},
+      </if>
+      <if test="endTimeAm != null" >
+        End_Time_AM = #{endTimeAm,jdbcType=TIME},
+      </if>
+      <if test="startTimePm != null" >
+        Start_Time_PM = #{startTimePm,jdbcType=TIME},
+      </if>
+      <if test="endTimePm != null" >
+        End_Time_PM = #{endTimePm,jdbcType=TIME},
+      </if>
+    </set>
+    where Rule_ID = #{ruleId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.guigu.system.po.AttendanceRule" >
+    update attendance_rule
+    set Department_ID = #{departmentId,jdbcType=INTEGER},
+      Start_Time_AM = #{startTimeAm,jdbcType=TIME},
+      End_Time_AM = #{endTimeAm,jdbcType=TIME},
+      Start_Time_PM = #{startTimePm,jdbcType=TIME},
+      End_Time_PM = #{endTimePm,jdbcType=TIME}
+    where Rule_ID = #{ruleId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -3,7 +3,13 @@ package com.guigu.system.po;
 import java.util.Date;
 
 public class AttendanceRule {
-    private Integer ruleId;
+    @Override
+	public String toString() {
+		return "AttendanceRule [ruleId=" + ruleId + ", departmentId=" + departmentId + ", startTimeAm=" + startTimeAm
+				+ ", endTimeAm=" + endTimeAm + ", startTimePm=" + startTimePm + ", endTimePm=" + endTimePm + "]";
+	}
+
+	private Integer ruleId;
 
     private Integer departmentId;
 

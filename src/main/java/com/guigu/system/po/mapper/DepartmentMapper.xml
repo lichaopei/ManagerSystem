@@ -208,4 +208,8 @@
       Remarks = #{remarks,jdbcType=VARCHAR}
     where Department_ID = #{departmentId,jdbcType=INTEGER}
   </update>
+  <select id="findOther" resultMap="BaseResultMap">
+ 	select d.* from Department d
+  	where d.Department_ID not in (select a.Department_ID from attendance_rule a )
+  </select>
 </mapper>

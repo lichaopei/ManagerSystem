@@ -316,7 +316,7 @@ function jsGetAge(){
    	<div class="row">
     	<div class="col-sm-3 col-sm-offset-4">
         	<input  type="submit" class="btn btn-success" value="修改"/>
-           	 <a href="${pageContext.request.contextPath }/system/staffinfo/list.action" class="btn btn-success">返回上一级</a>
+           	 <a href="${pageContext.request.contextPath }/construct/employee/list.action" class="btn btn-success">返回上一级</a>
         </div>
     </div>
 </form>

@@ -1,5 +1,6 @@
 package com.guigu.system.construct.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -32,17 +33,6 @@ public class EmployeeController {
 	
 	@RequestMapping("list.action")
 	public String list(EmployeesVO employeesVO,Model model) {
-		if(employeesVO!=null) {
-			if(employeesVO.getDepartmentName()!=null) {
-				employeesVO.setDepartmentName("%"+employeesVO.getDepartmentName()+"%");
-			}
-			if(employeesVO.getPositionName()!=null) {
-				employeesVO.setPositionName("%"+employeesVO.getPositionName()+"%");
-			}
-			if (employeesVO.getEmployeeName()!=null) {
-				employeesVO.setEmployeeName("%"+employeesVO.getEmployeeName()+"%");
-			}
-		}
 		List<EmployeesVO> list=employeeVOService.findEmployees(employeesVO);
 		model.addAttribute("list", list);
 		return "construct/employee/employee_list";

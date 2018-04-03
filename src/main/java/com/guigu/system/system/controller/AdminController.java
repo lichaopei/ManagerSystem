@@ -46,8 +46,8 @@ public class AdminController {
        
     }
 	@RequestMapping("load.action")
-    public String load(Integer adminid,Model model) {
-    	Admin admin=adminService.findOne(adminid);
+    public String load(Integer adminId,Model model) {
+    	Admin admin=adminService.findOne(adminId);
         model.addAttribute("admin", admin);
         return "system/admin/admin_update";
     }
@@ -70,8 +70,8 @@ public class AdminController {
     }
 	
 	 @RequestMapping("delete.action")
-	    public String delete(Integer adminid,Model model) {
-	        boolean result =adminService.delete(adminid);
+	    public String delete(Integer adminId,Model model) {
+	        boolean result =adminService.delete(adminId);
 	        
 	        if(result) {
 	            model.addAttribute("info", "É¾³ý³É¹¦");
@@ -83,7 +83,7 @@ public class AdminController {
 	 
 	 @RequestMapping("login.action")
 	 public String login(Admin admin,HttpSession session,Model model) {
-		 session.setAttribute("adminname", admin.getAdminAccount());  
+		 session.setAttribute("adminName", admin.getAdminAccount());  
 		 Admin loginadmin=adminService.login(admin);
 		 if (loginadmin==null || loginadmin.getAdminState().equals("·ñ")) {
 			model.addAttribute("error", "µÇÂ¼Ê§°Ü");

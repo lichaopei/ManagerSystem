@@ -16,5 +16,7 @@ public List<Department> findList(Department department);
 	public boolean update(Department department);
 	
 	public boolean delete(Integer departmentId);
+	
+	public List<Department> findOther();
 
 }

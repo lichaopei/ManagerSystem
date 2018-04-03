@@ -27,4 +27,6 @@ public interface DepartmentMapper {
     int updateByPrimaryKeySelective(Department record);
 
     int updateByPrimaryKey(Department record);
+    //查询部门规则里没有的部门
+    List<Department> findOther();
 }

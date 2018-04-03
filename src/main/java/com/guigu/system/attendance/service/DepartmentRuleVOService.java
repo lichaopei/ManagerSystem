@@ -9,7 +9,7 @@ public interface DepartmentRuleVOService {
 	
 	public List<DepartmentRuleVO> findList(DepartmentRuleVO departmentRuleVO);
 	
-	public AttendanceRule findOne(Integer ruleId);
+	public DepartmentRuleVO findOne(Integer ruleId);
 	
 	public boolean save(DepartmentRuleVO departmentRuleVO);
 	

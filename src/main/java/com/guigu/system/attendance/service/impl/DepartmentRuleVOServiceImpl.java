@@ -25,11 +25,13 @@ public class DepartmentRuleVOServiceImpl implements DepartmentRuleVOService {
 
 	@Override
 	public List<DepartmentRuleVO> findList(DepartmentRuleVO departmentRuleVO) {
-		return departmentRuleVOMapper.findList(null);
+		if(departmentRuleVO!=null && departmentRuleVO.getDepartmentName()!=null) {
+			departmentRuleVO.setDepartmentName("%"+departmentRuleVO.getDepartmentName()+"%");
+			return departmentRuleVOMapper.findList(departmentRuleVO);
+		}
+		else
+			return departmentRuleVOMapper.findList(null);
 	}
-	
-	
-
 	@Override
 	public boolean save(DepartmentRuleVO departmentRuleVO) {
 		try {
@@ -68,8 +70,8 @@ public class DepartmentRuleVOServiceImpl implements DepartmentRuleVOService {
 	}
 
 	@Override
-	public AttendanceRule findOne(Integer ruleId) {
-		return attendanceRuleMapper.selectByPrimaryKey(ruleId);
+	public DepartmentRuleVO findOne(Integer ruleId) {
+		return departmentRuleVOMapper.findOne(ruleId);
 	}
 
 

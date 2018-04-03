@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.jasper.tagplugins.jstl.core.If;
 import org.springframework.stereotype.Service;
 
 import com.guigu.system.construct.service.DepartmentService;
@@ -74,6 +75,11 @@ public class DepartmentServiceImpl implements DepartmentService {
 
 		}
 		return false;
+	}
+
+	@Override
+	public List<Department> findOther() {
+		return departmentMapper.findOther();
 	}
 
 }

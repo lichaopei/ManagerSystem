@@ -23,6 +23,9 @@
 		<if test="departmentName!=null">
 			s.Department_Name like #{departmentName}
 		</if>
+		<if test="employeeName!=null">
+			s.Employee_Name like #{employeeName}
+ 		</if>
 	</where>
 </select>
 

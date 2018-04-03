@@ -1,6 +1,4 @@
 package com.guigu.system.converter;
-
-import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -23,12 +21,10 @@ public class CustomDateConverter implements Converter<String, Date> {
 
     @Override
     public Date convert(String source) {
-
-        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
+       SimpleDateFormat sdf=new SimpleDateFormat("HH:mm:ss");
          try {
            return sdf.parse(source);
         } catch (ParseException e) {
-        	
         }
         return null;
     }

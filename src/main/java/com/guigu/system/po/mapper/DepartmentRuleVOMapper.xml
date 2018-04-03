@@ -27,4 +27,9 @@
       #{endTimeAm,jdbcType=TIME}, #{startTimePm,jdbcType=TIME}, #{endTimePm,jdbcType=TIME}
       )
 	</insert>
+	
+	<select id="findOne"  parameterType="Integer"  resultMap="BaseResultMap">
+		select a.*,d.department_Name from Attendance_Rule a,department d
+		where a.department_Id=d.department_Id and a.rule_Id=${value}
+	</select>
 </mapper>

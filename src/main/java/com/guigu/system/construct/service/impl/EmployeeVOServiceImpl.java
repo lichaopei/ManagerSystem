@@ -1,5 +1,6 @@
 package com.guigu.system.construct.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.guigu.system.construct.service.EmployeeVOService;
 import com.guigu.system.po.AttendanceRecord;
+import com.guigu.system.po.AttendanceRecordExample;
+import com.guigu.system.po.AttendanceRecordExample.Criteria;
 import com.guigu.system.po.Employees;
 import com.guigu.system.po.EmployeesVO;
 import com.guigu.system.po.mapper.AttendanceRecordMapper;
@@ -74,8 +77,12 @@ public class EmployeeVOServiceImpl implements EmployeeVOService {
 	}
 
 	@Override
-	public boolean delete(Integer emloyeesid) {
-		int i=employeesMapper.deleteByPrimaryKey(emloyeesid);
+	public boolean delete(Integer emloyeesId) {
+		int i=employeesMapper.deleteByPrimaryKey(emloyeesId);
+		AttendanceRecordExample example=new AttendanceRecordExample();
+	    Criteria criteria=example.createCriteria();
+	    criteria.andEmployeeIdEqualTo(emloyeesId);
+	    attendanceRecordMapper.deleteByExample(example);
 		if(i>0) {
 			return true;
 		}
@@ -84,7 +91,22 @@ public class EmployeeVOServiceImpl implements EmployeeVOService {
 
 	@Override
 	public List<EmployeesVO> findEmployees(EmployeesVO employeesVO) {
-		return employeesVOMapper.findList(employeesVO);
+		List<EmployeesVO> list=new ArrayList<>();
+		if(employeesVO!=null) {
+			if(employeesVO.getDepartmentName()!=null) {
+				employeesVO.setDepartmentName("%"+employeesVO.getDepartmentName()+"%");
+			}
+			if(employeesVO.getPositionName()!=null) {
+				employeesVO.setPositionName("%"+employeesVO.getPositionName()+"%");
+			}
+			if (employeesVO.getEmployeeName()!=null) {
+				employeesVO.setEmployeeName("%"+employeesVO.getEmployeeName()+"%");
+			}
+		 list=employeesVOMapper.findList(employeesVO);
+		}else { 
+			list=employeesVOMapper.findList(null);
+		}
+		return list;
 	}
 
 	@Override

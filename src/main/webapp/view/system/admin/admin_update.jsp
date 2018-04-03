@@ -101,7 +101,7 @@
 		<div class="row">
 			<div class="col-sm-3 col-sm-offset-4">
 				<input type="submit" class="btn btn-success" value="保存" /> 
-				<input type="reset" class="btn  btn-danger" value="取消" />
+				<a class="btn btn-warning" href="${pageContext.request.contextPath}/system/admin/list.action">返回上一级</a>
 			</div>
 		</div>
 	</form>

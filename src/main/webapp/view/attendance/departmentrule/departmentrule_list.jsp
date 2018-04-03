@@ -16,12 +16,12 @@
     </ul>
 </div>
 <div class="row alert alert-info"  style="margin:0px; padding:3px;text-align: center;" >
-<form class="form-inline"  action="${pageContext.request.contextPath }/attendence/departmentrule/list.action">
+<form class="form-inline"  action="${pageContext.request.contextPath }/attendance/departmentrule/list.action">
      <div class="form-group">
         <input type="text" class="form-control" name="departmentName" placeholder="请输入部门名称"  >
       </div>
     <input type="submit"   class="btn btn-danger"     value="查询"/>
-    <a  class="btn btn-success"  href="${pageContext.request.contextPath}/view/attendence/departmentrule/departmentrule_add.jsp">添加部门</a>
+    <a  class="btn btn-success"  href="${pageContext.request.contextPath}/attendance/departmentrule/before.action">添加规则</a>
     </form>
 </div>
 <div align="center">
@@ -44,8 +44,8 @@
     	<display:column property="endTimeAm" title="上午下班时间"  format="{0,date,HH:mm:ss}"></display:column>
     	<display:column property="startTimePm" title="下午上班时间" format="{0,date,HH:mm:ss}"> </display:column>
     	<display:column property="endTimePm" title="下午下班时间" format="{0,date,HH:mm:ss}"> </display:column>
-    	<display:column href="${pageContext.request.contextPath }/attendence/departmentrule/load.action" paramId="ruleId" paramProperty="ruleId" value="修改" title="修改"></display:column>
-    	<display:column href="${pageContext.request.contextPath }/attendence/departmentrule/delete.action" paramId="ruleId" paramProperty="ruleId" value="删除" title="删除"></display:column>
+    	<display:column href="${pageContext.request.contextPath }/attendance/departmentrule/load.action" paramId="ruleId" paramProperty="ruleId" value="修改" title="修改"></display:column>
+    	<display:column href="${pageContext.request.contextPath }/attendance/departmentrule/delete.action" paramId="ruleId" paramProperty="ruleId" value="删除" title="删除"></display:column>
     </display:table>
     
 </div>

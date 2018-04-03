@@ -33,6 +33,9 @@
 				<select class="form-control  input-sm" onchange="query(this)"
 					name="condition">
 					<option value="">请选择</option>
+					<option value="employeeName">员工姓名</option>
+					<option value="departmentName">部门名称</option>
+					<option value="positionName">职位</option>
 				</select>
 			</div>
 			<div class="col-sm-3">

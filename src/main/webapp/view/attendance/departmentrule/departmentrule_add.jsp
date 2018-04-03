@@ -28,7 +28,7 @@
 			<div>${error}</div>
 		</div>
 	</div>
-	<form action="${pageContext.request.contextPath}/attendence/departmentrule/add.action"
+	<form action="${pageContext.request.contextPath}/attendance/departmentrule/add.action"
 		class="form-horizontal">
 		<h5 class="page-header alert-info"
 			style="padding: 10px; margin: 0px; margin-bottom: 5px;">基本信息</h5>
@@ -36,10 +36,12 @@
 			<div class="col-sm-5">
 				<div class="form-group">
 					<label class="col-sm-3 control-label">部门名称</label>
-					<div class="col-sm-9">
-						<input type="text" name="departmentName"
-							value="${department.departmentName}"
-							class="form-control input-sm"/>
+					<div class="col-sm-4">
+						<select name="departmentId" class="form-control input-sm">	
+							<c:forEach items="${findlist}" var="dept">
+								<option value="${dept.departmentId}">${dept.departmentName}</option>
+							</c:forEach>
+						</select>
 					</div>
 				</div>
 			</div>
@@ -102,9 +104,8 @@
 		<!--结束 -->
 		<div class="row">
 			<div class="col-sm-3 col-sm-offset-4">
-				<input type="submit" class="btn btn-success" value="保存" /> <a
-					class="btn btn-warning"
-					href="${pageContext.request.contextPath}/attendance/departmentrule/list.action">返回上一级</a>
+				<input type="submit" class="btn btn-success" value="保存" /> 
+				<a class="btn btn-warning" href="${pageContext.request.contextPath}/attendance/departmentrule/list.action">返回上一级</a>
 			</div>
 		</div>
      <script type="text/javascript">

@@ -9,5 +9,7 @@ public interface DepartmentRuleVOMapper {
 	public List<DepartmentRuleVO> findList(DepartmentRuleVO departmentRuleVO);
 	
 	public int save(DepartmentRuleVO departmentRuleVO);
+	
+	public DepartmentRuleVO findOne(int ruleId);
 
 }

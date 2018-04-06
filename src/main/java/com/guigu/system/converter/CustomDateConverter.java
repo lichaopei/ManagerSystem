@@ -21,7 +21,12 @@ public class CustomDateConverter implements Converter<String, Date> {
 
     @Override
     public Date convert(String source) {
-       SimpleDateFormat sdf=new SimpleDateFormat("HH:mm:ss");
+    	 SimpleDateFormat sdf=null;
+    	if (source.length()<10) {
+    		 sdf=new SimpleDateFormat("HH:mm:ss");
+		}else {
+			 sdf=new SimpleDateFormat("yyyyMMdd HH:mm:ss");
+       }
          try {
            return sdf.parse(source);
         } catch (ParseException e) {

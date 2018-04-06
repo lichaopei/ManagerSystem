@@ -17,7 +17,6 @@
 		<if test="departmentName!=null">
 			and d.department_name like #{departmentName}
 		</if>
-	
 	</select>
 	<insert id="save" parameterType="com.guigu.system.po.DepartmentRuleVO">
 	 insert into attendance_rule (Department_ID, Start_Time_AM, 

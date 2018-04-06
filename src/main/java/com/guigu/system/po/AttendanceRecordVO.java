@@ -5,7 +5,6 @@ public class AttendanceRecordVO extends AttendanceRecord{
 	private String typeName;
 	private String adminName;
 	private String departmentName;
-	private int flag;
 	public String getEmployeeName() {
 		return employeeName;
 	}
@@ -31,11 +30,4 @@ public class AttendanceRecordVO extends AttendanceRecord{
 	public void setDepartmentName(String departmentName) {
 		this.departmentName = departmentName;
 	}
-	public int getFlag() {
-		return flag;
-	}
-	public void setFlag(int flag) {
-		this.flag = flag;
-	}
-	
 }

@@ -1,5 +1,6 @@
 package com.guigu.system.system.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -7,7 +8,10 @@ import javax.annotation.Resource;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.stereotype.Service;
 
+import com.guigu.system.po.Admin;
 import com.guigu.system.po.AdminPopedom;
+import com.guigu.system.po.AdminPopedomExample;
+import com.guigu.system.po.AdminPopedomExample.Criteria;
 import com.guigu.system.po.PopedomVO;
 import com.guigu.system.po.mapper.AdminMapper;
 import com.guigu.system.po.mapper.AdminPopedomMapper;
@@ -75,4 +79,16 @@ public class PopedomVOServiceImpl implements PopedomVOService{
 		return list;
 	}
 
+	@Override
+	public List<Integer> findDept(Admin admin) {
+		List<Integer> integers=new ArrayList<>();
+		AdminPopedomExample example=new AdminPopedomExample();
+		Criteria criteria=example.createCriteria();
+		criteria.andAdminIdEqualTo(admin.getAdminId());
+		List<AdminPopedom> list=adminPopedomMapper.selectByExample(example);
+		for (AdminPopedom adminPopedom : list) {
+			integers.add(adminPopedom.getDepartmentId());
+		}
+		return integers;
+	}
 }

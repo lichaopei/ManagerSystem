@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.omg.PortableServer.ServantActivator;
 import org.springframework.context.support.StaticApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,8 @@ import com.guigu.system.system.service.AdminService;
 @Controller
 @RequestMapping("/system/admin/")
 public class AdminController {
+	private  Admin admin;
+	
 	@Resource(name="adminServiceImpl")
 	private AdminService adminService;
 	
@@ -47,7 +50,7 @@ public class AdminController {
     }
 	@RequestMapping("load.action")
     public String load(Integer adminId,Model model) {
-    	Admin admin=adminService.findOne(adminId);
+    	admin=adminService.findOne(adminId);
         model.addAttribute("admin", admin);
         return "system/admin/admin_update";
     }
@@ -83,14 +86,14 @@ public class AdminController {
 	 
 	 @RequestMapping("login.action")
 	 public String login(Admin admin,HttpSession session,Model model) {
-		 session.setAttribute("adminName", admin.getAdminAccount());  
-		 Admin loginadmin=adminService.login(admin);
-		 if (loginadmin==null || loginadmin.getAdminState().equals("·ñ")) {
+		 admin=adminService.login(admin);
+		 if (admin==null || admin.getAdminState().equals("·ñ")) {
 			model.addAttribute("error", "µÇÂ¼Ê§°Ü");
 			model.addAttribute("admin", admin);
 			return "login";
 		 }
-		 model.addAttribute("loginadmin", loginadmin);
+		 session.setAttribute("admin", admin);  
+		 model.addAttribute("loginadmin", admin);
 		 return "index";
 	 }
 

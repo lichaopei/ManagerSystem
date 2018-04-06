@@ -11,14 +11,17 @@ import org.springframework.stereotype.Service;
 import com.guigu.system.construct.service.EmployeeVOService;
 import com.guigu.system.po.AttendanceRecord;
 import com.guigu.system.po.AttendanceRecordExample;
-import com.guigu.system.po.AttendanceRecordExample.Criteria;
 import com.guigu.system.po.Employees;
 import com.guigu.system.po.EmployeesVO;
+import com.guigu.system.po.Temp;
+import com.guigu.system.po.TempExample;
+import com.guigu.system.po.TempExample.Criteria;
 import com.guigu.system.po.mapper.AttendanceRecordMapper;
 import com.guigu.system.po.mapper.DepartmentMapper;
 import com.guigu.system.po.mapper.EmployeesMapper;
 import com.guigu.system.po.mapper.EmployeesVOMapper;
 import com.guigu.system.po.mapper.PositionMapper;
+import com.guigu.system.po.mapper.TempMapper;
 @Service("employeeVOServiceImpl")
 public class EmployeeVOServiceImpl implements EmployeeVOService {
 	@Resource(name="employeesMapper")
@@ -30,18 +33,17 @@ public class EmployeeVOServiceImpl implements EmployeeVOService {
 	@Resource(name="positionMapper")
 	private PositionMapper positionMapper;
 	private Employees employees=new Employees();
-	@Resource(name="attendanceRecordMapper")
-	private AttendanceRecordMapper attendanceRecordMapper;
-	private AttendanceRecord attendanceRecord=new AttendanceRecord();
-	
+	@Resource(name="tempMapper")
+	private TempMapper tempMapper;
+	private Temp temp=new Temp();
 	@Override
 	public boolean save(EmployeesVO employeesVO) {
 		int i=employeesVOMapper.save(employeesVO);
 		EmployeesVO VO=(EmployeesVO) employeesVOMapper.findList(employeesVO).get(0);
-		attendanceRecord.setEmployeeId(VO.getEmployeeId());
-		attendanceRecord.setCardNumber(VO.getCardNumber());
-		attendanceRecord.setTempDepartmentId(VO.getDepartment());
-		attendanceRecordMapper.insert(attendanceRecord);
+		temp.setEmployeeId(VO.getEmployeeId());
+		temp.setCardNumber(VO.getCardNumber());
+		temp.setTempDepartmentId(VO.getDepartment());
+		tempMapper.insert(temp);
 		if(i>0) {
 			return true;
 		}
@@ -79,10 +81,10 @@ public class EmployeeVOServiceImpl implements EmployeeVOService {
 	@Override
 	public boolean delete(Integer emloyeesId) {
 		int i=employeesMapper.deleteByPrimaryKey(emloyeesId);
-		AttendanceRecordExample example=new AttendanceRecordExample();
+		TempExample example=new TempExample();
 	    Criteria criteria=example.createCriteria();
 	    criteria.andEmployeeIdEqualTo(emloyeesId);
-	    attendanceRecordMapper.deleteByExample(example);
+	    tempMapper.deleteByExample(example);
 		if(i>0) {
 			return true;
 		}

@@ -9,7 +9,15 @@
 <title>首页</title>
 <!-- 新 Bootstrap 核心 CSS 文件 -->
 <%@ include file="/view/public/common.jspf"%>
-</head>          
+</head>
+<script type="text/javascript">
+$("#datetimeStartAM").datetimepicker({
+	 format: "yyyyMMdd hh:ii:00",
+     startView:1,
+     autoclose: true
+});
+</script>
+
 <body>
 	<div style="padding: 0px; margin: 0px;">
 		<ul class="breadcrumb" style="margin: 0px;">
@@ -28,105 +36,58 @@
 			<div>${error}</div>
 		</div>
 	</div>
-	<form action="${pageContext.request.contextPath}/attendance/attendance/add.action"	
+	
+	<form
+		action="${pageContext.request.contextPath}/attendance/attendance/add.action"
 		class="form-horizontal">
-		
-		<table>
+	<div class="row" style="padding:15px; padding-top:0px; ">
+		<table ">
+			<thead>
 			<tr>
 				<td>员工姓名</td>
+				<td>卡号</td>
 				<td>部门</td>
 				<td>考勤时间</td>
 				<td>考勤状态</td>
-				<td>单据编号</td>				
 			</tr>
-			<c:forEach items="" var="">
+			</thead>
+		
+			<c:forEach items="${tempVO}" var="temp" varStatus="t" >
 				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td style="display:none;">
+						<input type="text" name="list[${t.index }].employeeId" value="${temp.employeeId}" />
+						<input type="text" name="list[${t.index }].tempDepartmentId" value="${temp.tempDepartmentId}" />
+					</td>
+					<td><input type="text" name="list[${t.index }].employeeName" value="${temp.employeeName}" readonly="readonly" style="border:0;outline:0;background-color:none;" ></td>
+					<td><input type="text" name="list[${t.index }].cardNumber"
+						value="${temp.cardNumber}" readonly="readonly" style="border:0;outline:0;background:rgba(0, 0, 0, 0);"/></td>
+					<td><input type="text" name="list[${t.index }].departmentName"
+						value="${temp.departmentName}" readonly="readonly" style="border:0;outline:0;"/></td>
+					<td><input type="text" name="list[${t.index }].attendanceDate" 
+						onfocus="WdatePicker({dateFmt:'yyyyMMdd HH:mm:ss'})"
+						class="Wdate" style="width: 250px ;height:28px;border:0;outline:0;" readonly="readonly" /></td>
+					<td>
+						<select class="form-control" name="list[${t.index }].attendanceType" 
+							style="width: 100px;height: 28px">
+							<option value="">-请选择-</option>
+							<option value="1">出勤</option>
+							<option value="2">公休</option>
+							<option value="3">迟到</option>
+							<option value="4">旷工</option>
+							<option value="5">外出</option>
+							<option value="6">出差</option>
+							<option value="7">加班</option>
+							<option value="8">倒休</option>
+							<option value="9">事假</option>
+							<option value="10">病假</option>
+							<option value="11">婚假</option>
+							<option value="12">丧假</option>
+							<option value="13">产假</option>
+					</select></td>
 				</tr>
 			</c:forEach>
 			
-		
-		
-		
-		
 		</table>
-		<h5 class="page-header alert-info"
-			style="padding: 10px; margin: 0px; margin-bottom: 5px;">基本信息</h5>
-		<div class="row">
-			<div class="col-sm-5">
-				<div class="form-group">
-					<label class="col-sm-3 control-label">员工名称</label>
-					<div class="col-sm-9">
-						<input type="text" name="employeeName"
-							value="${attendance.employeeName }"
-							class="form-control input-sm"/>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!--开始 -->
-		<div class="row">
-			<div class="col-sm-5">
-				<div class="form-group">
-					<label class="col-sm-3 control-label">卡号</label>
-					<div class="col-sm-9">
-						<input type="text" name="cardNumber"
-							value="${attendance.cardNumber }"
-							class="form-control input-sm"/>
-					</div>
-				</div>
-			</div>
-		</div>
-		
-		<div class="row">
-			<div class="col-sm-5">
-				<div class="form-group">
-					<label class="col-sm-3 control-label">考勤状态</label>
-					<div class="col-sm-9">
-						<div class="input-append date form_datetime">
-    						 <select class="form-control" name="attendancetype">
-       							<option value="1">出勤</option>
-       							<option value="2">公休</option>
-       							<option value="3">迟到</option>
-       							<option value="4">旷工</option>
-       							<option value="5">外出</option>
-       							<option value="6">出差</option>
-       							<option value="7">加班</option>
-       							<option value="8">倒休</option>
-       							<option value="9">事假</option>
-       							<option value="10">病假</option>
-       							<option value="11">婚假</option>
-       							<option value="12">丧假</option>
-       							<option value="13">产假</option>
-        					</select>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-sm-5">
-				<div class="form-group">
-					<label class="col-sm-3 control-label">单据编号</label>
-					<div class="col-sm-9">
-						<input type="text" name="nodeId"
-							value="${attendance.nodeId }"
-							class="form-control input-sm"/>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-5">
-				<div class="form-group">
-					<label class="col-sm-3 control-label">备注</label>
-					<div class="col-sm-9">
-						<textarea class="form-control" name="attendanceMemo">${attendance.attendanceMemo}</textarea>
-					</div>
-				</div>
-			</div>
 		</div>
 		<!--结束 -->
 		<!--结束 -->
@@ -137,8 +98,7 @@
 					href="${pageContext.request.contextPath}/attendance/attendance/list.action">返回上一级</a>
 			</div>
 		</div>
-                        
+
 	</form>
-	          
 </body>
 </html>

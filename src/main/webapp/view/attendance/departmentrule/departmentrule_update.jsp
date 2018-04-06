@@ -58,10 +58,10 @@
 					<label class="col-sm-3 control-label">上午开始时间</label>
 					<div class="col-sm-9">
 						<div class="input-append date form_datetime">
-							<input type="text" size="16" name="startTimeAm" id="d4" 
+							<input type="text" size="16" name="startTimeAm" 
 								  value=<fmt:formatDate value="${department.startTimeAm}" pattern="HH:mm:ss"/>
-						readonly class="form_datetime"/>
-								<span class="add-on"><i class="icon-th"></i></span>
+						 class="form_datetime"/>
+				
 						</div>
 					</div>
 				</div>
@@ -73,10 +73,9 @@
 					<label class="col-sm-3 control-label">上午结束时间</label>
 					<div class="col-sm-9">
 						<div class="input-append date form_datetime">
-							<input type="text" size="16" name="endTimeAm" id="d3" 
+							<input type="text" size="16" name="endTimeAm" 
 							 value=<fmt:formatDate value="${department.endTimeAm}"  pattern="HH:mm:ss"/>
-							 readonly class="form_datetime" /> 
-								<span class="add-on"><i	class="icon-th"></i></span>
+							 class="form_datetime" /> 
 						</div>
 					</div>
 				</div>
@@ -88,9 +87,8 @@
 					<label class="col-sm-3 control-label">下午开始时间</label>
 					<div class="col-sm-9">
 						<div class="input-append date form_datetime">
-							<input type="text" size="16" name="startTimePm" id="d2" readonly class="form_datetime"
+							<input type="text" size="16" name="startTimePm" class="form_datetime"
 								value=<fmt:formatDate value="${department.startTimePm}"  pattern="HH:mm:ss"/> /> 
-								<span class="add-on"><i class="icon-th"></i></span>
 						</div>
 					</div>
 				</div>
@@ -104,9 +102,8 @@
 					<label class="col-sm-3 control-label">下午结束时间</label>
 					<div class="col-sm-9">
 						<div class="input-append date form_datetime">
-						 <input type="text" size="16" name="endTimePm" id="d1" readonly class="form_datetime" 
+						 <input type="text" size="16" name="endTimePm"   class="form_datetime" 
 						value=<fmt:formatDate  value="${department.endTimePm}" pattern="HH:mm:ss"/> /> 
-						<span class="add-on"><i class="icon-th"></i></span>
 						</div>
 					</div>
 				</div>
@@ -119,30 +116,6 @@
 					href="${pageContext.request.contextPath}/attendance/departmentrule/list.action">返回上一级</a>
 			</div>
 		</div>
-		<script type="text/javascript">
-		$("#d1").datetimepicker({
-				format : "hh:ii:00",
-				startView : 1,
-				autoclose : true,
-			});
-			$("#d2").datetimepicker({
-				format : "hh:ii:00",
-				startView : 1,
-				autoclose : true
-			});
-			$("#d4").datetimepicker({
-				format : "hh:ii:00",
-				startView : 1,
-				autoclose : true
-			});
-			$("#d3").datetimepicker({
-				format : "hh:ii:00",
-				startView : 1,
-				autoclose : true
-			});
-			
-		</script>
-		
 	</form>
 
 </body>

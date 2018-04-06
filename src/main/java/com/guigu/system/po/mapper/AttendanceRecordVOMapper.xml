@@ -15,7 +15,6 @@
     <result column="Type_Name" property="typeName" jdbcType="VARCHAR" />
     <result column="Admin_Name" property="adminName" jdbcType="VARCHAR" />
     <result column="Department_Name" property="departmentName" jdbcType="VARCHAR" />
-    <result column="Type_Category" property="flag" jdbcType="INTEGER" />
   </resultMap>
   <select id="findList" parameterType="com.guigu.system.po.AttendanceRecordVO" resultMap="BaseResultMap">
 	select s.* from (select r.*,e.Employee_Name,t.Type_Name,t.Type_Category,d.Department_Name,a.Admin_Name from Attendance_Record r,Employees e,Attendance_Type t,Department d,
@@ -35,12 +34,12 @@
 
  <insert id="save" parameterType="com.guigu.system.po.AttendanceRecordVO" >
     insert into attendance_Record (Employee_ID, Card_Number, 
-      Attendance_Date, Attendance_Type, Attendance_Memo, 
-      Admin_ID, Temp_Department_ID, Node_ID
+      Attendance_Date, Attendance_Type,
+      Admin_ID, Temp_Department_ID
       )
     values (#{employeeId,jdbcType=INTEGER}, #{cardNumber,jdbcType=VARCHAR}, 
-      #{attendanceDate,jdbcType=TIMESTAMP}, #{attendanceType,jdbcType=INTEGER}, #{attendanceMemo,jdbcType=VARCHAR}, 
-      #{adminId,jdbcType=INTEGER}, #{tempDepartmentId,jdbcType=INTEGER}, #{nodeId,jdbcType=INTEGER}
+      #{attendanceDate,jdbcType=TIMESTAMP}, #{attendanceType,jdbcType=INTEGER}, 
+      #{adminId,jdbcType=INTEGER}, #{tempDepartmentId,jdbcType=INTEGER}
       )
   </insert>
   

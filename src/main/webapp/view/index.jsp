@@ -210,6 +210,23 @@
 									
 							</a></li>
 						</ul></li>
+						
+						<li><a href="javascript:void(0)" target="mainframe"
+						class="dropdown-toggle"> <i class="icon-desktop"></i> <span
+							class="menu-text"> 订单模块 </span> <b class="arrow icon-angle-down"></b>
+					</a>
+						<ul class="submenu">
+							<li><a
+								href="${pageContext.request.contextPath}/order/type/list.action"
+								target="mainframe"> <i class="icon-double-angle-right"></i>
+									类型设置
+							</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/order/order/list.action"
+								target="mainframe"> <i class="icon-double-angle-right"></i>
+									订单管理
+							</a></li>
+						</ul></li> 
 
 					<li><a href="javascript:void(0)" target="mainframe"
 						class="dropdown-toggle"> <i class="icon-desktop"></i> <span
@@ -274,7 +291,6 @@
 						class="dropdown-toggle"> <i class="icon-desktop"></i> <span
 							class="menu-text"> 财务管理 </span> <b class="arrow icon-angle-down"></b>
 					</a>
-
 						<ul class="submenu">
 							<li><a
 								href="${pageContext.request.contextPath}/finance/tuition/list.action"
@@ -286,7 +302,6 @@
 								target="mainframe"> <i class="icon-double-angle-right"></i>
 									员工薪水
 							</a></li>
-
 						</ul></li> --%>
 					<!-- /.nav-list -->
 
@@ -417,7 +432,6 @@
 													size : size
 												});
 							})
-
 			$('.sparkline').each(
 					function() {
 						var $box = $(this).closest('.infobox');
@@ -430,7 +444,6 @@
 							chartRangeMin : $(this).data('min') || 0
 						});
 					});
-
 			var placeholder = $('#piechart-placeholder').css({
 				'width' : '90%',
 				'min-height' : '150px'
@@ -485,19 +498,16 @@
 				})
 			}
 			drawPieChart(placeholder, data);
-
 			/**
 			we saved the drawing function and the data to redraw with different position later when switching to RTL mode dynamically
 			so that's not needed actually.
 			 */
 			placeholder.data('chart', data);
 			placeholder.data('draw', drawPieChart);
-
 			var $tooltip = $(
 					"<div class='tooltip top in'><div class='tooltip-inner'></div></div>")
 					.hide().appendTo('body');
 			var previousPoint = null;
-
 			placeholder.on('plothover', function(event, pos, item) {
 				if (item) {
 					if (previousPoint != item.seriesIndex) {
@@ -514,24 +524,19 @@
 					$tooltip.hide();
 					previousPoint = null;
 				}
-
 			});
-
 			var d1 = [];
 			for (var i = 0; i < Math.PI * 2; i += 0.5) {
 				d1.push([ i, Math.sin(i) ]);
 			}
-
 			var d2 = [];
 			for (var i = 0; i < Math.PI * 2; i += 0.5) {
 				d2.push([ i, Math.cos(i) ]);
 			}
-
 			var d3 = [];
 			for (var i = 0; i < Math.PI * 2; i += 0.2) {
 				d3.push([ i, Math.tan(i) ]);
 			}
-
 			var sales_charts = $('#sales-charts').css({
 				'width' : '100%',
 				'height' : '220px'
@@ -573,7 +578,6 @@
 					borderColor : '#555'
 				}
 			});
-
 			$('#recent-box [data-rel="tooltip"]').tooltip({
 				placement : tooltip_placement
 			});
@@ -582,20 +586,16 @@
 				var $parent = $source.closest('.tab-content')
 				var off1 = $parent.offset();
 				var w1 = $parent.width();
-
 				var off2 = $source.offset();
 				var w2 = $source.width();
-
 				if (parseInt(off2.left) < parseInt(off1.left)
 						+ parseInt(w1 / 2))
 					return 'right';
 				return 'left';
 			}
-
 			$('.dialogs,.comments').slimScroll({
 				height : '300px'
 			});
-
 			//Android's default browser somehow is confused when tapping on label which will lead to dragging the task
 			//so disable dragging when clicking on label
 			var agent = navigator.userAgent.toLowerCase();
@@ -609,7 +609,6 @@
 					if (label == e.target || $.contains(label, e.target))
 						e.stopImmediatePropagation();
 				});
-
 			$('#tasks').sortable({
 				opacity : 0.8,
 				revert : true,
@@ -629,9 +628,7 @@
 						else
 							$(this).closest('li').removeClass('selected');
 					});
-
 		})
 	</script>
 </body>
 </html>
-

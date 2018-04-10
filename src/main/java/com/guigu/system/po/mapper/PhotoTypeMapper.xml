@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.guigu.system.po.mapper.SignMapper" >
-  <resultMap id="BaseResultMap" type="com.guigu.system.po.Sign" >
-    <result column="Employee_ID" property="employeeId" jdbcType="INTEGER" />
-    <result column="Sign" property="sign" jdbcType="INTEGER" />
-    <result column="Un_Sign" property="unSign" jdbcType="INTEGER" />
-    <result column="Year_Month" property="yearMonth" jdbcType="DATE" />
+<mapper namespace="com.guigu.system.po.mapper.PhotoTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.guigu.system.po.PhotoType" >
+    <id column="type_id" property="typeId" jdbcType="INTEGER" />
+    <result column="type_name" property="typeName" jdbcType="VARCHAR" />
+    <result column="cost" property="cost" jdbcType="DOUBLE" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -66,15 +65,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    Employee_ID, Sign, Un_Sign, Year_Month
+    type_id, type_name, cost
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.guigu.system.po.SignExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.guigu.system.po.PhotoTypeExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from sign
+    from photo_type
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -82,69 +81,70 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.guigu.system.po.SignExample" >
-    delete from sign
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from photo_type
+    where type_id = #{typeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from photo_type
+    where type_id = #{typeId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.guigu.system.po.PhotoTypeExample" >
+    delete from photo_type
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.guigu.system.po.Sign" >
-    insert into sign (Employee_ID, Sign, Un_Sign, 
-      Year_Month)
-    values (#{employeeId,jdbcType=INTEGER}, #{sign,jdbcType=INTEGER}, #{unSign,jdbcType=INTEGER}, 
-      #{yearMonth,jdbcType=DATE})
+  <insert id="insert" parameterType="com.guigu.system.po.PhotoType" >
+    insert into photo_type (type_id, type_name, cost
+      )
+    values (#{typeId,jdbcType=INTEGER}, #{typeName,jdbcType=VARCHAR}, #{cost,jdbcType=DOUBLE}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.guigu.system.po.Sign" >
-    insert into sign
+  <insert id="insertSelective" parameterType="com.guigu.system.po.PhotoType" >
+    insert into photo_type
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="employeeId != null" >
-        Employee_ID,
+      <if test="typeId != null" >
+        type_id,
       </if>
-      <if test="sign != null" >
-        Sign,
+      <if test="typeName != null" >
+        type_name,
       </if>
-      <if test="unSign != null" >
-        Un_Sign,
-      </if>
-      <if test="yearMonth != null" >
-        Year_Month,
+      <if test="cost != null" >
+        cost,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="employeeId != null" >
-        #{employeeId,jdbcType=INTEGER},
+      <if test="typeId != null" >
+        #{typeId,jdbcType=INTEGER},
       </if>
-      <if test="sign != null" >
-        #{sign,jdbcType=INTEGER},
+      <if test="typeName != null" >
+        #{typeName,jdbcType=VARCHAR},
       </if>
-      <if test="unSign != null" >
-        #{unSign,jdbcType=INTEGER},
-      </if>
-      <if test="yearMonth != null" >
-        #{yearMonth,jdbcType=DATE},
+      <if test="cost != null" >
+        #{cost,jdbcType=DOUBLE},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.guigu.system.po.SignExample" resultType="java.lang.Integer" >
-    select count(*) from sign
+  <select id="countByExample" parameterType="com.guigu.system.po.PhotoTypeExample" resultType="java.lang.Integer" >
+    select count(*) from photo_type
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update sign
+    update photo_type
     <set >
-      <if test="record.employeeId != null" >
-        Employee_ID = #{record.employeeId,jdbcType=INTEGER},
+      <if test="record.typeId != null" >
+        type_id = #{record.typeId,jdbcType=INTEGER},
       </if>
-      <if test="record.sign != null" >
-        Sign = #{record.sign,jdbcType=INTEGER},
+      <if test="record.typeName != null" >
+        type_name = #{record.typeName,jdbcType=VARCHAR},
       </if>
-      <if test="record.unSign != null" >
-        Un_Sign = #{record.unSign,jdbcType=INTEGER},
-      </if>
-      <if test="record.yearMonth != null" >
-        Year_Month = #{record.yearMonth,jdbcType=DATE},
+      <if test="record.cost != null" >
+        cost = #{record.cost,jdbcType=DOUBLE},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -152,13 +152,30 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update sign
-    set Employee_ID = #{record.employeeId,jdbcType=INTEGER},
-      Sign = #{record.sign,jdbcType=INTEGER},
-      Un_Sign = #{record.unSign,jdbcType=INTEGER},
-      Year_Month = #{record.yearMonth,jdbcType=DATE}
+    update photo_type
+    set type_id = #{record.typeId,jdbcType=INTEGER},
+      type_name = #{record.typeName,jdbcType=VARCHAR},
+      cost = #{record.cost,jdbcType=DOUBLE}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.guigu.system.po.PhotoType" >
+    update photo_type
+    <set >
+      <if test="typeName != null" >
+        type_name = #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="cost != null" >
+        cost = #{cost,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where type_id = #{typeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.guigu.system.po.PhotoType" >
+    update photo_type
+    set type_name = #{typeName,jdbcType=VARCHAR},
+      cost = #{cost,jdbcType=DOUBLE}
+    where type_id = #{typeId,jdbcType=INTEGER}
   </update>
 </mapper>

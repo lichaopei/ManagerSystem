@@ -44,5 +44,10 @@ public class OrderVO extends Orders{
 	public void setChooseName(String chooseName) {
 		this.chooseName = chooseName;
 	}
+	@Override
+	public String toString() {
+		return "OrderVO [typeName=" + typeName + ", floorName=" + floorName + ", makeUpName=" + makeUpName
+				+ ", photoName=" + photoName + ", psName=" + psName + ", chooseName=" + chooseName + "]";
+	}
 	
 }

@@ -22,10 +22,10 @@ public class CustomDateConverter implements Converter<String, Date> {
     @Override
     public Date convert(String source) {
     	 SimpleDateFormat sdf=null;
-    	if (source.length()<10) {
+    	if (source.length()<12) {
     		 sdf=new SimpleDateFormat("HH:mm:ss");
 		}else {
-			 sdf=new SimpleDateFormat("yyyyMMdd HH:mm:ss");
+			 sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
        }
          try {
            return sdf.parse(source);

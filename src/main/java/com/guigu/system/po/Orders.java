@@ -132,4 +132,14 @@ public class Orders {
     public void setChoose(Integer choose) {
         this.choose = choose;
     }
+
+	@Override
+	public String toString() {
+		return "Orders [orderId=" + orderId + ", typeId=" + typeId + ", customer=" + customer + ", phone=" + phone
+				+ ", date=" + date + ", frontCost=" + frontCost + ", secondCost=" + secondCost + ", flag=" + flag
+				+ ", floor=" + floor + ", makeUp=" + makeUp + ", photo=" + photo + ", ps=" + ps + ", choose=" + choose
+				+ "]";
+	}
+    
+    
 }

@@ -11,6 +11,9 @@ import org.apache.catalina.core.ApplicationContext;
 import org.aspectj.weaver.ast.And;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -77,5 +80,28 @@ public class AttendanceRecordController {
 			attendanceService.save(attendanceRecordVO);
 		}
 		return this.list(null, model);
+	}
+	
+	@RequestMapping("load.action")
+	public String load(Model model,int attendanceId) {
+		AttendanceRecordVO attendanceRecordVO=attendanceService.findOne(attendanceId);
+		model.addAttribute("temp", attendanceRecordVO);
+		return "attendance/attendance/attendance_update";
+	}
+	@RequestMapping("update.action")
+	public String update(Model model,@Validated AttendanceRecordVO attendanceRecordVO,BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			List<ObjectError> allErrors=bindingResult.getAllErrors();
+			model.addAttribute("allErrors", allErrors);
+			model.addAttribute("temp", attendanceRecordVO);
+			return "attendance/attendance/attendance_update";
+		}
+		boolean result=attendanceService.update(attendanceRecordVO);
+        if(result) {
+            model.addAttribute("info", "修改成功");
+        }else {
+            model.addAttribute("info", "修改失败");
+        }
+        return this.list(null, model);
 	}
 }

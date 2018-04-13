@@ -62,8 +62,7 @@
     	<display:column property="attendanceDate" title="考勤时间"  format="{0,date,yyyy-MM-dd HH:mm:ss}"></display:column>
     	<display:column property="typeName" title="考勤类型" > </display:column>
     	<display:column property="departmentName" title="部门名称" > </display:column>
-    	<display:column property="adminName" title="负责人" 
-    	 href="${pageContext.request.contextPath }/attendance/note/show.action" paramId="nodeId" paramProperty="nodeId"></display:column>
+    	<display:column property="adminName" title="负责人" > </display:column>
     	<display:column href="${pageContext.request.contextPath }/attendance/attendance/load.action" paramId="attendanceId" paramProperty="attendanceId" value="修改" title="修改"></display:column>
     	<display:column href="${pageContext.request.contextPath }/attendance/attendance/delete.action" paramId="attendanceId" paramProperty="attendanceId" value="删除" title="删除"></display:column>
     </display:table>

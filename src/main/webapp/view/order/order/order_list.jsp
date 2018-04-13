@@ -21,7 +21,7 @@
         <input type="text" class="form-control" name="customer" placeholder="请输入顾客姓名"  >
       </div>
     <input type="submit"   class="btn btn-danger"     value="查询"/>
-    <a  class="btn btn-success"  href="${pageContext.request.contextPath}/view/order/type/type_add.jsp">添加类型</a>
+    <a  class="btn btn-success"  href="${pageContext.request.contextPath}/order/order/beforeAdd.action">添加订单</a>
     </form>
 </div>
 <div align="center">
@@ -39,10 +39,13 @@
 	<table class="table  table-condensed table-striped">
     </table>
     <display:table class="table table-condensed table-striped" name="list" pagesize="10" requestURI="${pageContext.request.contextPath }/order/order/list.action">
-    	<display:column property="typeName" title="类型名称"></display:column>
-    	<display:column property="floorName" title="门市人员"></display:column>
-    	<display:column href="${pageContext.request.contextPath }/order/type/load.action" paramId="typeId" paramProperty="typeId" value="修改" title="修改"></display:column>
-    	<display:column href="${pageContext.request.contextPath }/order/type/delete.action" paramId="typeId" paramProperty="typeId" value="删除" title="删除"></display:column>
+    	<display:column property="typeName" title="订单类型"></display:column>
+    	<display:column property="customer" title="客户姓名"
+    	href="${pageContext.request.contextPath}/order/order/show.action"  paramId="orderId" paramProperty="orderId"></display:column>
+    	<display:column property="date" title="预订时间"  format="{0,date,yyyy-MM-dd HH:mm:ss}"></display:column>
+    	<display:column property="flag" title="完成状态"></display:column>
+    	<display:column href="${pageContext.request.contextPath }/order/order/load.action" paramId="orderId" paramProperty="orderId" value="修改" title="修改"></display:column>
+    	<display:column href="${pageContext.request.contextPath }/order/order/delete.action" paramId="orderId" paramProperty="orderId" value="删除" title="删除"></display:column>
     </display:table>
     
 </div>

@@ -42,13 +42,8 @@ public class AttendanceServiceImpl implements AttendanceService{
 
 	@Override
 	public boolean update(AttendanceRecordVO attendanceRecordVO) {
-		AttendanceRecord attendancerecord=new AttendanceRecord();
-		try {
-			BeanUtils.copyProperties(attendancerecord, attendanceRecordVO);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		int i=attendanceRecordMapper.insert(attendancerecord);
+		AttendanceRecord attendancerecord=attendanceRecordVO;
+		int i=attendanceRecordMapper.updateByPrimaryKey(attendancerecord);
 		if(i>0) {
 			return true;
 		}

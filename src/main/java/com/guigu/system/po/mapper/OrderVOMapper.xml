@@ -16,25 +16,39 @@
     <result column="ps" property="ps" jdbcType="INTEGER" />
     <result column="choose" property="choose" jdbcType="INTEGER" />
     <result column="type_Name" property="typeName" jdbcType="VARCHAR" />
-    <result column="employee_Name" property="floorName" jdbcType="VARCHAR" />
-    <result column="employee_Name" property="makeUpName" jdbcType="VARCHAR" />
-    <result column="employee_Name" property="photoName" jdbcType="VARCHAR" />
-    <result column="employee_Name" property="psName" jdbcType="VARCHAR" />
-    <result column="employee_Name" property="chooseName" jdbcType="VARCHAR" />
+    <result column="floor_Name" property="floorName" jdbcType="VARCHAR" />
+    <result column="make_up_Name" property="makeUpName" jdbcType="VARCHAR" />
+    <result column="photo_name" property="photoName" jdbcType="VARCHAR" />
+    <result column="ps_Name" property="psName" jdbcType="VARCHAR" />
+    <result column="choose_Name" property="chooseName" jdbcType="VARCHAR" />
   </resultMap>
   
   <select id="findList" parameterType="com.guigu.system.po.OrderVO" resultMap="BaseResultMap">
-  		select o.*,p.type_name,e1.employee_name,e2.employee_name,e3.employee_name,e4.employee_name,e5.employee_name,p.type_name 
-from 
-			employees e1,employees e2,employees e3,employees e4,employees e5, Photo_type p, orders o
- where  p.type_Id=o.type_Id and e5.employee_Id=o.floor
-  		and e1.employee_Id=o.make_up and e2.employee_Id=o.photo and
-  		e3.employee_Id=o.ps and e4.employee_Id=o.choose 
+  		select o.*,e.Employee_Name,p.type_name from orders o,employees e,photo_type p
+  		 where o.type_id=p.type_id and o.floor=e.Employee_ID
   		<if test="date!=null">
   			and o.date= #{date}
   		</if>
   		<if test="customer!=null">
 			and o.customer like #{customer}  		
   		</if>
+  		<if test="orderId!=null">
+  			and o.order_Id=#{orderId}
+  		</if>
+  </select>
+  
+  <select id="findOne" parameterType="Integer" resultMap="BaseResultMap">
+  	select o.*,p.type_name,e1.employee_name make_up_Name,e2.employee_name photo_name,e3.employee_name ps_Name,e4.employee_name choose_name,
+  	e5.employee_name floor_name
+	from 
+	employees e1,employees e2,employees e3,employees e4,employees e5, Photo_type p, orders o
+ 	where  p.type_Id=o.type_Id and e5.employee_Id=o.floor
+  	and e1.employee_Id=o.make_up and e2.employee_Id=o.photo and
+  	e3.employee_Id=o.ps and e4.employee_Id=o.choose and o.order_id=${value}
+  </select>
+  
+  <select id="find" parameterType="Integer" resultMap="BaseResultMap">
+  	select o.*,e.Employee_Name floor_name,p.type_name from orders o,employees e,photo_type p
+  	where o.type_id=p.type_id and o.floor=e.Employee_ID and o.order_id=${value}
   </select>
  </mapper>

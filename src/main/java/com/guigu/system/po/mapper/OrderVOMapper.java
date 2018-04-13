@@ -12,5 +12,9 @@ public interface OrderVOMapper {
 	public int update(OrderVO orderVO);
 	
 	public int delete(int OrderId);
+	
+	public OrderVO findOne(int OrderId);
+	
+	public OrderVO find(int OrderId);
 
 }

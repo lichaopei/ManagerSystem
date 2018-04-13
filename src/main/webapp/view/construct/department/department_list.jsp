@@ -44,7 +44,6 @@
     	<display:column property="empNumber" title="员工人数"></display:column>
     	<display:column property="remarks" title="备注"> </display:column>
     	<display:column href="${pageContext.request.contextPath }/construct/department/load.action" paramId="departmentId" paramProperty="departmentId" value="修改" title="修改"></display:column>
-    	<display:column href="${pageContext.request.contextPath }/construct/department/delete.action" paramId="departmentId" paramProperty="departmentId" value="删除" title="删除"></display:column>
     </display:table>
     
 </div>

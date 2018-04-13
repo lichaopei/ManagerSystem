@@ -15,7 +15,7 @@
   </resultMap>
   <select id="findList" parameterType="com.guigu.system.po.EmployeesVO" resultMap="BaseResultMap">
 	select s.* from (select e.*,p.Position_Name,d.Department_Name from Employees e,Position p,Department d
-	where p.Position_ID=e.Position and e.Department=d.Department_ID) s
+	where p.Position_ID=e.Position and e.Department=d.Department_ID and e.employee_state=1) s
 	<where>
 		<if test="positionName!=null">
 			s.Position_Name like #{positionName}
@@ -25,6 +25,9 @@
 		</if>
 		<if test="employeeName!=null">
 			s.Employee_Name like #{employeeName}
+ 		</if>
+ 		<if test="department!=null">
+ 			s.Department=#{department}
  		</if>
 	</where>
 </select>

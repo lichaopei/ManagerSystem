@@ -24,7 +24,7 @@ public class PhotoTypeController {
 	public String list(PhotoType photoType,Model model) {
 		List<PhotoType> list=photoTypeService.findList(photoType);
 		model.addAttribute("list", list);
-		return "/order/type/type_list";
+		return "order/type/type_list";
 	}
 	
 	@RequestMapping("add.action")
@@ -33,7 +33,7 @@ public class PhotoTypeController {
 			List<ObjectError> allErrors=bindingResult.getAllErrors();
 			model.addAttribute("allErrors", allErrors);
 			model.addAttribute("photoType", photoType);
-			return "/order/type/type_add";
+			return "order/type/type_add";
 		}
 		boolean result= photoTypeService.save(photoType);
        if(result) {
@@ -48,7 +48,7 @@ public class PhotoTypeController {
     public String load(Integer typeId,Model model) {
 		PhotoType photoType=photoTypeService.findOne(typeId);
         model.addAttribute("photoType", photoType);
-        return "/order/type/type_update";
+        return "order/type/type_update";
     }
 	@RequestMapping("update.action")
     public String update(Model model,@Validated PhotoType photoType,BindingResult bindingResult) {

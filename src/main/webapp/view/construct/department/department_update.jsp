@@ -44,7 +44,7 @@
 					<label class="col-sm-3 control-label">部门名称</label>
 					<div class="col-sm-9">
 						<input type="text" name="departmentName"
-							value="${department.departmentName}"
+							value="${department.departmentName}" readonly="readonly"
 							class="form-control input-sm" />
 					</div>
 				</div>

@@ -38,7 +38,7 @@ $("#datetimeStartAM").datetimepicker({
 	</div>
 	
 	<form
-		action="${pageContext.request.contextPath}/attendance/attendance/add.action"
+		action="${pageContext.request.contextPath}/attendance/attendance/update.action"
 		class="form-horizontal">
 	<div class="row" style="padding:15px; padding-top:0px; ">
 		<table ">
@@ -52,33 +52,34 @@ $("#datetimeStartAM").datetimepicker({
 			</tr>
 			</thead>
 		
-			<c:forEach items="${tempVO}" var="temp" varStatus="t" >
 				<tr>
 					<td style="display:none;">
-						<input type="text" name="list[${t.index }].employeeId" value="${temp.employeeId}" />
-						<input type="text" name="list[${t.index }].tempDepartmentId" value="${temp.tempDepartmentId}" />
+						<input type="text" name="attendanceId" value="${temp.attendanceId}" />
+						<input type="text" name="employeeId" value="${temp.employeeId}" />
+						<input type="text" name="tempDepartmentId" value="${temp.tempDepartmentId}" />
+						<input type="text" name="adminId" value="${temp.adminId}" />
 					</td>
-					<td><input type="text" name="list[${t.index }].employeeName" value="${temp.employeeName}" readonly="readonly" style="border:0;outline:0;background-color:none;" ></td>
-					<td><input type="text" name="list[${t.index }].cardNumber"
+					<td><input type="text" name="employeeName" value="${temp.employeeName}" readonly="readonly" style="border:0;outline:0;background-color:none;" ></td>
+					<td><input type="text" name="cardNumber"
 						value="${temp.cardNumber}" readonly="readonly" style="border:0;outline:0;background:rgba(0, 0, 0, 0);"/></td>
-					<td><input type="text" name="list[${t.index }].departmentName"
+					<td><input type="text" name="departmentName"
 						value="${temp.departmentName}" readonly="readonly" style="border:0;outline:0;"/></td>
-					<td><input type="text" name="list[${t.index }].attendanceDate" 
-						onfocus="WdatePicker({dateFmt:'yyyyMMdd HH:mm:ss'})"
+					<td>
+					<input type="text" name="attendanceDate" 
+					 value='<fmt:formatDate value="${temp.attendanceDate}" pattern="yyyyMMdd HH:mm:ss"/>'
+						onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"
 						class="Wdate" style="width: 250px ;height:28px;border:0;outline:0;" readonly="readonly" /></td>
 					<td>
-						<select class="form-control" name="list[${t.index }].attendanceType" 
+						<select class="form-control" name="attendanceType" 
 							style="width: 100px;height: 28px">
-							<option value="">-请选择-</option>
-							<option value="1">出勤</option>
-							<option value="2">公休</option>
-							<option value="3">迟到</option>
-							<option value="4">旷工</option>
-							<option value="5">事假</option>
-					</select></td>
+							<option value="1" ${temp.attendanceType=='1'?'selected':'' }>出勤</option>
+							<option value="2" ${temp.attendanceType=='2'?'selected':'' }>公休</option>
+							<option value="3" ${temp.attendanceType=='3'?'selected':'' }>迟到</option>
+							<option value="4" ${temp.attendanceType=='4'?'selected':'' }>旷工</option>
+							<option value="5" ${temp.attendanceType=='5'?'selected':'' }>事假</option>
+					</select>
+					</td>
 				</tr>
-			</c:forEach>
-			
 		</table>
 		</div>
 		<!--结束 -->

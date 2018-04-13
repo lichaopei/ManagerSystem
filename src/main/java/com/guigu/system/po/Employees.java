@@ -100,4 +100,13 @@ public class Employees {
     public void setEmployeeMemo(String employeeMemo) {
         this.employeeMemo = employeeMemo == null ? null : employeeMemo.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Employees [employeeId=" + employeeId + ", employeeName=" + employeeName + ", employeeGender="
+				+ employeeGender + ", position=" + position + ", department=" + department + ", cardNumber="
+				+ cardNumber + ", employeeState=" + employeeState + ", phone=" + phone + ", address=" + address
+				+ ", employeeMemo=" + employeeMemo + "]";
+	}
+    
 }

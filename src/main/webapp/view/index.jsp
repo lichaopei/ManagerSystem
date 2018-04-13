@@ -165,6 +165,29 @@
 									部门管理
 							</a></li>
 						</ul></li>
+						
+							<li><a href="javascript:void(0)" target="mainframe"
+						class="dropdown-toggle"> <i class="icon-desktop"></i> <span
+							class="menu-text"> 指标管理 </span> <b class="arrow icon-angle-down"></b>
+					</a>
+						<ul class="submenu">
+
+							<li><a
+								href="${pageContext.request.contextPath}/classinfo/disciplineinfo/list.action"
+								target="mainframe"> <i class="icon-double-angle-right"></i>
+								级别设置
+							</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/classinfo/classroominfo/list.action"
+								target="mainframe"> <i class="icon-double-angle-right"></i>
+								指标设置	
+							</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/classinfo/syllabusinfo/list.action"
+								target="mainframe"> <i class="icon-double-angle-right"></i>
+								指标查询	
+							</a></li>
+						</ul></li>
 
 					<li><a href="javascript:void(0)" target="mainframe"
 						class="dropdown-toggle"> <i class="icon-desktop"></i> <span

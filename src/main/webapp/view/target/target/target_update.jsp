@@ -28,21 +28,34 @@
 			<div>${error}</div>
 		</div>
 	</div>
-	<form action="${pageContext.request.contextPath}/order/type/update.action"
+	<form action="${pageContext.request.contextPath}/target/update.action"
 		class="form-horizontal">
 		<h5 class="page-header alert-info"
 			style="padding: 10px; margin: 0px; margin-bottom: 5px;">基本信息</h5>
 			
 			<div style="display: none;">
-				<input type="text" name="typeId" value="${photoType.typeId}">
+				<input type="text" name="levelId" value="${targetLevel.levelId}">
 			</div>
 		<div class="row">
 			<div class="col-sm-5">
 				<div class="form-group">
-					<label class="col-sm-3 control-label">类型名称</label>
+					<label class="col-sm-3 control-label">指标级别</label>
 					<div class="col-sm-6">
-						
-    						<input type="text" name="typeName" value="${photoType.typeName}" class="form-control input-sm">
+							
+    						<input type="text" name="targetLevel" value="${target.targetLevel}" class="form-control input-sm">
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		
+		<div class="row">
+			<div class="col-sm-5">
+				<div class="form-group">
+					<label class="col-sm-3 control-label">指标名称</label>
+					<div class="col-sm-6">
+    						<input type="text" name="targetName" value="${target.targetName}" class="form-control input-sm">
 					</div>
 				</div>
 				
@@ -52,9 +65,9 @@
 		<div class="row">
 			<div class="col-sm-5">
 				<div class="form-group">
-					<label class="col-sm-3 control-label">价格</label>
+					<label class="col-sm-3 control-label">内容</label>
 					<div class="col-sm-6">
-    						<input  type="text" name="cost" value="${photoType.cost}" class="form-control input-sm">
+    						<input  type="text" name="remarks" value="${target.remarks}" class="form-control input-sm">
    
 					</div>
 				</div>
@@ -63,7 +76,7 @@
 		<div class="row">
 			<div class="col-sm-3 col-sm-offset-4">
 				<input type="submit" class="btn btn-success" value="修改" /> 
-				<a href="${pageContext.request.contextPath}/order/type/list.action"  class="btn  btn-danger" >返回上一级</a>
+				<a href="${pageContext.request.contextPath}/target/list.action"  class="btn  btn-danger" >返回上一级</a>
 			</div>
 		</div>      
 	</form>

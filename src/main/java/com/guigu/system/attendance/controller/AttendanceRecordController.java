@@ -45,14 +45,6 @@ public class AttendanceRecordController {
 	private PopedomVOService popedomVOService;
 	@RequestMapping("list.action")
 	public String list(AttendanceRecordVO attendanceRecordVO,Model model) {
-		if(attendanceRecordVO!=null) {
-			if(attendanceRecordVO.getDepartmentName()!=null) {
-				attendanceRecordVO.setDepartmentName("%"+attendanceRecordVO.getDepartmentName()+"%");
-			}
-			if (attendanceRecordVO.getEmployeeName()!=null) {
-				attendanceRecordVO.setEmployeeName("%"+attendanceRecordVO.getEmployeeName()+"%");
-			}
-		}
 		List<AttendanceRecordVO> list=attendanceService.findList(attendanceRecordVO);
 		model.addAttribute("list", list);
 		return "attendance/attendance/attendance_list";

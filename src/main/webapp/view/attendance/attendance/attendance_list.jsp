@@ -27,15 +27,7 @@
        							<option value="公休">公休</option>
        							<option value="迟到">迟到</option>
        							<option value="旷工">旷工</option>
-       							<option value="外出">外出</option>
-       							<option value="出差">出差</option>
-       							<option value="加班">加班</option>
-       							<option value="倒休">倒休</option>
        							<option value="事假">事假</option>
-       							<option value="病假">病假</option>
-       							<option value="婚假">婚假</option>
-       							<option value="丧假">丧假</option>
-       							<option value="产假">产假</option>
        			</select>
       </div>
     <input type="submit"   class="btn btn-danger"     value="查询"/>

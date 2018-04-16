@@ -15,15 +15,19 @@
         <li>部门管理</li>
     </ul>
 </div>
-
 <div class="row alert alert-info"  style="margin:0px; padding:3px;text-align: center;" >
-    <a  class="btn btn-success"  href="${pageContext.request.contextPath}/view/target/targetlevel/level_add.jsp">添加级别</a>
+<form class="form-inline"  action="${pageContext.request.contextPath }/target/list.action">
+	<div class="form-group" >
+		<input type="text" name="targetLevel"  placeholder="请输入指标级别" class="form-control">
+	</div>
+		<input type="submit"   class="btn btn-danger"     value="查询"/>
+	    <a  class="btn btn-success"  href="${pageContext.request.contextPath}/view/target/target/target_add.jsp">添加指标</a>
+</form>
 </div>
 <div align="center">
 	<div class="alert alert-warning" style="margin: 0px; padding: 5px; width: 80%;display:${empty info?'none':'block'} ">
 		<button type="button" class="close" data-dismiss="alert">
 			<span aria-hidden="true">&times;</span>
-			
 		</button>
 		<p align="center" style="color: red;">类型信息-${info}</p>
 	</div>	
@@ -33,11 +37,12 @@
 <div class="row" style="padding:15px; padding-top:0px; " align="right">
 	<table class="table  table-condensed table-striped">
     </table>
-    <display:table class="table table-condensed table-striped" name="list" pagesize="10" requestURI="${pageContext.request.contextPath }/targetlevel/list.action">
-    	<display:column property="levelIndex" title="指标级别"></display:column>
+    <display:table class="table table-condensed table-striped" name="list" pagesize="10" requestURI="${pageContext.request.contextPath }/target/list.action">
+    	<display:column property="targetName" title="指标名称"></display:column>
+    	<display:column property="targetLevel" title="指标级别"></display:column>
     	<display:column property="remarks" title="内容"></display:column>
-    	<display:column href="${pageContext.request.contextPath }/targetlevel/load.action" paramId="levelId" paramProperty="levelId" value="修改" title="修改"></display:column>
-    	<display:column href="${pageContext.request.contextPath }/targetlevel/delete.action" paramId="levelId" paramProperty="levelId" value="删除" title="删除"></display:column>
+    	<display:column href="${pageContext.request.contextPath }/target/load.action" paramId="targetId" paramProperty="targetId" value="修改" title="修改"></display:column>
+    	<display:column href="${pageContext.request.contextPath }/target/delete.action" paramId="targetId" paramProperty="targetId" value="删除" title="删除"></display:column>
     </display:table>
 </div>
 

@@ -21,7 +21,14 @@ public class AttendanceServiceImpl implements AttendanceService{
 	
 	@Override
 	public List<AttendanceRecordVO> findList(AttendanceRecordVO attendanceRecordVO) {
-		
+		if(attendanceRecordVO!=null) {
+			if(attendanceRecordVO.getDepartmentName()!=null) {
+				attendanceRecordVO.setDepartmentName("%"+attendanceRecordVO.getDepartmentName()+"%");
+			}
+			if (attendanceRecordVO.getEmployeeName()!=null) {
+				attendanceRecordVO.setEmployeeName("%"+attendanceRecordVO.getEmployeeName()+"%");
+			}
+		}
 		return attendanceRecordVOMapper.findList(attendanceRecordVO);
 	}
 

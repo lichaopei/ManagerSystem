@@ -15,7 +15,7 @@
 		<ul class="breadcrumb" style="margin: 0px;">
 			<li><a href="#">指标模块</a></li>
 			<li>指标级别</li>
-			<li>级别添加</li>
+			<li>指标添加</li>
 		</ul>
 	</div>
 	<!-- 显示错误信息 -->
@@ -28,7 +28,7 @@
 			<div>${error}</div>
 		</div>
 	</div>
-	<form action="${pageContext.request.contextPath}/targetlevel/add.action"
+	<form action="${pageContext.request.contextPath}/target/add.action"
 		class="form-horizontal">
 		<h5 class="page-header alert-info"
 			style="padding: 10px; margin: 0px; margin-bottom: 5px;">基本信息</h5>
@@ -37,7 +37,19 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">指标级别</label>
 					<div class="col-sm-6">
-    						<input type="text" name="levelIndex" value="${targetLevel.levelIndex}" class="form-control input-sm">
+    						<input type="text" name="targetLevel" value="${target.targetLevel}" class="form-control input-sm">
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-5">
+				<div class="form-group">
+					<label class="col-sm-3 control-label">指标名称</label>
+					<div class="col-sm-6">
+    						<input type="text" name="targetName" value="${target.targetName}" class="form-control input-sm">
 					</div>
 				</div>
 				
@@ -49,7 +61,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">内容</label>
 					<div class="col-sm-6">
-    						<input  type="text" name="remarks" value="${targetLevel.remarks}" class="form-control input-sm">
+    						<input  type="text" name="remarks" value="${target.remarks}" class="form-control input-sm">
    
 					</div>
 				</div>

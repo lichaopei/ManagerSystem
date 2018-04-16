@@ -172,16 +172,12 @@
 					</a>
 						<ul class="submenu">
 							<li><a
-								href="${pageContext.request.contextPath}/classinfo/disciplineinfo/list.action"
-								target="mainframe"> <i class="icon-double-angle-right"></i>
-							</a></li>
-							<li><a
 								href="${pageContext.request.contextPath}/targetlevel/list.action"
 								target="mainframe"> <i class="icon-double-angle-right"></i>
 								级别设置	
 							</a></li>
 							<li><a
-								href="${pageContext.request.contextPath}/classinfo/syllabusinfo/list.action"
+								href="${pageContext.request.contextPath}/target/list.action"
 								target="mainframe"> <i class="icon-double-angle-right"></i>
 								指标设置	
 							</a></li>
@@ -213,22 +209,22 @@
 							<li><a
 								href="${pageContext.request.contextPath}/classinfo/disciplineinfo/list.action"
 								target="mainframe"> <i class="icon-double-angle-right"></i>
-								
+									业务设置
 							</a></li>
 							<li><a
 								href="${pageContext.request.contextPath}/classinfo/classroominfo/list.action"
 								target="mainframe"> <i class="icon-double-angle-right"></i>
-									
+									员工考核
 							</a></li>
 							<li><a
 								href="${pageContext.request.contextPath}/classinfo/syllabusinfo/list.action"
 								target="mainframe"> <i class="icon-double-angle-right"></i>
-									
+									考核查询
 							</a></li>
 							<li><a
 								href="${pageContext.request.contextPath}/classinfo/teacher/list.action"
 								target="mainframe"> <i class="icon-double-angle-right"></i>
-									
+									考核统计
 							</a></li>
 						</ul></li>
 						

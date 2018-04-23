@@ -14,15 +14,11 @@ import com.guigu.system.po.AttendanceRecordExample;
 import com.guigu.system.po.Department;
 import com.guigu.system.po.Employees;
 import com.guigu.system.po.EmployeesVO;
-import com.guigu.system.po.Temp;
-import com.guigu.system.po.TempExample;
-import com.guigu.system.po.TempExample.Criteria;
 import com.guigu.system.po.mapper.AttendanceRecordMapper;
 import com.guigu.system.po.mapper.DepartmentMapper;
 import com.guigu.system.po.mapper.EmployeesMapper;
 import com.guigu.system.po.mapper.EmployeesVOMapper;
 import com.guigu.system.po.mapper.PositionMapper;
-import com.guigu.system.po.mapper.TempMapper;
 @Service("employeeVOServiceImpl")
 public class EmployeeVOServiceImpl implements EmployeeVOService {
 	@Resource(name="employeesMapper")
@@ -35,17 +31,10 @@ public class EmployeeVOServiceImpl implements EmployeeVOService {
 	private PositionMapper positionMapper;
 	private Employees employees=new Employees();
 	private Department dept=new Department();
-	@Resource(name="tempMapper")
-	private TempMapper tempMapper;
-	private Temp temp=new Temp();
 	@Override
 	public boolean save(EmployeesVO employeesVO) {
 		int i=employeesVOMapper.save(employeesVO);
 		EmployeesVO VO=(EmployeesVO) employeesVOMapper.findList(employeesVO).get(0);
-		temp.setEmployeeId(VO.getEmployeeId());
-		temp.setCardNumber(VO.getCardNumber());
-		temp.setTempDepartmentId(VO.getDepartment());
-		tempMapper.insert(temp);
 		//设置部门员工数+1
 		dept.setDepartmentId(employeesVO.getDepartment());
 		dept=departmentMapper.selectByPrimaryKey(dept.getDepartmentId());
@@ -87,10 +76,6 @@ public class EmployeeVOServiceImpl implements EmployeeVOService {
 
 	@Override
 	public boolean delete(Integer emloyeesId) {
-		TempExample example=new TempExample();
-	    Criteria criteria=example.createCriteria();
-	    criteria.andEmployeeIdEqualTo(emloyeesId);
-	    tempMapper.deleteByExample(example);
 	    
 	    employees=employeesMapper.selectByPrimaryKey(emloyeesId);
 	    dept.setDepartmentId(employees.getDepartment());

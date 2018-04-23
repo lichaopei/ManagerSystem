@@ -16,11 +16,12 @@ public class ModelList {
 	public ModelList() {
 		super();
 	}
-
+	
+	
 	public ModelList(List<AttendanceRecordVO> list) {
 		super();
 		this.list = list;
 	}
-	
+
 	
 }

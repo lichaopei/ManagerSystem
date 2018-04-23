@@ -9,16 +9,12 @@ import org.springframework.stereotype.Service;
 import com.guigu.system.po.Target;
 import com.guigu.system.po.TargetExample;
 import com.guigu.system.po.TargetExample.Criteria;
-import com.guigu.system.po.TargetVO;
 import com.guigu.system.po.mapper.TargetMapper;
-import com.guigu.system.po.mapper.TargetVOMapper;
 import com.guigu.system.target.service.TargetService;
 @Service("targetServiceImpl")
 public class TargetServiceImpl implements TargetService{
 	@Resource(name="targetMapper")
 	private TargetMapper targetMapper;
-	@Resource(name="targetVOMapper")
-	private TargetVOMapper targetVOMapper;
 
 	@Override
 	public List<Target> findList(Target  target) {

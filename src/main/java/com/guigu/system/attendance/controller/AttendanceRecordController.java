@@ -19,16 +19,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.guigu.system.attendance.service.AttendanceService;
+import com.guigu.system.construct.service.EmployeeVOService;
 import com.guigu.system.po.Admin;
 import com.guigu.system.po.AdminPopedom;
 import com.guigu.system.po.AttendanceRecordVO;
+import com.guigu.system.po.EmployeesVO;
 import com.guigu.system.po.ModelList;
-import com.guigu.system.po.Temp;
-import com.guigu.system.po.TempVO;
 import com.guigu.system.po.mapper.AdminPopedomMapper;
 import com.guigu.system.po.mapper.PopedomVOMapper;
-import com.guigu.system.po.mapper.TempMapper;
-import com.guigu.system.po.mapper.TempVOMapper;
 import com.guigu.system.system.controller.AdminController;
 import com.guigu.system.system.service.PopedomVOService;
 
@@ -37,10 +35,8 @@ import com.guigu.system.system.service.PopedomVOService;
 public class AttendanceRecordController {
 	@Resource(name="attendanceServiceImpl")
 	private AttendanceService attendanceService;
-	@Resource(name="tempVOMapper")
-	private TempVOMapper tempVOMapper;
-	@Resource(name="tempMapper")
-	private TempMapper tempMapper;
+	@Resource(name="employeeVOServiceImpl")
+	private EmployeeVOService eService; 
 	@Resource(name="popedomVOServiceImpl")
 	private PopedomVOService popedomVOService;
 	@RequestMapping("list.action")
@@ -53,11 +49,13 @@ public class AttendanceRecordController {
 	
 	@RequestMapping("beforeAdd.action")
 	public String beforeAdd(Model model,HttpSession session) {
+		List<EmployeesVO> temps = null;
 		Admin admin=(Admin) session.getAttribute("admin");
 		List<Integer> integers=popedomVOService.findDept(admin);
-		List<TempVO> temps=new ArrayList<>();
 		for (Integer integer : integers) {
-			temps=tempVOMapper.findList(integer);
+			EmployeesVO employeeVO=new EmployeesVO();
+			employeeVO.setDepartment(integer);
+			temps=eService.findEmployees(employeeVO);
 		}
 		model.addAttribute("tempVO", temps);
 		return "attendance/attendance/attendance_add";

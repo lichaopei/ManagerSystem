@@ -3,14 +3,14 @@ package com.guigu.system.po;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TargetExample {
+public class TargetRecordExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public TargetExample() {
+    public TargetRecordExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -104,6 +104,66 @@ public class TargetExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
+        public Criteria andRecordIdIsNull() {
+            addCriterion("record_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordIdIsNotNull() {
+            addCriterion("record_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordIdEqualTo(Integer value) {
+            addCriterion("record_id =", value, "recordId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordIdNotEqualTo(Integer value) {
+            addCriterion("record_id <>", value, "recordId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordIdGreaterThan(Integer value) {
+            addCriterion("record_id >", value, "recordId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("record_id >=", value, "recordId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordIdLessThan(Integer value) {
+            addCriterion("record_id <", value, "recordId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordIdLessThanOrEqualTo(Integer value) {
+            addCriterion("record_id <=", value, "recordId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordIdIn(List<Integer> values) {
+            addCriterion("record_id in", values, "recordId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordIdNotIn(List<Integer> values) {
+            addCriterion("record_id not in", values, "recordId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordIdBetween(Integer value1, Integer value2) {
+            addCriterion("record_id between", value1, value2, "recordId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecordIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("record_id not between", value1, value2, "recordId");
+            return (Criteria) this;
+        }
+
         public Criteria andTargetIdIsNull() {
             addCriterion("target_id is null");
             return (Criteria) this;
@@ -164,133 +224,183 @@ public class TargetExample {
             return (Criteria) this;
         }
 
-        public Criteria andTargetNameIsNull() {
-            addCriterion("target_name is null");
+        public Criteria andParentTargetIsNull() {
+            addCriterion("parent_target is null");
             return (Criteria) this;
         }
 
-        public Criteria andTargetNameIsNotNull() {
-            addCriterion("target_name is not null");
+        public Criteria andParentTargetIsNotNull() {
+            addCriterion("parent_target is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTargetNameEqualTo(String value) {
-            addCriterion("target_name =", value, "targetName");
+        public Criteria andParentTargetEqualTo(Integer value) {
+            addCriterion("parent_target =", value, "parentTarget");
             return (Criteria) this;
         }
 
-        public Criteria andTargetNameNotEqualTo(String value) {
-            addCriterion("target_name <>", value, "targetName");
+        public Criteria andParentTargetNotEqualTo(Integer value) {
+            addCriterion("parent_target <>", value, "parentTarget");
             return (Criteria) this;
         }
 
-        public Criteria andTargetNameGreaterThan(String value) {
-            addCriterion("target_name >", value, "targetName");
+        public Criteria andParentTargetGreaterThan(Integer value) {
+            addCriterion("parent_target >", value, "parentTarget");
             return (Criteria) this;
         }
 
-        public Criteria andTargetNameGreaterThanOrEqualTo(String value) {
-            addCriterion("target_name >=", value, "targetName");
+        public Criteria andParentTargetGreaterThanOrEqualTo(Integer value) {
+            addCriterion("parent_target >=", value, "parentTarget");
             return (Criteria) this;
         }
 
-        public Criteria andTargetNameLessThan(String value) {
-            addCriterion("target_name <", value, "targetName");
+        public Criteria andParentTargetLessThan(Integer value) {
+            addCriterion("parent_target <", value, "parentTarget");
             return (Criteria) this;
         }
 
-        public Criteria andTargetNameLessThanOrEqualTo(String value) {
-            addCriterion("target_name <=", value, "targetName");
+        public Criteria andParentTargetLessThanOrEqualTo(Integer value) {
+            addCriterion("parent_target <=", value, "parentTarget");
             return (Criteria) this;
         }
 
-        public Criteria andTargetNameLike(String value) {
-            addCriterion("target_name like", value, "targetName");
+        public Criteria andParentTargetIn(List<Integer> values) {
+            addCriterion("parent_target in", values, "parentTarget");
             return (Criteria) this;
         }
 
-        public Criteria andTargetNameNotLike(String value) {
-            addCriterion("target_name not like", value, "targetName");
+        public Criteria andParentTargetNotIn(List<Integer> values) {
+            addCriterion("parent_target not in", values, "parentTarget");
             return (Criteria) this;
         }
 
-        public Criteria andTargetNameIn(List<String> values) {
-            addCriterion("target_name in", values, "targetName");
+        public Criteria andParentTargetBetween(Integer value1, Integer value2) {
+            addCriterion("parent_target between", value1, value2, "parentTarget");
             return (Criteria) this;
         }
 
-        public Criteria andTargetNameNotIn(List<String> values) {
-            addCriterion("target_name not in", values, "targetName");
+        public Criteria andParentTargetNotBetween(Integer value1, Integer value2) {
+            addCriterion("parent_target not between", value1, value2, "parentTarget");
             return (Criteria) this;
         }
 
-        public Criteria andTargetNameBetween(String value1, String value2) {
-            addCriterion("target_name between", value1, value2, "targetName");
+        public Criteria andWeightIsNull() {
+            addCriterion("weight is null");
             return (Criteria) this;
         }
 
-        public Criteria andTargetNameNotBetween(String value1, String value2) {
-            addCriterion("target_name not between", value1, value2, "targetName");
+        public Criteria andWeightIsNotNull() {
+            addCriterion("weight is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTargetLevelIsNull() {
-            addCriterion("target_level is null");
+        public Criteria andWeightEqualTo(Double value) {
+            addCriterion("weight =", value, "weight");
             return (Criteria) this;
         }
 
-        public Criteria andTargetLevelIsNotNull() {
-            addCriterion("target_level is not null");
+        public Criteria andWeightNotEqualTo(Double value) {
+            addCriterion("weight <>", value, "weight");
             return (Criteria) this;
         }
 
-        public Criteria andTargetLevelEqualTo(Integer value) {
-            addCriterion("target_level =", value, "targetLevel");
+        public Criteria andWeightGreaterThan(Double value) {
+            addCriterion("weight >", value, "weight");
             return (Criteria) this;
         }
 
-        public Criteria andTargetLevelNotEqualTo(Integer value) {
-            addCriterion("target_level <>", value, "targetLevel");
+        public Criteria andWeightGreaterThanOrEqualTo(Double value) {
+            addCriterion("weight >=", value, "weight");
             return (Criteria) this;
         }
 
-        public Criteria andTargetLevelGreaterThan(Integer value) {
-            addCriterion("target_level >", value, "targetLevel");
+        public Criteria andWeightLessThan(Double value) {
+            addCriterion("weight <", value, "weight");
             return (Criteria) this;
         }
 
-        public Criteria andTargetLevelGreaterThanOrEqualTo(Integer value) {
-            addCriterion("target_level >=", value, "targetLevel");
+        public Criteria andWeightLessThanOrEqualTo(Double value) {
+            addCriterion("weight <=", value, "weight");
             return (Criteria) this;
         }
 
-        public Criteria andTargetLevelLessThan(Integer value) {
-            addCriterion("target_level <", value, "targetLevel");
+        public Criteria andWeightIn(List<Double> values) {
+            addCriterion("weight in", values, "weight");
             return (Criteria) this;
         }
 
-        public Criteria andTargetLevelLessThanOrEqualTo(Integer value) {
-            addCriterion("target_level <=", value, "targetLevel");
+        public Criteria andWeightNotIn(List<Double> values) {
+            addCriterion("weight not in", values, "weight");
             return (Criteria) this;
         }
 
-        public Criteria andTargetLevelIn(List<Integer> values) {
-            addCriterion("target_level in", values, "targetLevel");
+        public Criteria andWeightBetween(Double value1, Double value2) {
+            addCriterion("weight between", value1, value2, "weight");
             return (Criteria) this;
         }
 
-        public Criteria andTargetLevelNotIn(List<Integer> values) {
-            addCriterion("target_level not in", values, "targetLevel");
+        public Criteria andWeightNotBetween(Double value1, Double value2) {
+            addCriterion("weight not between", value1, value2, "weight");
             return (Criteria) this;
         }
 
-        public Criteria andTargetLevelBetween(Integer value1, Integer value2) {
-            addCriterion("target_level between", value1, value2, "targetLevel");
+        public Criteria andScoreIsNull() {
+            addCriterion("score is null");
             return (Criteria) this;
         }
 
-        public Criteria andTargetLevelNotBetween(Integer value1, Integer value2) {
-            addCriterion("target_level not between", value1, value2, "targetLevel");
+        public Criteria andScoreIsNotNull() {
+            addCriterion("score is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreEqualTo(Double value) {
+            addCriterion("score =", value, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreNotEqualTo(Double value) {
+            addCriterion("score <>", value, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreGreaterThan(Double value) {
+            addCriterion("score >", value, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreGreaterThanOrEqualTo(Double value) {
+            addCriterion("score >=", value, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreLessThan(Double value) {
+            addCriterion("score <", value, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreLessThanOrEqualTo(Double value) {
+            addCriterion("score <=", value, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreIn(List<Double> values) {
+            addCriterion("score in", values, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreNotIn(List<Double> values) {
+            addCriterion("score not in", values, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreBetween(Double value1, Double value2) {
+            addCriterion("score between", value1, value2, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreNotBetween(Double value1, Double value2) {
+            addCriterion("score not between", value1, value2, "score");
             return (Criteria) this;
         }
 

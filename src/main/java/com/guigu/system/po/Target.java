@@ -7,12 +7,6 @@ public class Target {
 
     private Integer targetLevel;
 
-    private Integer parentTarget;
-
-    private Double weight;
-
-    private Double score;
-
     private String remarks;
 
     public Integer getTargetId() {
@@ -39,30 +33,6 @@ public class Target {
         this.targetLevel = targetLevel;
     }
 
-    public Integer getParentTarget() {
-        return parentTarget;
-    }
-
-    public void setParentTarget(Integer parentTarget) {
-        this.parentTarget = parentTarget;
-    }
-
-    public Double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Double weight) {
-        this.weight = weight;
-    }
-
-    public Double getScore() {
-        return score;
-    }
-
-    public void setScore(Double score) {
-        this.score = score;
-    }
-
     public String getRemarks() {
         return remarks;
     }
@@ -70,4 +40,12 @@ public class Target {
     public void setRemarks(String remarks) {
         this.remarks = remarks == null ? null : remarks.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Target [targetId=" + targetId + ", targetName=" + targetName + ", targetLevel=" + targetLevel
+				+ ", remarks=" + remarks + "]";
+	}
+    
+    
 }

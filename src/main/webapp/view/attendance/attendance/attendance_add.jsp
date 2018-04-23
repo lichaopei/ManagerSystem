@@ -56,7 +56,7 @@ $("#datetimeStartAM").datetimepicker({
 				<tr>
 					<td style="display:none;">
 						<input type="text" name="list[${t.index }].employeeId" value="${temp.employeeId}" />
-						<input type="text" name="list[${t.index }].tempDepartmentId" value="${temp.tempDepartmentId}" />
+						<input type="text" name="list[${t.index }].tempDepartmentId" value="${temp.department}" />
 					</td>
 					<td><input type="text" name="list[${t.index }].employeeName" value="${temp.employeeName}" readonly="readonly" style="border:0;outline:0;background-color:none;" ></td>
 					<td><input type="text" name="list[${t.index }].cardNumber"

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.guigu.system.po.Target;
 import com.guigu.system.po.TargetLevel;
-import com.guigu.system.po.TargetVO;
 import com.guigu.system.target.service.TargetLevelService;
 import com.guigu.system.target.service.TargetService;
 

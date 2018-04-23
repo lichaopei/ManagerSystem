@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.guigu.system.po.mapper.TargetMapper" >
-  <resultMap id="BaseResultMap" type="com.guigu.system.po.Target" >
-    <id column="target_id" property="targetId" jdbcType="INTEGER" />
-    <result column="target_name" property="targetName" jdbcType="VARCHAR" />
-    <result column="target_level" property="targetLevel" jdbcType="INTEGER" />
+<mapper namespace="com.guigu.system.po.mapper.TargetRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.guigu.system.po.TargetRecord" >
+    <id column="record_id" property="recordId" jdbcType="INTEGER" />
+    <result column="target_id" property="targetId" jdbcType="INTEGER" />
+    <result column="parent_target" property="parentTarget" jdbcType="INTEGER" />
+    <result column="weight" property="weight" jdbcType="DOUBLE" />
+    <result column="score" property="score" jdbcType="DOUBLE" />
     <result column="Remarks" property="remarks" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -66,15 +68,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    target_id, target_name, target_level, Remarks
+    record_id, target_id, parent_target, weight, score, Remarks
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.guigu.system.po.TargetExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.guigu.system.po.TargetRecordExample" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from target
+    from target_record
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
@@ -85,73 +87,93 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from target
-    where target_id = #{targetId,jdbcType=INTEGER}
+    from target_record
+    where record_id = #{recordId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from target
-    where target_id = #{targetId,jdbcType=INTEGER}
+    delete from target_record
+    where record_id = #{recordId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.guigu.system.po.TargetExample" >
-    delete from target
+  <delete id="deleteByExample" parameterType="com.guigu.system.po.TargetRecordExample" >
+    delete from target_record
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.guigu.system.po.Target" >
-    insert into target (target_id, target_name, target_level, 
-      Remarks)
-    values (#{targetId,jdbcType=INTEGER}, #{targetName,jdbcType=VARCHAR}, #{targetLevel,jdbcType=INTEGER}, 
-      #{remarks,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.guigu.system.po.TargetRecord" >
+    insert into target_record (record_id, target_id, parent_target, 
+      weight, score, Remarks
+      )
+    values (#{recordId,jdbcType=INTEGER}, #{targetId,jdbcType=INTEGER}, #{parentTarget,jdbcType=INTEGER}, 
+      #{weight,jdbcType=DOUBLE}, #{score,jdbcType=DOUBLE}, #{remarks,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.guigu.system.po.Target" >
-    insert into target
+  <insert id="insertSelective" parameterType="com.guigu.system.po.TargetRecord" >
+    insert into target_record
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="recordId != null" >
+        record_id,
+      </if>
       <if test="targetId != null" >
         target_id,
       </if>
-      <if test="targetName != null" >
-        target_name,
+      <if test="parentTarget != null" >
+        parent_target,
       </if>
-      <if test="targetLevel != null" >
-        target_level,
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="score != null" >
+        score,
       </if>
       <if test="remarks != null" >
         Remarks,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="recordId != null" >
+        #{recordId,jdbcType=INTEGER},
+      </if>
       <if test="targetId != null" >
         #{targetId,jdbcType=INTEGER},
       </if>
-      <if test="targetName != null" >
-        #{targetName,jdbcType=VARCHAR},
+      <if test="parentTarget != null" >
+        #{parentTarget,jdbcType=INTEGER},
       </if>
-      <if test="targetLevel != null" >
-        #{targetLevel,jdbcType=INTEGER},
+      <if test="weight != null" >
+        #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=DOUBLE},
       </if>
       <if test="remarks != null" >
         #{remarks,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.guigu.system.po.TargetExample" resultType="java.lang.Integer" >
-    select count(*) from target
+  <select id="countByExample" parameterType="com.guigu.system.po.TargetRecordExample" resultType="java.lang.Integer" >
+    select count(*) from target_record
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
-    update target
+    update target_record
     <set >
+      <if test="record.recordId != null" >
+        record_id = #{record.recordId,jdbcType=INTEGER},
+      </if>
       <if test="record.targetId != null" >
         target_id = #{record.targetId,jdbcType=INTEGER},
       </if>
-      <if test="record.targetName != null" >
-        target_name = #{record.targetName,jdbcType=VARCHAR},
+      <if test="record.parentTarget != null" >
+        parent_target = #{record.parentTarget,jdbcType=INTEGER},
       </if>
-      <if test="record.targetLevel != null" >
-        target_level = #{record.targetLevel,jdbcType=INTEGER},
+      <if test="record.weight != null" >
+        weight = #{record.weight,jdbcType=DOUBLE},
+      </if>
+      <if test="record.score != null" >
+        score = #{record.score,jdbcType=DOUBLE},
       </if>
       <if test="record.remarks != null" >
         Remarks = #{record.remarks,jdbcType=VARCHAR},
@@ -162,35 +184,45 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map" >
-    update target
-    set target_id = #{record.targetId,jdbcType=INTEGER},
-      target_name = #{record.targetName,jdbcType=VARCHAR},
-      target_level = #{record.targetLevel,jdbcType=INTEGER},
+    update target_record
+    set record_id = #{record.recordId,jdbcType=INTEGER},
+      target_id = #{record.targetId,jdbcType=INTEGER},
+      parent_target = #{record.parentTarget,jdbcType=INTEGER},
+      weight = #{record.weight,jdbcType=DOUBLE},
+      score = #{record.score,jdbcType=DOUBLE},
       Remarks = #{record.remarks,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.guigu.system.po.Target" >
-    update target
+  <update id="updateByPrimaryKeySelective" parameterType="com.guigu.system.po.TargetRecord" >
+    update target_record
     <set >
-      <if test="targetName != null" >
-        target_name = #{targetName,jdbcType=VARCHAR},
+      <if test="targetId != null" >
+        target_id = #{targetId,jdbcType=INTEGER},
       </if>
-      <if test="targetLevel != null" >
-        target_level = #{targetLevel,jdbcType=INTEGER},
+      <if test="parentTarget != null" >
+        parent_target = #{parentTarget,jdbcType=INTEGER},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=DOUBLE},
       </if>
       <if test="remarks != null" >
         Remarks = #{remarks,jdbcType=VARCHAR},
       </if>
     </set>
-    where target_id = #{targetId,jdbcType=INTEGER}
+    where record_id = #{recordId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.guigu.system.po.Target" >
-    update target
-    set target_name = #{targetName,jdbcType=VARCHAR},
-      target_level = #{targetLevel,jdbcType=INTEGER},
+  <update id="updateByPrimaryKey" parameterType="com.guigu.system.po.TargetRecord" >
+    update target_record
+    set target_id = #{targetId,jdbcType=INTEGER},
+      parent_target = #{parentTarget,jdbcType=INTEGER},
+      weight = #{weight,jdbcType=DOUBLE},
+      score = #{score,jdbcType=DOUBLE},
       Remarks = #{remarks,jdbcType=VARCHAR}
-    where target_id = #{targetId,jdbcType=INTEGER}
+    where record_id = #{recordId,jdbcType=INTEGER}
   </update>
 </mapper>

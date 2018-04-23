@@ -18,16 +18,16 @@
 	where p.Position_ID=e.Position and e.Department=d.Department_ID and e.employee_state=1) s
 	<where>
 		<if test="positionName!=null">
-			s.Position_Name like #{positionName}
+		and	s.Position_Name like #{positionName}
 		</if>
 		<if test="departmentName!=null">
-			s.Department_Name like #{departmentName}
+		and	s.Department_Name like #{departmentName}
 		</if>
 		<if test="employeeName!=null">
-			s.Employee_Name like #{employeeName}
+		and	s.Employee_Name like #{employeeName}
  		</if>
  		<if test="department!=null">
- 			s.Department=#{department}
+ 		and	s.Department=#{department}
  		</if>
 	</where>
 </select>

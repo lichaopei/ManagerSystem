@@ -207,19 +207,19 @@
 						<ul class="submenu">
 
 							<li><a
-								href="${pageContext.request.contextPath}/classinfo/disciplineinfo/list.action"
+								href="${pageContext.request.contextPath}/test/create.action"
 								target="mainframe"> <i class="icon-double-angle-right"></i>
 									业务设置
 							</a></li>
 							<li><a
-								href="${pageContext.request.contextPath}/classinfo/classroominfo/list.action"
+								href="${pageContext.request.contextPath}/test/first.action"
 								target="mainframe"> <i class="icon-double-angle-right"></i>
-									员工考核
+									考核查询
 							</a></li>
 							<li><a
 								href="${pageContext.request.contextPath}/classinfo/syllabusinfo/list.action"
 								target="mainframe"> <i class="icon-double-angle-right"></i>
-									考核查询
+									员工考核
 							</a></li>
 							<li><a
 								href="${pageContext.request.contextPath}/classinfo/teacher/list.action"

@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.guigu.system.po.Target;
 import com.guigu.system.po.TargetLevel;
-import com.guigu.system.po.TargetVO;
 
 public interface TargetService {
 	

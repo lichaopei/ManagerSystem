@@ -10,7 +10,7 @@ public interface EmpTestMapper {
 
     int deleteByExample(EmpTestExample example);
 
-    int deleteByPrimaryKey(Integer empTestId);
+    int deleteByPrimaryKey(Integer testId);
 
     int insert(EmpTest record);
 
@@ -18,7 +18,7 @@ public interface EmpTestMapper {
 
     List<EmpTest> selectByExample(EmpTestExample example);
 
-    EmpTest selectByPrimaryKey(Integer empTestId);
+    EmpTest selectByPrimaryKey(Integer testId);
 
     int updateByExampleSelective(@Param("record") EmpTest record, @Param("example") EmpTestExample example);
 

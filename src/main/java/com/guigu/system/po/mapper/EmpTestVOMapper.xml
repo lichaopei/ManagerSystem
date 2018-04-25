@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guigu.system.po.mapper.EmpTestVOMapper" >
+  <resultMap id="BaseResultMap" type="com.guigu.system.po.EmpTestVO" >
+    <id column="Test_Id" property="testId" jdbcType="INTEGER" />
+    <result column="Emp_ID" property="empId" jdbcType="INTEGER" />
+    <result column="Test_Score" property="testScore" jdbcType="DOUBLE" />
+    <result column="Test_Date" property="testDate" jdbcType="DATE" />
+    <result column="Employee_Name" property="employeeName" jdbcType="String" />
+  </resultMap>
+  
+  
+  <select id="findList" parameterType="com.guigu.system.po.EmpTestVO" resultMap="BaseResultMap">
+  	select * from (select et.*,e.employee_Name from Emp_Test et,Employees e
+  	where et.Emp_Id=e.Employee_ID) s
+  	<if test="employeeName!=null">
+  		and s.employee_Name=#{employeeName}
+  	</if>
+  	<if test="testDate!=null">
+		and s.date=#{testDate}  	
+  	</if>
+  </select>
+  
+</mapper>

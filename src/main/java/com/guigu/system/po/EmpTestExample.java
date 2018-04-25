@@ -1,6 +1,8 @@
 package com.guigu.system.po;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 public class EmpTestExample {
@@ -104,63 +106,89 @@ public class EmpTestExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andEmpTestIdIsNull() {
-            addCriterion("Emp_Test_ID is null");
+        protected void addCriterionForJDBCDate(String condition, Date value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            addCriterion(condition, new java.sql.Date(value.getTime()), property);
+        }
+
+        protected void addCriterionForJDBCDate(String condition, List<Date> values, String property) {
+            if (values == null || values.size() == 0) {
+                throw new RuntimeException("Value list for " + property + " cannot be null or empty");
+            }
+            List<java.sql.Date> dateList = new ArrayList<java.sql.Date>();
+            Iterator<Date> iter = values.iterator();
+            while (iter.hasNext()) {
+                dateList.add(new java.sql.Date(iter.next().getTime()));
+            }
+            addCriterion(condition, dateList, property);
+        }
+
+        protected void addCriterionForJDBCDate(String condition, Date value1, Date value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            addCriterion(condition, new java.sql.Date(value1.getTime()), new java.sql.Date(value2.getTime()), property);
+        }
+
+        public Criteria andTestIdIsNull() {
+            addCriterion("Test_Id is null");
             return (Criteria) this;
         }
 
-        public Criteria andEmpTestIdIsNotNull() {
-            addCriterion("Emp_Test_ID is not null");
+        public Criteria andTestIdIsNotNull() {
+            addCriterion("Test_Id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andEmpTestIdEqualTo(Integer value) {
-            addCriterion("Emp_Test_ID =", value, "empTestId");
+        public Criteria andTestIdEqualTo(Integer value) {
+            addCriterion("Test_Id =", value, "testId");
             return (Criteria) this;
         }
 
-        public Criteria andEmpTestIdNotEqualTo(Integer value) {
-            addCriterion("Emp_Test_ID <>", value, "empTestId");
+        public Criteria andTestIdNotEqualTo(Integer value) {
+            addCriterion("Test_Id <>", value, "testId");
             return (Criteria) this;
         }
 
-        public Criteria andEmpTestIdGreaterThan(Integer value) {
-            addCriterion("Emp_Test_ID >", value, "empTestId");
+        public Criteria andTestIdGreaterThan(Integer value) {
+            addCriterion("Test_Id >", value, "testId");
             return (Criteria) this;
         }
 
-        public Criteria andEmpTestIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("Emp_Test_ID >=", value, "empTestId");
+        public Criteria andTestIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("Test_Id >=", value, "testId");
             return (Criteria) this;
         }
 
-        public Criteria andEmpTestIdLessThan(Integer value) {
-            addCriterion("Emp_Test_ID <", value, "empTestId");
+        public Criteria andTestIdLessThan(Integer value) {
+            addCriterion("Test_Id <", value, "testId");
             return (Criteria) this;
         }
 
-        public Criteria andEmpTestIdLessThanOrEqualTo(Integer value) {
-            addCriterion("Emp_Test_ID <=", value, "empTestId");
+        public Criteria andTestIdLessThanOrEqualTo(Integer value) {
+            addCriterion("Test_Id <=", value, "testId");
             return (Criteria) this;
         }
 
-        public Criteria andEmpTestIdIn(List<Integer> values) {
-            addCriterion("Emp_Test_ID in", values, "empTestId");
+        public Criteria andTestIdIn(List<Integer> values) {
+            addCriterion("Test_Id in", values, "testId");
             return (Criteria) this;
         }
 
-        public Criteria andEmpTestIdNotIn(List<Integer> values) {
-            addCriterion("Emp_Test_ID not in", values, "empTestId");
+        public Criteria andTestIdNotIn(List<Integer> values) {
+            addCriterion("Test_Id not in", values, "testId");
             return (Criteria) this;
         }
 
-        public Criteria andEmpTestIdBetween(Integer value1, Integer value2) {
-            addCriterion("Emp_Test_ID between", value1, value2, "empTestId");
+        public Criteria andTestIdBetween(Integer value1, Integer value2) {
+            addCriterion("Test_Id between", value1, value2, "testId");
             return (Criteria) this;
         }
 
-        public Criteria andEmpTestIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("Emp_Test_ID not between", value1, value2, "empTestId");
+        public Criteria andTestIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("Test_Id not between", value1, value2, "testId");
             return (Criteria) this;
         }
 
@@ -224,66 +252,6 @@ public class EmpTestExample {
             return (Criteria) this;
         }
 
-        public Criteria andTestIdIsNull() {
-            addCriterion("Test_ID is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTestIdIsNotNull() {
-            addCriterion("Test_ID is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTestIdEqualTo(Integer value) {
-            addCriterion("Test_ID =", value, "testId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTestIdNotEqualTo(Integer value) {
-            addCriterion("Test_ID <>", value, "testId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTestIdGreaterThan(Integer value) {
-            addCriterion("Test_ID >", value, "testId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTestIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("Test_ID >=", value, "testId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTestIdLessThan(Integer value) {
-            addCriterion("Test_ID <", value, "testId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTestIdLessThanOrEqualTo(Integer value) {
-            addCriterion("Test_ID <=", value, "testId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTestIdIn(List<Integer> values) {
-            addCriterion("Test_ID in", values, "testId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTestIdNotIn(List<Integer> values) {
-            addCriterion("Test_ID not in", values, "testId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTestIdBetween(Integer value1, Integer value2) {
-            addCriterion("Test_ID between", value1, value2, "testId");
-            return (Criteria) this;
-        }
-
-        public Criteria andTestIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("Test_ID not between", value1, value2, "testId");
-            return (Criteria) this;
-        }
-
         public Criteria andTestScoreIsNull() {
             addCriterion("Test_Score is null");
             return (Criteria) this;
@@ -294,53 +262,113 @@ public class EmpTestExample {
             return (Criteria) this;
         }
 
-        public Criteria andTestScoreEqualTo(Integer value) {
+        public Criteria andTestScoreEqualTo(Double value) {
             addCriterion("Test_Score =", value, "testScore");
             return (Criteria) this;
         }
 
-        public Criteria andTestScoreNotEqualTo(Integer value) {
+        public Criteria andTestScoreNotEqualTo(Double value) {
             addCriterion("Test_Score <>", value, "testScore");
             return (Criteria) this;
         }
 
-        public Criteria andTestScoreGreaterThan(Integer value) {
+        public Criteria andTestScoreGreaterThan(Double value) {
             addCriterion("Test_Score >", value, "testScore");
             return (Criteria) this;
         }
 
-        public Criteria andTestScoreGreaterThanOrEqualTo(Integer value) {
+        public Criteria andTestScoreGreaterThanOrEqualTo(Double value) {
             addCriterion("Test_Score >=", value, "testScore");
             return (Criteria) this;
         }
 
-        public Criteria andTestScoreLessThan(Integer value) {
+        public Criteria andTestScoreLessThan(Double value) {
             addCriterion("Test_Score <", value, "testScore");
             return (Criteria) this;
         }
 
-        public Criteria andTestScoreLessThanOrEqualTo(Integer value) {
+        public Criteria andTestScoreLessThanOrEqualTo(Double value) {
             addCriterion("Test_Score <=", value, "testScore");
             return (Criteria) this;
         }
 
-        public Criteria andTestScoreIn(List<Integer> values) {
+        public Criteria andTestScoreIn(List<Double> values) {
             addCriterion("Test_Score in", values, "testScore");
             return (Criteria) this;
         }
 
-        public Criteria andTestScoreNotIn(List<Integer> values) {
+        public Criteria andTestScoreNotIn(List<Double> values) {
             addCriterion("Test_Score not in", values, "testScore");
             return (Criteria) this;
         }
 
-        public Criteria andTestScoreBetween(Integer value1, Integer value2) {
+        public Criteria andTestScoreBetween(Double value1, Double value2) {
             addCriterion("Test_Score between", value1, value2, "testScore");
             return (Criteria) this;
         }
 
-        public Criteria andTestScoreNotBetween(Integer value1, Integer value2) {
+        public Criteria andTestScoreNotBetween(Double value1, Double value2) {
             addCriterion("Test_Score not between", value1, value2, "testScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andTestDateIsNull() {
+            addCriterion("Test_Date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTestDateIsNotNull() {
+            addCriterion("Test_Date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTestDateEqualTo(Date value) {
+            addCriterionForJDBCDate("Test_Date =", value, "testDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andTestDateNotEqualTo(Date value) {
+            addCriterionForJDBCDate("Test_Date <>", value, "testDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andTestDateGreaterThan(Date value) {
+            addCriterionForJDBCDate("Test_Date >", value, "testDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andTestDateGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("Test_Date >=", value, "testDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andTestDateLessThan(Date value) {
+            addCriterionForJDBCDate("Test_Date <", value, "testDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andTestDateLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("Test_Date <=", value, "testDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andTestDateIn(List<Date> values) {
+            addCriterionForJDBCDate("Test_Date in", values, "testDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andTestDateNotIn(List<Date> values) {
+            addCriterionForJDBCDate("Test_Date not in", values, "testDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andTestDateBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("Test_Date between", value1, value2, "testDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andTestDateNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("Test_Date not between", value1, value2, "testDate");
             return (Criteria) this;
         }
     }

@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.guigu.system.po.mapper.EmpTestMapper" >
   <resultMap id="BaseResultMap" type="com.guigu.system.po.EmpTest" >
-    <id column="Emp_Test_ID" property="empTestId" jdbcType="INTEGER" />
+    <id column="Test_Id" property="testId" jdbcType="INTEGER" />
     <result column="Emp_ID" property="empId" jdbcType="INTEGER" />
-    <result column="Test_ID" property="testId" jdbcType="INTEGER" />
-    <result column="Test_Score" property="testScore" jdbcType="INTEGER" />
+    <result column="Test_Score" property="testScore" jdbcType="DOUBLE" />
+    <result column="Test_Date" property="testDate" jdbcType="DATE" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -66,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    Emp_Test_ID, Emp_ID, Test_ID, Test_Score
+    Test_Id, Emp_ID, Test_Score, Test_Date
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.guigu.system.po.EmpTestExample" >
     select
@@ -86,11 +86,11 @@
     select 
     <include refid="Base_Column_List" />
     from emp_test
-    where Emp_Test_ID = #{empTestId,jdbcType=INTEGER}
+    where Test_Id = #{testId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from emp_test
-    where Emp_Test_ID = #{empTestId,jdbcType=INTEGER}
+    where Test_Id = #{testId,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.guigu.system.po.EmpTestExample" >
     delete from emp_test
@@ -99,39 +99,39 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.guigu.system.po.EmpTest" >
-    insert into emp_test (Emp_Test_ID, Emp_ID, Test_ID, 
-      Test_Score)
-    values (#{empTestId,jdbcType=INTEGER}, #{empId,jdbcType=INTEGER}, #{testId,jdbcType=INTEGER}, 
-      #{testScore,jdbcType=INTEGER})
+    insert into emp_test (Test_Id, Emp_ID, Test_Score, 
+      Test_Date)
+    values (#{testId,jdbcType=INTEGER}, #{empId,jdbcType=INTEGER}, #{testScore,jdbcType=DOUBLE}, 
+      #{testDate,jdbcType=DATE})
   </insert>
   <insert id="insertSelective" parameterType="com.guigu.system.po.EmpTest" >
     insert into emp_test
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="empTestId != null" >
-        Emp_Test_ID,
+      <if test="testId != null" >
+        Test_Id,
       </if>
       <if test="empId != null" >
         Emp_ID,
       </if>
-      <if test="testId != null" >
-        Test_ID,
-      </if>
       <if test="testScore != null" >
         Test_Score,
       </if>
+      <if test="testDate != null" >
+        Test_Date,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="empTestId != null" >
-        #{empTestId,jdbcType=INTEGER},
+      <if test="testId != null" >
+        #{testId,jdbcType=INTEGER},
       </if>
       <if test="empId != null" >
         #{empId,jdbcType=INTEGER},
       </if>
-      <if test="testId != null" >
-        #{testId,jdbcType=INTEGER},
-      </if>
       <if test="testScore != null" >
-        #{testScore,jdbcType=INTEGER},
+        #{testScore,jdbcType=DOUBLE},
+      </if>
+      <if test="testDate != null" >
+        #{testDate,jdbcType=DATE},
       </if>
     </trim>
   </insert>
@@ -144,17 +144,17 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update emp_test
     <set >
-      <if test="record.empTestId != null" >
-        Emp_Test_ID = #{record.empTestId,jdbcType=INTEGER},
+      <if test="record.testId != null" >
+        Test_Id = #{record.testId,jdbcType=INTEGER},
       </if>
       <if test="record.empId != null" >
         Emp_ID = #{record.empId,jdbcType=INTEGER},
       </if>
-      <if test="record.testId != null" >
-        Test_ID = #{record.testId,jdbcType=INTEGER},
-      </if>
       <if test="record.testScore != null" >
-        Test_Score = #{record.testScore,jdbcType=INTEGER},
+        Test_Score = #{record.testScore,jdbcType=DOUBLE},
+      </if>
+      <if test="record.testDate != null" >
+        Test_Date = #{record.testDate,jdbcType=DATE},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -163,10 +163,10 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update emp_test
-    set Emp_Test_ID = #{record.empTestId,jdbcType=INTEGER},
+    set Test_Id = #{record.testId,jdbcType=INTEGER},
       Emp_ID = #{record.empId,jdbcType=INTEGER},
-      Test_ID = #{record.testId,jdbcType=INTEGER},
-      Test_Score = #{record.testScore,jdbcType=INTEGER}
+      Test_Score = #{record.testScore,jdbcType=DOUBLE},
+      Test_Date = #{record.testDate,jdbcType=DATE}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -177,20 +177,20 @@
       <if test="empId != null" >
         Emp_ID = #{empId,jdbcType=INTEGER},
       </if>
-      <if test="testId != null" >
-        Test_ID = #{testId,jdbcType=INTEGER},
-      </if>
       <if test="testScore != null" >
-        Test_Score = #{testScore,jdbcType=INTEGER},
+        Test_Score = #{testScore,jdbcType=DOUBLE},
+      </if>
+      <if test="testDate != null" >
+        Test_Date = #{testDate,jdbcType=DATE},
       </if>
     </set>
-    where Emp_Test_ID = #{empTestId,jdbcType=INTEGER}
+    where Test_Id = #{testId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.guigu.system.po.EmpTest" >
     update emp_test
     set Emp_ID = #{empId,jdbcType=INTEGER},
-      Test_ID = #{testId,jdbcType=INTEGER},
-      Test_Score = #{testScore,jdbcType=INTEGER}
-    where Emp_Test_ID = #{empTestId,jdbcType=INTEGER}
+      Test_Score = #{testScore,jdbcType=DOUBLE},
+      Test_Date = #{testDate,jdbcType=DATE}
+    where Test_Id = #{testId,jdbcType=INTEGER}
   </update>
 </mapper>

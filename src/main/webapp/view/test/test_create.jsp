@@ -16,6 +16,7 @@
         <li>考核设置</li>
     </ul>
 </div>
+
 <div class="row alert alert-info"  style="margin:0px; padding:3px;text-align: center;" >
 <form class="form-inline"  action="${pageContext.request.contextPath }/test/add.action">
 	<div class="form-group" >
@@ -26,6 +27,13 @@
 			</c:forEach>
 		</select>
 	</div>
+	<div align="center">
+		<div class="alert alert-warning"
+			style="margin: 0px; padding: 5px; width: 100%;display:${empty error?'none':'block'} ">
+			<div>${error}</div>
+		</div>
+	</div>
+	
 	
 	<div class="row" style="padding:15px; padding-top:0px; " align="right">
     <display:table  class="table table-condensed table-striped" name="target"   id="t" pagesize="10" requestURI="${pageContext.request.contextPath }/test/create.action">

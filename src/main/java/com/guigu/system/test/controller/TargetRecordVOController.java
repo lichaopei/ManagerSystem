@@ -26,7 +26,7 @@ import com.guigu.system.test.service.TargetRecordVOService;
 
 @Controller
 @RequestMapping("/test/")
-public class TestController {
+public class TargetRecordVOController {
 	@Resource(name="targetLevelServiceImpl")
 	private TargetLevelService targetLevelService;
 	@Resource(name="targetRecordVOServiceImpl")
@@ -54,9 +54,9 @@ public class TestController {
 	public String add(ModelList list,HttpServletRequest request,Model model) {
 		String[] parentTargetId=request.getParameterValues("parentTarget");
 		String[] targetId=request.getParameterValues("targetId");
-		if (parentTargetId.length==0 || targetId.length==0) {
-			model.addAttribute("allErrors", "设置不能为空!");
-			return "test/test_create";
+		if (parentTargetId==null|| targetId==null) {
+			model.addAttribute("error", "设置不能为空!");
+			return this.findTable(model);
 		}
 		for (int i = 0; i < targetId.length; i++) {
 			Target target=targetService.findOne(Integer.parseInt(targetId[i]));

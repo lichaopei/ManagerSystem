@@ -1,20 +1,22 @@
 package com.guigu.system.po;
 
+import java.util.Date;
+
 public class EmpTest {
-    private Integer empTestId;
+    private Integer testId;
 
     private Integer empId;
 
-    private Integer testId;
+    private Double testScore;
 
-    private Integer testScore;
+    private Date testDate;
 
-    public Integer getEmpTestId() {
-        return empTestId;
+    public Integer getTestId() {
+        return testId;
     }
 
-    public void setEmpTestId(Integer empTestId) {
-        this.empTestId = empTestId;
+    public void setTestId(Integer testId) {
+        this.testId = testId;
     }
 
     public Integer getEmpId() {
@@ -25,19 +27,19 @@ public class EmpTest {
         this.empId = empId;
     }
 
-    public Integer getTestId() {
-        return testId;
-    }
-
-    public void setTestId(Integer testId) {
-        this.testId = testId;
-    }
-
-    public Integer getTestScore() {
+    public Double getTestScore() {
         return testScore;
     }
 
-    public void setTestScore(Integer testScore) {
+    public void setTestScore(Double testScore) {
         this.testScore = testScore;
+    }
+
+    public Date getTestDate() {
+        return testDate;
+    }
+
+    public void setTestDate(Date testDate) {
+        this.testDate = testDate;
     }
 }

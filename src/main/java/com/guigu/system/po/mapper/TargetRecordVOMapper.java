@@ -10,5 +10,6 @@ public interface TargetRecordVOMapper {
 	
 	public TargetRecordVO findOne(int targetId);
 	
+	public List<TargetRecordVO> find(String parentName);
 
 }

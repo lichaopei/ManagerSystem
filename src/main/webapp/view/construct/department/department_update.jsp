@@ -43,7 +43,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">部门名称</label>
 					<div class="col-sm-9">
-						<input type="text" name="departmentName"
+						<input type="text" name="departmentName" required
 							value="${department.departmentName}" readonly="readonly"
 							class="form-control input-sm" />
 					</div>
@@ -57,7 +57,7 @@
 					<label class="col-sm-3 control-label">办公电话</label>
 					<div class="col-sm-9">
 						<div class="input-append date form_datetime">
-    						<input type="text" name="phone" 
+    						<input type="text" name="phone" required
     						value="${department.phone}"
     						class="form-control input-sm" />
 						</div>

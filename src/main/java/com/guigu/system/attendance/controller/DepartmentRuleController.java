@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Controller;
@@ -32,10 +35,12 @@ public class DepartmentRuleController {
 	@Resource(name="departmentServiceImpl")
 	private DepartmentService departmentService;
 	
+	
 	@RequestMapping("list.action")
-	public String list(DepartmentRuleVO departmentRuleVO,Model model) {
+	public String list(DepartmentRuleVO departmentRuleVO,Model model,HttpSession session) {
 		List<DepartmentRuleVO> list=departmentRuleVOService.findList(departmentRuleVO);
 		model.addAttribute("list", list);
+		model.addAttribute("admin", session.getAttribute("admin"));
 		return "/attendance/departmentrule/departmentrule_list";
 	}
 	
@@ -48,20 +53,15 @@ public class DepartmentRuleController {
 	}
 	
 	@RequestMapping("add.action")
-    public String addTemplate(Model model,@Validated DepartmentRuleVO departmentRuleVO,BindingResult bindingResult) {
-		if (bindingResult.hasErrors()) {
-			List<ObjectError> allErrors=bindingResult.getAllErrors();
-			model.addAttribute("allErrors", allErrors);
-			model.addAttribute("department", departmentRuleVO);
-			return "/attendance/departmentrule/departmentrule_add";
-		}
+    public String addTemplate(Model model, DepartmentRuleVO departmentRuleVO,HttpSession session ) {
+		
 		boolean result= departmentRuleVOService.save(departmentRuleVO);
        if(result) {
            model.addAttribute("info","Ìí¼Ó³É¹¦");
        }else {
            model.addAttribute("info","Ìí¼ÓÊ§°Ü");
        }
-       return this.list(null, model);
+       return this.list(null, model,session);
        
     }
 	@RequestMapping("load.action")
@@ -72,13 +72,8 @@ public class DepartmentRuleController {
     }
 	
 	@RequestMapping("update.action")
-    public String update(Model model,@Validated DepartmentRuleVO departmentRuleVO,BindingResult bindingResult) {
-		if (bindingResult.hasErrors()) {
-			List<ObjectError> allErrors=bindingResult.getAllErrors();
-			model.addAttribute("allErrors", allErrors);
-			model.addAttribute("department", departmentRuleVO);
-			return "attendance/departmentrule/departmentrule_update";
-		}
+    public String update(Model model, DepartmentRuleVO departmentRuleVO,HttpSession session) {
+		
 		AttendanceRule  attendanceRule=departmentRuleVO;
     	boolean result=departmentRuleVOService.update(attendanceRule);
         if(result) {
@@ -86,11 +81,11 @@ public class DepartmentRuleController {
         }else {
             model.addAttribute("info", "ÐÞ¸ÄÊ§°Ü");
         }
-        return this.list(null, model);
+        return this.list(null, model,session);
     }
 	
 	 @RequestMapping("delete.action")
-	    public String delete(Integer ruleId,Model model) {
+	    public String delete(Integer ruleId,Model model,HttpSession session) {
 	        boolean result =departmentRuleVOService.delete(ruleId);
 	        
 	        if(result) {
@@ -98,7 +93,7 @@ public class DepartmentRuleController {
 	        }else {
 	            model.addAttribute("info", "É¾³ýÊ§°Ü");
 	        }
-	        return this.list(null, model);
+	        return this.list(null, model,session);
 	    }
 
 }

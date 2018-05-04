@@ -42,7 +42,7 @@
 					<label class="col-sm-3 control-label">指标级别</label>
 					<div class="col-sm-6">
 							
-    						<input type="text" name="targetLevel" value="${target.targetLevel}" class="form-control input-sm">
+    						<input type="text"  required name="targetLevel" value="${target.targetLevel}" class="form-control input-sm">
 					</div>
 				</div>
 				
@@ -55,7 +55,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">指标名称</label>
 					<div class="col-sm-6">
-    						<input type="text" name="targetName" value="${target.targetName}" class="form-control input-sm">
+    						<input type="text" required name="targetName" value="${target.targetName}" class="form-control input-sm">
 					</div>
 				</div>
 				

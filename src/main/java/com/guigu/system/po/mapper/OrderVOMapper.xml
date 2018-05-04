@@ -51,4 +51,35 @@
   	select o.*,e.Employee_Name floor_name,p.type_name from orders o,employees e,photo_type p
   	where o.type_id=p.type_id and o.floor=e.Employee_ID and o.order_id=${value}
   </select>
+  
+  <select id="floorMoney" parameterType="com.guigu.system.po.EmpTestVO" resultType="double">
+  	select SUM(o.front_cost) from orders o,emp_test et
+	where o.flag="是"  and et.Emp_ID=o.floor
+	and o.floor=#{empId}  and o.date like #{testDate}
+  </select>
+  
+  <select id="makeUpMoney" parameterType="com.guigu.system.po.EmpTestVO" resultType="double">
+  	select SUM(o.second_cost) from orders o,emp_test et
+	where o.flag="是"  and et.Emp_ID=o.make_Up
+	and o.make_Up=#{empId}  and o.date like #{testDate}
+  </select>
+  
+  <select id="photoMoney" parameterType="com.guigu.system.po.EmpTestVO" resultType="double">
+  	select SUM(o.second_cost) from orders o,emp_test et
+	where o.flag="是"  and et.Emp_ID=o.photo
+	and o.photo=#{empId}  and o.date like #{testDate}
+  </select>
+  
+  <select id="psMoney" parameterType="com.guigu.system.po.EmpTestVO" resultType="double">
+  	select SUM(o.second_cost) from orders o,emp_test et
+	where o.flag="是"  and et.Emp_ID=o.ps
+	and o.ps=#{empId}  and o.date like #{testDate}
+  </select>
+  
+  <select id="chooseMoney" parameterType="com.guigu.system.po.EmpTestVO" resultType="double">
+  	select SUM(o.second_cost) from orders o,emp_test et
+	where o.flag="是"  and et.Emp_ID=o.choose
+	and o.choose=#{empId}  and o.date like #{testDate}
+  </select>
+  
  </mapper>

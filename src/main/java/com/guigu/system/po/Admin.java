@@ -60,4 +60,11 @@ public class Admin {
     public void setAdminName(String adminName) {
         this.adminName = adminName == null ? null : adminName.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Admin [adminId=" + adminId + ", adminAccount=" + adminAccount + ", adminPwd=" + adminPwd
+				+ ", adminState=" + adminState + ", adminRight=" + adminRight + ", adminName=" + adminName + "]";
+	}
+    
 }

@@ -37,9 +37,16 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">订单类型</label>
 					<div class="col-sm-4">
-						<select name="typeId" class="form-control input-sm">	
+						<select name="typeId" class="form-control input-sm" onchange="get()" required>
+							<option value="">-请选择-</option>	
 							<c:forEach items="${types}" var="type">
 								<option value="${type.typeId}"}>${type.typeName}</option>
+							</c:forEach>
+						</select>
+						
+						<select name="cost" style="display: none;">
+						<c:forEach items="${types}" var="type">
+								<option value="${type.cost}"}></option>
 							</c:forEach>
 						</select>
 					</div>
@@ -50,7 +57,7 @@
 					<label class="col-sm-3 control-label">预约时间</label>
 					<div class="col-sm-9">
 						<div class="input-append date form_datetime">
-    						<input type="text"  name="date" value="${order.date}" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly class="form_datetime">
+    						<input type="text"  name="date" value="${order.date}" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:00'})" readonly class="form_datetime" required>
     						<span class="add-on"><i class="icon-th"></i></span>
 						</div>
 					</div>
@@ -63,7 +70,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">客户姓名</label>
 					<div class="col-sm-9">
-    						<input  type="text" name="customer" value="${order.customer}">
+    						<input  type="text" name="customer" value="${order.customer}" required>
 						</div>
 					</div>
 				</div>
@@ -71,17 +78,17 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">客户电话</label>
 					<div class="col-sm-9">
-    						<input  type="text" name="phone" value="${order.phone}">
+    						<input  type="text" name="phone" value="${order.phone}" required>
 						</div>
 					</div>
 				</div>
 		</div>
-		<div class="row">
 			<div class="col-sm-5">
 				<div class="form-group">
 					<label class="col-sm-3 control-label">门市</label>
 					<div class="col-sm-9">
-						<select name="floor" class="form-control input-sm">	
+						<select name="floor" class="form-control input-sm" required>	
+							<option value="">-请选择-</option>
 							<c:forEach items="${floor}" var="floor">
 								<option value="${floor.employeeId}"}>${floor.employeeName}</option>
 							</c:forEach>
@@ -98,6 +105,22 @@
 			</div>
 		</div>     
 	</form>
-	          
+	<script type="text/javascript">
+		function onchange(){
+			var a=document.getElementsByName("typeId");
+			var b=document.getElementsByName("cost");
+			for(var i=0;i<a.length;i++){
+				if(a[i].selected){
+					val=b[i].value;
+					document.getElementById("cost").value=val;
+					
+				}
+			}
+			
+		}
+	
+	
+	
+	</script>   
 </body>
 </html>

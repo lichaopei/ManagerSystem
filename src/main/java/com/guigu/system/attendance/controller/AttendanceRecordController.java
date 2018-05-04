@@ -1,33 +1,20 @@
 package com.guigu.system.attendance.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.jws.WebParam.Mode;
 import javax.servlet.http.HttpSession;
 
-import org.apache.catalina.core.ApplicationContext;
-import org.aspectj.weaver.ast.And;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.guigu.system.attendance.service.AttendanceService;
 import com.guigu.system.construct.service.EmployeeVOService;
 import com.guigu.system.po.Admin;
-import com.guigu.system.po.AdminPopedom;
 import com.guigu.system.po.AttendanceRecordVO;
 import com.guigu.system.po.EmployeesVO;
 import com.guigu.system.po.ModelList;
-import com.guigu.system.po.mapper.AdminPopedomMapper;
-import com.guigu.system.po.mapper.PopedomVOMapper;
-import com.guigu.system.system.controller.AdminController;
 import com.guigu.system.system.service.PopedomVOService;
 
 @Controller
@@ -40,13 +27,16 @@ public class AttendanceRecordController {
 	@Resource(name="popedomVOServiceImpl")
 	private PopedomVOService popedomVOService;
 	@RequestMapping("list.action")
-	public String list(AttendanceRecordVO attendanceRecordVO,Model model) {
+	public String list(AttendanceRecordVO attendanceRecordVO,Model model,HttpSession session) {
+		if(attendanceRecordVO==null) {
+			attendanceRecordVO=new AttendanceRecordVO();
+		}
+		Admin admin =(Admin) session.getAttribute("admin");
+		attendanceRecordVO.setAdminId(admin.getAdminId());
 		List<AttendanceRecordVO> list=attendanceService.findList(attendanceRecordVO);
 		model.addAttribute("list", list);
 		return "attendance/attendance/attendance_list";
 	}
-	
-	
 	@RequestMapping("beforeAdd.action")
 	public String beforeAdd(Model model,HttpSession session) {
 		List<EmployeesVO> temps = null;
@@ -69,7 +59,7 @@ public class AttendanceRecordController {
 			attendanceRecordVO.setAdminId(admin.getAdminId());
 			attendanceService.save(attendanceRecordVO);
 		}
-		return this.list(null, model);
+		return this.list(null, model,session);
 	}
 	
 	@RequestMapping("load.action")
@@ -79,19 +69,13 @@ public class AttendanceRecordController {
 		return "attendance/attendance/attendance_update";
 	}
 	@RequestMapping("update.action")
-	public String update(Model model,@Validated AttendanceRecordVO attendanceRecordVO,BindingResult bindingResult) {
-		if (bindingResult.hasErrors()) {
-			List<ObjectError> allErrors=bindingResult.getAllErrors();
-			model.addAttribute("allErrors", allErrors);
-			model.addAttribute("temp", attendanceRecordVO);
-			return "attendance/attendance/attendance_update";
-		}
+	public String update(Model model,AttendanceRecordVO attendanceRecordVO, HttpSession session) {
 		boolean result=attendanceService.update(attendanceRecordVO);
         if(result) {
             model.addAttribute("info", "修改成功");
         }else {
             model.addAttribute("info", "修改失败");
         }
-        return this.list(null, model);
+        return this.list(null, model,session);
 	}
 }

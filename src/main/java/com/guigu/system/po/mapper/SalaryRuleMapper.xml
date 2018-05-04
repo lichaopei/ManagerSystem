@@ -4,9 +4,12 @@
   <resultMap id="BaseResultMap" type="com.guigu.system.po.SalaryRule" >
     <id column="Salary_ID" property="salaryId" jdbcType="INTEGER" />
     <result column="Position_ID" property="positionId" jdbcType="INTEGER" />
-    <result column="PV" property="pv" jdbcType="DOUBLE" />
-    <result column="Skill_Wage" property="skillWage" jdbcType="DOUBLE" />
-    <result column="Auxiliary_Wage" property="auxiliaryWage" jdbcType="VARCHAR" />
+    <result column="Base_Salary" property="baseSalary" jdbcType="DOUBLE" />
+    <result column="Position_Salary" property="positionSalary" jdbcType="DOUBLE" />
+    <result column="Target_Money" property="targetMoney" jdbcType="DOUBLE" />
+    <result column="Up_Percent" property="upPercent" jdbcType="DOUBLE" />
+    <result column="Jx_Percent" property="jxPercent" jdbcType="DOUBLE" />
+    <result column="Score_money" property="scoreMoney" jdbcType="DOUBLE" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -67,7 +70,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    Salary_ID, Position_ID, PV, Skill_Wage, Auxiliary_Wage
+    Salary_ID, Position_ID, Base_Salary, Position_Salary, Target_Money, Up_Percent, Jx_Percent, 
+    Score_money
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.guigu.system.po.SalaryRuleExample" >
     select
@@ -100,10 +104,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.guigu.system.po.SalaryRule" >
-    insert into salary_rule (Salary_ID, Position_ID, PV, 
-      Skill_Wage, Auxiliary_Wage)
-    values (#{salaryId,jdbcType=INTEGER}, #{positionId,jdbcType=INTEGER}, #{pv,jdbcType=DOUBLE}, 
-      #{skillWage,jdbcType=DOUBLE}, #{auxiliaryWage,jdbcType=VARCHAR})
+    insert into salary_rule (Salary_ID, Position_ID, Base_Salary, 
+      Position_Salary, Target_Money, Up_Percent, 
+      Jx_Percent, Score_money)
+    values (#{salaryId,jdbcType=INTEGER}, #{positionId,jdbcType=INTEGER}, #{baseSalary,jdbcType=DOUBLE}, 
+      #{positionSalary,jdbcType=DOUBLE}, #{targetMoney,jdbcType=DOUBLE}, #{upPercent,jdbcType=DOUBLE}, 
+      #{jxPercent,jdbcType=DOUBLE}, #{scoreMoney,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" parameterType="com.guigu.system.po.SalaryRule" >
     insert into salary_rule
@@ -114,14 +120,23 @@
       <if test="positionId != null" >
         Position_ID,
       </if>
-      <if test="pv != null" >
-        PV,
+      <if test="baseSalary != null" >
+        Base_Salary,
       </if>
-      <if test="skillWage != null" >
-        Skill_Wage,
+      <if test="positionSalary != null" >
+        Position_Salary,
       </if>
-      <if test="auxiliaryWage != null" >
-        Auxiliary_Wage,
+      <if test="targetMoney != null" >
+        Target_Money,
+      </if>
+      <if test="upPercent != null" >
+        Up_Percent,
+      </if>
+      <if test="jxPercent != null" >
+        Jx_Percent,
+      </if>
+      <if test="scoreMoney != null" >
+        Score_money,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -131,14 +146,23 @@
       <if test="positionId != null" >
         #{positionId,jdbcType=INTEGER},
       </if>
-      <if test="pv != null" >
-        #{pv,jdbcType=DOUBLE},
+      <if test="baseSalary != null" >
+        #{baseSalary,jdbcType=DOUBLE},
       </if>
-      <if test="skillWage != null" >
-        #{skillWage,jdbcType=DOUBLE},
+      <if test="positionSalary != null" >
+        #{positionSalary,jdbcType=DOUBLE},
       </if>
-      <if test="auxiliaryWage != null" >
-        #{auxiliaryWage,jdbcType=VARCHAR},
+      <if test="targetMoney != null" >
+        #{targetMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="upPercent != null" >
+        #{upPercent,jdbcType=DOUBLE},
+      </if>
+      <if test="jxPercent != null" >
+        #{jxPercent,jdbcType=DOUBLE},
+      </if>
+      <if test="scoreMoney != null" >
+        #{scoreMoney,jdbcType=DOUBLE},
       </if>
     </trim>
   </insert>
@@ -157,14 +181,23 @@
       <if test="record.positionId != null" >
         Position_ID = #{record.positionId,jdbcType=INTEGER},
       </if>
-      <if test="record.pv != null" >
-        PV = #{record.pv,jdbcType=DOUBLE},
+      <if test="record.baseSalary != null" >
+        Base_Salary = #{record.baseSalary,jdbcType=DOUBLE},
       </if>
-      <if test="record.skillWage != null" >
-        Skill_Wage = #{record.skillWage,jdbcType=DOUBLE},
+      <if test="record.positionSalary != null" >
+        Position_Salary = #{record.positionSalary,jdbcType=DOUBLE},
       </if>
-      <if test="record.auxiliaryWage != null" >
-        Auxiliary_Wage = #{record.auxiliaryWage,jdbcType=VARCHAR},
+      <if test="record.targetMoney != null" >
+        Target_Money = #{record.targetMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.upPercent != null" >
+        Up_Percent = #{record.upPercent,jdbcType=DOUBLE},
+      </if>
+      <if test="record.jxPercent != null" >
+        Jx_Percent = #{record.jxPercent,jdbcType=DOUBLE},
+      </if>
+      <if test="record.scoreMoney != null" >
+        Score_money = #{record.scoreMoney,jdbcType=DOUBLE},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -175,9 +208,12 @@
     update salary_rule
     set Salary_ID = #{record.salaryId,jdbcType=INTEGER},
       Position_ID = #{record.positionId,jdbcType=INTEGER},
-      PV = #{record.pv,jdbcType=DOUBLE},
-      Skill_Wage = #{record.skillWage,jdbcType=DOUBLE},
-      Auxiliary_Wage = #{record.auxiliaryWage,jdbcType=VARCHAR}
+      Base_Salary = #{record.baseSalary,jdbcType=DOUBLE},
+      Position_Salary = #{record.positionSalary,jdbcType=DOUBLE},
+      Target_Money = #{record.targetMoney,jdbcType=DOUBLE},
+      Up_Percent = #{record.upPercent,jdbcType=DOUBLE},
+      Jx_Percent = #{record.jxPercent,jdbcType=DOUBLE},
+      Score_money = #{record.scoreMoney,jdbcType=DOUBLE}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -188,14 +224,23 @@
       <if test="positionId != null" >
         Position_ID = #{positionId,jdbcType=INTEGER},
       </if>
-      <if test="pv != null" >
-        PV = #{pv,jdbcType=DOUBLE},
+      <if test="baseSalary != null" >
+        Base_Salary = #{baseSalary,jdbcType=DOUBLE},
       </if>
-      <if test="skillWage != null" >
-        Skill_Wage = #{skillWage,jdbcType=DOUBLE},
+      <if test="positionSalary != null" >
+        Position_Salary = #{positionSalary,jdbcType=DOUBLE},
       </if>
-      <if test="auxiliaryWage != null" >
-        Auxiliary_Wage = #{auxiliaryWage,jdbcType=VARCHAR},
+      <if test="targetMoney != null" >
+        Target_Money = #{targetMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="upPercent != null" >
+        Up_Percent = #{upPercent,jdbcType=DOUBLE},
+      </if>
+      <if test="jxPercent != null" >
+        Jx_Percent = #{jxPercent,jdbcType=DOUBLE},
+      </if>
+      <if test="scoreMoney != null" >
+        Score_money = #{scoreMoney,jdbcType=DOUBLE},
       </if>
     </set>
     where Salary_ID = #{salaryId,jdbcType=INTEGER}
@@ -203,9 +248,12 @@
   <update id="updateByPrimaryKey" parameterType="com.guigu.system.po.SalaryRule" >
     update salary_rule
     set Position_ID = #{positionId,jdbcType=INTEGER},
-      PV = #{pv,jdbcType=DOUBLE},
-      Skill_Wage = #{skillWage,jdbcType=DOUBLE},
-      Auxiliary_Wage = #{auxiliaryWage,jdbcType=VARCHAR}
+      Base_Salary = #{baseSalary,jdbcType=DOUBLE},
+      Position_Salary = #{positionSalary,jdbcType=DOUBLE},
+      Target_Money = #{targetMoney,jdbcType=DOUBLE},
+      Up_Percent = #{upPercent,jdbcType=DOUBLE},
+      Jx_Percent = #{jxPercent,jdbcType=DOUBLE},
+      Score_money = #{scoreMoney,jdbcType=DOUBLE}
     where Salary_ID = #{salaryId,jdbcType=INTEGER}
   </update>
 </mapper>

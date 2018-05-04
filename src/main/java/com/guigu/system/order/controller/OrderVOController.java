@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,8 +34,9 @@ public class OrderVOController {
 	private PhotoType photoType=new PhotoType();
 	
 	@RequestMapping("list.action")
-	public String list(OrderVO orderVO,Model model) {
+	public String list(OrderVO orderVO,Model model,HttpSession session) {
 		List<OrderVO> list=orderVOService.findList(orderVO);
+		model.addAttribute("admin", session.getAttribute("admin"));
 		model.addAttribute("list", list);
 		return "/order/order/order_list";
 	}
@@ -50,13 +52,7 @@ public class OrderVOController {
 	}
 	
 	@RequestMapping("add.action")
-	public String add(Model model,@Validated Orders order,BindingResult bindingResult) {
-		if(bindingResult.hasErrors()) {
-			List<ObjectError> allErrors=bindingResult.getAllErrors();
-			model.addAttribute("allErrors", allErrors);
-			model.addAttribute("order", order);
-			return "order/order/order_add";
-		}
+	public String add(Model model, Orders order,HttpSession session) {
 		order.setFrontCost(pService.findOne(order.getTypeId()).getCost());
 		order.setFlag("否");
 		boolean result= orderVOService.save(order);
@@ -65,7 +61,7 @@ public class OrderVOController {
 	       }else {
 	           model.addAttribute("info","添加失败");
 	       }
-	       return this.list(null,model);
+	       return this.list(null,model,session);
 	}
 	
 	@RequestMapping("load.action")
@@ -93,26 +89,25 @@ public class OrderVOController {
     }
 	
 	@RequestMapping("update.action")
-	public String update(Orders order,Model model) {
-		System.out.println(order);
+	public String update(Orders order,Model model,HttpSession session) {
 		boolean result=orderVOService.update(order);
 		 if(result) {
 	           model.addAttribute("info","更新成功");
 	       }else {
 	           model.addAttribute("info","更新失败");
 	       }
-		return this.list(null, model);
+		return this.list(null, model,session);
 	}
 	
 	@RequestMapping("delete.action")
-	public String delete(int orderId,Model model) {
+	public String delete(int orderId,Model model,HttpSession session) {
 		  boolean result =orderVOService.delete(orderId);
 	        if(result) {
 	            model.addAttribute("info", "删除成功");
 	        }else {
 	            model.addAttribute("info", "删除失败");
 	        }
-	        return this.list(null, model);
+	        return this.list(null, model,session);
 	}
 	@RequestMapping("show")
 	public String show(int orderId,Model model) {

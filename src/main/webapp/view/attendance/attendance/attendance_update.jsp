@@ -40,48 +40,78 @@ $("#datetimeStartAM").datetimepicker({
 	<form
 		action="${pageContext.request.contextPath}/attendance/attendance/update.action"
 		class="form-horizontal">
-	<div class="row" style="padding:15px; padding-top:0px; ">
-		<table ">
-			<thead>
-			<tr>
-				<td>员工姓名</td>
-				<td>卡号</td>
-				<td>部门</td>
-				<td>考勤时间</td>
-				<td>考勤状态</td>
-			</tr>
-			</thead>
-		
-				<tr>
-					<td style="display:none;">
-						<input type="text" name="attendanceId" value="${temp.attendanceId}" />
+		<h5 class="page-header alert-info"
+			style="padding: 10px; margin: 0px; margin-bottom: 5px;">基本信息</h5>
+			
+			<div style="display:none;">
+			<input type="text" name="attendanceId" value="${temp.attendanceId}" />
 						<input type="text" name="employeeId" value="${temp.employeeId}" />
 						<input type="text" name="tempDepartmentId" value="${temp.tempDepartmentId}" />
-						<input type="text" name="adminId" value="${temp.adminId}" />
-					</td>
-					<td><input type="text" name="employeeName" value="${temp.employeeName}" readonly="readonly" style="border:0;outline:0;background-color:none;" ></td>
-					<td><input type="text" name="cardNumber"
-						value="${temp.cardNumber}" readonly="readonly" style="border:0;outline:0;background:rgba(0, 0, 0, 0);"/></td>
-					<td><input type="text" name="departmentName"
-						value="${temp.departmentName}" readonly="readonly" style="border:0;outline:0;"/></td>
-					<td>
-					<input type="text" name="attendanceDate" 
-					 value='<fmt:formatDate value="${temp.attendanceDate}" pattern="yyyyMMdd HH:mm:ss"/>'
+						<input type="text" name="adminId" value="${temp.adminId}" >
+						<input type="text" name="cardNumber"
+						value="${temp.cardNumber}" />
+			</div>
+		<div class="row">
+			<div class="col-sm-5">
+				<div class="form-group">
+					<label class="col-sm-3 control-label">员工姓名</label>
+					<div class="col-sm-4">
+						<input type="text" name="employeeName" value="${temp.employeeName}" readonly="readonly" >
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-sm-5">
+				<div class="form-group">
+					<label class="col-sm-3 control-label">部门名称</label>
+					<div class="col-sm-4">
+						<input type="text" name="departmentName" value="${temp.departmentName}" readonly="readonly" >
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-5">
+				<div class="form-group">
+					<label class="col-sm-3 control-label">考勤时间</label>
+					<div class="col-sm-3">
+						<div class="input-append date form_datetime">
+    						<input type="text" name="attendanceDate" value="${temp.attendanceDate}"
 						onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"
-						class="Wdate" style="width: 250px ;height:28px;border:0;outline:0;" readonly="readonly" /></td>
-					<td>
-						<select class="form-control" name="attendanceType" 
-							style="width: 100px;height: 28px">
+						class="Wdate" style="width: 250px ;height:28px;border:0;outline:0;" readonly="readonly" />
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-sm-5">
+				<div class="form-group">
+					<label class="col-sm-3 control-label">考勤状态</label>
+					<div class="col-sm-9">
+						<div class="col-sm-6">
+    					<select class="form-control" name="attendanceType" >
 							<option value="1" ${temp.attendanceType=='1'?'selected':'' }>出勤</option>
 							<option value="2" ${temp.attendanceType=='2'?'selected':'' }>公休</option>
 							<option value="3" ${temp.attendanceType=='3'?'selected':'' }>迟到</option>
 							<option value="4" ${temp.attendanceType=='4'?'selected':'' }>旷工</option>
 							<option value="5" ${temp.attendanceType=='5'?'selected':'' }>事假</option>
-					</select>
-					</td>
-				</tr>
-		</table>
+					  </select>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
+		<div class="row">
+			<div class="col-sm-10">
+				<div class="form-group">
+					<label class="col-sm-3 control-label">备注</label>
+					<div class="col-sm-8">
+    						<textarea name="attendanceMemo" cols="80" rows="5">${temp.attendanceMemo }</textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+		
 		<!--结束 -->
 		<!--结束 -->
 		<div class="row">

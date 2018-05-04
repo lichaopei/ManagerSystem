@@ -55,6 +55,11 @@ public class TargetRecordVOServiceImpl implements TargetRecordVOService {
 	public TargetRecordVO findOnet(int targetId) {
 		return targetRecordVOMapper.findOne(targetId);
 	}
+	
+	@Override
+	public List<TargetRecordVO> find(String  parentName) {
+		return targetRecordVOMapper.find(parentName);
+	}
 
 
 }

@@ -66,7 +66,6 @@
 		<display:table class="table table-condensed table-striped" name="list"
 			pagesize="10"
 			requestURI="${pageContext.request.contextPath }/construct/employee/list.action">
-			<display:column property="employeeId" title="编号"></display:column>
 			<display:column property="employeeName" title="姓名"
 				href="${pageContext.request.contextPath }/construct/employee/show.action"
 				paramId="employeeId" paramProperty="employeeId"></display:column>
@@ -76,6 +75,11 @@
 			<display:column property="cardNumber" title="身份证号"></display:column>
 			<%-- <display:column property="staffEntryTime" title="入职时间"
 				format="{0,date,yyyy年MM月dd日}"></display:column> --%>
+				
+				
+			<display:column
+				href="${pageContext.request.contextPath }/empTest/load.action"
+				paramId="employeeId" paramProperty="employeeId" value="考核" title="考核"></display:column>
 			<display:column
 				href="${pageContext.request.contextPath }/construct/employee/load.action"
 				paramId="employeeId" paramProperty="employeeId" value="修改" title="修改"></display:column>

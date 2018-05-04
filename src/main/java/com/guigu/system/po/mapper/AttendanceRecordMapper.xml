@@ -5,7 +5,7 @@
     <id column="Attendance_ID" property="attendanceId" jdbcType="INTEGER" />
     <result column="Employee_ID" property="employeeId" jdbcType="INTEGER" />
     <result column="Card_Number" property="cardNumber" jdbcType="VARCHAR" />
-    <result column="Attendance_Date" property="attendanceDate" jdbcType="TIMESTAMP" />
+    <result column="Attendance_Date" property="attendanceDate" jdbcType="VARCHAR" />
     <result column="Attendance_Type" property="attendanceType" jdbcType="INTEGER" />
     <result column="Attendance_Memo" property="attendanceMemo" jdbcType="VARCHAR" />
     <result column="Admin_ID" property="adminId" jdbcType="INTEGER" />
@@ -110,7 +110,7 @@
       Admin_ID, Temp_Department_ID, Node_ID
       )
     values (#{attendanceId,jdbcType=INTEGER}, #{employeeId,jdbcType=INTEGER}, #{cardNumber,jdbcType=VARCHAR}, 
-      #{attendanceDate,jdbcType=TIMESTAMP}, #{attendanceType,jdbcType=INTEGER}, #{attendanceMemo,jdbcType=VARCHAR}, 
+      #{attendanceDate,jdbcType=VARCHAR}, #{attendanceType,jdbcType=INTEGER}, #{attendanceMemo,jdbcType=VARCHAR}, 
       #{adminId,jdbcType=INTEGER}, #{tempDepartmentId,jdbcType=INTEGER}, #{nodeId,jdbcType=INTEGER}
       )
   </insert>
@@ -156,7 +156,7 @@
         #{cardNumber,jdbcType=VARCHAR},
       </if>
       <if test="attendanceDate != null" >
-        #{attendanceDate,jdbcType=TIMESTAMP},
+        #{attendanceDate,jdbcType=VARCHAR},
       </if>
       <if test="attendanceType != null" >
         #{attendanceType,jdbcType=INTEGER},
@@ -194,7 +194,7 @@
         Card_Number = #{record.cardNumber,jdbcType=VARCHAR},
       </if>
       <if test="record.attendanceDate != null" >
-        Attendance_Date = #{record.attendanceDate,jdbcType=TIMESTAMP},
+        Attendance_Date = #{record.attendanceDate,jdbcType=VARCHAR},
       </if>
       <if test="record.attendanceType != null" >
         Attendance_Type = #{record.attendanceType,jdbcType=INTEGER},
@@ -221,7 +221,7 @@
     set Attendance_ID = #{record.attendanceId,jdbcType=INTEGER},
       Employee_ID = #{record.employeeId,jdbcType=INTEGER},
       Card_Number = #{record.cardNumber,jdbcType=VARCHAR},
-      Attendance_Date = #{record.attendanceDate,jdbcType=TIMESTAMP},
+      Attendance_Date = #{record.attendanceDate,jdbcType=VARCHAR},
       Attendance_Type = #{record.attendanceType,jdbcType=INTEGER},
       Attendance_Memo = #{record.attendanceMemo,jdbcType=VARCHAR},
       Admin_ID = #{record.adminId,jdbcType=INTEGER},
@@ -241,7 +241,7 @@
         Card_Number = #{cardNumber,jdbcType=VARCHAR},
       </if>
       <if test="attendanceDate != null" >
-        Attendance_Date = #{attendanceDate,jdbcType=TIMESTAMP},
+        Attendance_Date = #{attendanceDate,jdbcType=VARCHAR},
       </if>
       <if test="attendanceType != null" >
         Attendance_Type = #{attendanceType,jdbcType=INTEGER},
@@ -265,7 +265,7 @@
     update attendance_record
     set Employee_ID = #{employeeId,jdbcType=INTEGER},
       Card_Number = #{cardNumber,jdbcType=VARCHAR},
-      Attendance_Date = #{attendanceDate,jdbcType=TIMESTAMP},
+      Attendance_Date = #{attendanceDate,jdbcType=VARCHAR},
       Attendance_Type = #{attendanceType,jdbcType=INTEGER},
       Attendance_Memo = #{attendanceMemo,jdbcType=VARCHAR},
       Admin_ID = #{adminId,jdbcType=INTEGER},

@@ -32,13 +32,8 @@ public class AdminController {
 	}
 	
 	@RequestMapping("add.action")
-    public String add(Model model,@Validated Admin admin,BindingResult bindingResult) {
-		if (bindingResult.hasErrors()) {
-			List<ObjectError> allErrors=bindingResult.getAllErrors();
-			model.addAttribute("allErrors", allErrors);
-			model.addAttribute("admin", admin);
-			return "system/admin/admin_add";
-		}
+    public String add(Model model, Admin admin) {
+		
 		boolean result=adminService.save(admin);
        if(result) {
            model.addAttribute("info","添加成功");
@@ -56,10 +51,9 @@ public class AdminController {
     }
 	
 	@RequestMapping("update.action")
-    public String update(Model model,@Validated Admin admin,BindingResult bindingResult) {
-		if (bindingResult.hasErrors()) {
-			List<ObjectError> allErrors=bindingResult.getAllErrors();
-			model.addAttribute("allErrors", allErrors);
+    public String update(Model model,Admin admin) {
+		if ("否".equals(admin.getAdminState()) && "是".equals(admin.getAdminRight())) {
+			model.addAttribute("allErrors", "超级管理员不能被禁用！");
 			model.addAttribute("admin", admin);
 			return "system/admin/admin_update";
 		}
@@ -96,5 +90,27 @@ public class AdminController {
 		 model.addAttribute("loginadmin", admin);
 		 return "index";
 	 }
+	 
+	 @RequestMapping("modify.action")
+		public  String modify(Model model,String adminPwd,HttpSession session) {
+			Admin admin=(Admin) session.getAttribute("admin");
+			if(adminPwd.equals(admin.getAdminPwd())){
+				model.addAttribute(admin);
+				return "info/info_modify";
+			}else {
+				model.addAttribute("info", "密码错误");
+				return "info/info_main";
+			}
+	 }
+	 @RequestMapping("ud.action")
+	    public String ud(Model model,Admin admin) {
+	    	boolean result=adminService.update(admin);
+	        if(result) {
+	            model.addAttribute("info", "修改成功");
+	        }else {
+	        	 model.addAttribute("info", "修改失败");
+			}
+	        return "info/info_main";
+	    }
 
 }

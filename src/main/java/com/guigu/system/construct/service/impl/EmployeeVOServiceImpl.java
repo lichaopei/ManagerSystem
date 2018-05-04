@@ -34,7 +34,6 @@ public class EmployeeVOServiceImpl implements EmployeeVOService {
 	@Override
 	public boolean save(EmployeesVO employeesVO) {
 		int i=employeesVOMapper.save(employeesVO);
-		EmployeesVO VO=(EmployeesVO) employeesVOMapper.findList(employeesVO).get(0);
 		//设置部门员工数+1
 		dept.setDepartmentId(employeesVO.getDepartment());
 		dept=departmentMapper.selectByPrimaryKey(dept.getDepartmentId());

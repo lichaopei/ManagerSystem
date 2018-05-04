@@ -41,8 +41,8 @@ $("#datetimeStartAM").datetimepicker({
 		action="${pageContext.request.contextPath}/attendance/attendance/add.action"
 		class="form-horizontal">
 	<div class="row" style="padding:15px; padding-top:0px; ">
-		<table ">
-			<thead>
+		<table class="table  table-condensed ">
+		
 			<tr>
 				<td>员工姓名</td>
 				<td>卡号</td>
@@ -50,7 +50,7 @@ $("#datetimeStartAM").datetimepicker({
 				<td>考勤时间</td>
 				<td>考勤状态</td>
 			</tr>
-			</thead>
+			
 		
 			<c:forEach items="${tempVO}" var="temp" varStatus="t" >
 				<tr>
@@ -63,13 +63,13 @@ $("#datetimeStartAM").datetimepicker({
 						value="${temp.cardNumber}" readonly="readonly" style="border:0;outline:0;background:rgba(0, 0, 0, 0);"/></td>
 					<td><input type="text" name="list[${t.index }].departmentName"
 						value="${temp.departmentName}" readonly="readonly" style="border:0;outline:0;"/></td>
-					<td><input type="text" name="list[${t.index }].attendanceDate" 
-						onfocus="WdatePicker({dateFmt:'yyyyMMdd HH:mm:ss'})"
+					<td><input type="text" required  name="list[${t.index }].attendanceDate"
+						onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"
 						class="Wdate" style="width: 250px ;height:28px;border:0;outline:0;" readonly="readonly" /></td>
 					<td>
-						<select class="form-control" name="list[${t.index }].attendanceType" 
+						<select class="form-control" name="list[${t.index }].attendanceType"  required
 							style="width: 100px;height: 28px">
-							<option value="">-请选择-</option>
+							<option></option>
 							<option value="1">出勤</option>
 							<option value="2">公休</option>
 							<option value="3">迟到</option>

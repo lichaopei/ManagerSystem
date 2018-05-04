@@ -20,12 +20,11 @@ public class EmpTestVOServiceImpl implements EmpTestVOService{
 
 	@Override
 	public List<EmpTestVO> findList(EmpTestVO empTestVO) {
-		if(empTestVO!=null) {
-			if(empTestVO.getEmployeeName()!=null || empTestVO.getTestDate()!=null) {
-				return empTestVOMapper.findList(empTestVO);
+			if(empTestVO!=null && empTestVO.getEmployeeName()!=null ) {
+				empTestVO.setEmployeeName("%"+empTestVO.getEmployeeName()+"%");
 			}
-		}
-		return empTestVOMapper.findList(null);
+			return empTestVOMapper.findList(empTestVO);
+			
 	}
 
 	@Override

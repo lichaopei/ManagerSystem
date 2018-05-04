@@ -40,7 +40,7 @@
 					<label class="col-sm-3 control-label">职位名称</label>
 					<div class="col-sm-9">
 						<input type="text" name="positionId" value="${position.positionId}" style="display:none;">
-						<input type="text" name="positionName" value="${position.positionName}"
+						<input type="text" name="positionName" value="${position.positionName}" required
 							class="form-control input-sm" />
 					</div>
 				</div>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guigu.system.po.mapper.SalaryRuleVOMapper" >
+  <resultMap id="BaseResultMap" type="com.guigu.system.po.SalaryRuleVO" >
+    <id column="Salary_ID" property="salaryId" jdbcType="INTEGER" />
+    <result column="Position_ID" property="positionId" jdbcType="INTEGER" />
+    <result column="Base_Salary" property="baseSalary" jdbcType="DOUBLE" />
+    <result column="Position_Salary" property="positionSalary" jdbcType="DOUBLE" />
+    <result column="Target_Money" property="targetMoney" jdbcType="DOUBLE" />
+    <result column="Up_Percent" property="upPercent" jdbcType="DOUBLE" />
+    <result column="Jx_Percent" property="jxPercent" jdbcType="DOUBLE" />
+    <result column="Score_money" property="scoreMoney" jdbcType="DOUBLE" />
+    <result column="Position_Name" property="position" jdbcType="VARCHAR" />
+  </resultMap>
+  
+ 	<select id="findList"   parameterType="com.guigu.system.po.SalaryRuleVO" resultMap="BaseResultMap">
+ 		select a.* from (select s.*,p.position_name from Salary_rule s,Position p
+ 		where s.position_Id=p.position_Id) a
+ 		<where>
+			<if test="position!=null">
+				 a.position_Name like #{position}
+			</if> 	
+ 		</where>
+ 	</select> 
+ 	
+ 	<select id="findOne" parameterType="com.guigu.system.po.SalaryRuleVO" resultMap="BaseResultMap">
+ 		select a.* from (select s.*,p.position_name from Salary_rule s,Position p
+ 		where s.position_Id=p.position_Id) a
+ 		<where>
+ 			<if test="salaryId!=null">
+ 			and a.salary_id = #{salaryId}
+ 			
+ 			</if>
+			<if test="position!=null">
+			and  a.position_Name like #{position}
+			</if>
+			
+			<if test="positionId!=null">
+			and  a.position_id = #{positionId}
+			</if>
+			 	
+ 		</where>
+ 	
+ 	
+ 	</select>
+		 		
+  </mapper>

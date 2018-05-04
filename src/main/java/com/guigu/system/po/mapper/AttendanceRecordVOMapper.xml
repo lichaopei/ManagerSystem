@@ -5,7 +5,7 @@
     <id column="Attendance_ID" property="attendanceId" jdbcType="INTEGER" />
     <result column="Employee_ID" property="employeeId" jdbcType="INTEGER" />
     <result column="Card_Number" property="cardNumber" jdbcType="VARCHAR" />
-    <result column="Attendance_Date" property="attendanceDate" jdbcType="TIMESTAMP" />
+    <result column="Attendance_Date" property="attendanceDate" jdbcType="VARCHAR" />
     <result column="Attendance_Type" property="attendanceType" jdbcType="INTEGER" />
     <result column="Attendance_Memo" property="attendanceMemo" jdbcType="VARCHAR" />
     <result column="Admin_ID" property="adminId" jdbcType="INTEGER" />
@@ -15,19 +15,28 @@
     <result column="Type_Name" property="typeName" jdbcType="VARCHAR" />
     <result column="Admin_Name" property="adminName" jdbcType="VARCHAR" />
     <result column="Department_Name" property="departmentName" jdbcType="VARCHAR" />
+    <result column="Type_Category" property="typeCategory" jdbcType="INTEGER" />
+    
   </resultMap>
   <select id="findList" parameterType="com.guigu.system.po.AttendanceRecordVO" resultMap="BaseResultMap">
 	select s.* from (select r.*,e.Employee_Name,t.Type_Name,t.Type_Category,d.Department_Name,a.Admin_Name from Attendance_Record r,Employees e,Attendance_Type t,Department d,
 	Admin a	where r.Employee_ID=e.Employee_ID  and r.Attendance_Type=t.Type_ID and r.Temp_Department_ID=d.Department_ID and r.Admin_ID=a.Admin_ID) s
 	<where>
+		<if test="adminId!=null">
+		and s.admin_id = #{adminId}
+		</if>
+		
 		<if test="employeeName!=null and employeeName.trim!=null">
-			s.Employee_Name like #{employeeName}
+		and	s.Employee_Name like #{employeeName}
 		</if>
 		<if test="departmentName!=null and departmentName.trim!=null">
 		and	s.Department_Name like #{departmentName}
 		</if>
 		<if test="typeName!=null and !typeName.trim.equals('')">
 		and	s.Type_Name like  #{typeName}
+		</if>
+		<if test="attendanceDate!=null and !attendanceDate.trim.equals('')">
+		and	s.attendance_Date like  #{attendanceDate}
 		</if>
 	</where>
 </select>
@@ -55,5 +64,14 @@
     where s.Temp_Department_ID=ap.Department_Id and ap.Admin_id=#{adminId}
   </select>
   
+  <select id="find" parameterType="com.guigu.system.po.EmpTestVO" resultMap="BaseResultMap">
+	select s.* from (select r.*,e.Employee_Name,t.Type_Name,t.Type_Category,d.Department_Name,a.Admin_Name from Attendance_Record r,Employees e,Attendance_Type t,Department d,
+	Admin a	where r.Employee_ID=e.Employee_ID  and r.Attendance_Type=t.Type_ID and r.Temp_Department_ID=d.Department_ID and r.Admin_ID=a.Admin_ID) s
+	<where>
+		<if test="employeeName!=null and employeeName.trim!=null and testDate!=null and !testDate.trim.equals('')" >
+		 s.Employee_Name like #{employeeName}  and	s.attendance_Date like #{testDate}
+		</if>
+	</where>
+</select>
   
   </mapper>

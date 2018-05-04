@@ -28,20 +28,7 @@
 	<form action="${pageContext.request.contextPath}/system/admin/list.action"
 		method="post" class="form-horizontal">
 		<div class="row alert alert-info" style="margin: 0px; padding: 3px;">
-			<div class="col-sm-3" style="margin-left: 150px">
-				<select class="form-control  input-sm" onchange="query(this)"
-					name="condition">
-					<option value="">请选择</option>
-					<option value="staffId">编号</option>
-					<option value="staffName">姓名</option>
-					<option value="staffMobilePhone">移动电话</option>
-				</select>
-			</div>
-			<div class="col-sm-3">
-				<input type="text" id="keyword" class="form-control input-sm" />
-			</div>
-			<input type="submit" class="btn btn-danger" value="查询" /> <input
-				type="button" class="btn btn-success" value="添加"
+			 <input type="button"  style="margin-left: 500px"  class="btn btn-success" value="添加"
 				onClick="javascript:window.location='${pageContext.request.contextPath}/view/system/admin/admin_add.jsp'" />
 		</div>
 	</form>

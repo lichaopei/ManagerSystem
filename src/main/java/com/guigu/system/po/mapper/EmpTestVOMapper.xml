@@ -2,23 +2,31 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.guigu.system.po.mapper.EmpTestVOMapper" >
   <resultMap id="BaseResultMap" type="com.guigu.system.po.EmpTestVO" >
-    <id column="Test_Id" property="testId" jdbcType="INTEGER" />
+  <id column="Test_Id" property="testId" jdbcType="INTEGER" />
     <result column="Emp_ID" property="empId" jdbcType="INTEGER" />
+    <result column="Base_Salary" property="baseSalary" jdbcType="DOUBLE" />
+    <result column="Position_Salary" property="positionSalary" jdbcType="DOUBLE" />
+    <result column="Up_Salary" property="upSalary" jdbcType="DOUBLE" />
+    <result column="JX_Salary" property="jxSalary" jdbcType="DOUBLE" />
+    <result column="All_Salary" property="allSalary" jdbcType="DOUBLE" />
     <result column="Test_Score" property="testScore" jdbcType="DOUBLE" />
-    <result column="Test_Date" property="testDate" jdbcType="DATE" />
-    <result column="Employee_Name" property="employeeName" jdbcType="String" />
+    <result column="Test_Date" property="testDate" jdbcType="VARCHAR" />
+    <result column="Employee_Name" property="employeeName" jdbcType="VARCHAR" />
   </resultMap>
   
   
   <select id="findList" parameterType="com.guigu.system.po.EmpTestVO" resultMap="BaseResultMap">
   	select * from (select et.*,e.employee_Name from Emp_Test et,Employees e
   	where et.Emp_Id=e.Employee_ID) s
-  	<if test="employeeName!=null">
-  		and s.employee_Name=#{employeeName}
-  	</if>
-  	<if test="testDate!=null">
-		and s.date=#{testDate}  	
-  	</if>
+ 	<where>
+ 		<if test="employeeName!=null">
+  			and s.employee_Name like #{employeeName}
+  		</if>
+  		<if test="testDate!=null and !testDate.trim.equals('')">
+			and s.test_date=#{testDate}  	
+  		</if>
+ 	
+ 	</where>
+  		
   </select>
-  
 </mapper>

@@ -20,7 +20,7 @@
      <div class="form-group">
         <input type="text" class="form-control" name="departmentName" placeholder="请输入部门名称" style="width: 20%">
         <input type="text" class="form-control" name="employeeName" placeholder="请输入员工名称" style="width: 20%" >
-       	<input size="16" type="text" id="date" name="attendancedate" readonly class="form_datetime form-control" placeholder="请输入日期" style="width: 20%">
+   	 	<input  type="text"  name="attendanceDate" readonly class="form_datetime form-control" placeholder="请输入日期" style="width: 20%" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})">
       	 <select class="form-control" name="typeName" style="width: 20%">
       						 	<option value="">--请选择状态--</option>
        							<option value="出勤">出勤</option>
@@ -28,6 +28,8 @@
        							<option value="迟到">迟到</option>
        							<option value="旷工">旷工</option>
        							<option value="事假">事假</option>
+       							<option value="半天">半天</option>
+       							
        			</select>
       </div>
     <input type="submit"   class="btn btn-danger"     value="查询"/>
@@ -48,27 +50,15 @@
 <div class="row" style="padding:15px; padding-top:0px; " align="right">
 	<table class="table  table-condensed table-striped">
     </table>
-    <display:table class="table table-condensed table-striped" name="list" pagesize="10" requestURI="${pageContext.request.contextPath }/attendance/attendance/list.action">
+    <display:table export="true" class="table table-condensed table-striped" name="list" pagesize="10" requestURI="${pageContext.request.contextPath }/attendance/attendance/list.action">
     	<display:column property="employeeName" title="员工名称"></display:column>
     	<display:column property="cardNumber" title="卡号" ></display:column>
-    	<display:column property="attendanceDate" title="考勤时间"  format="{0,date,yyyy-MM-dd HH:mm:ss}"></display:column>
+    	<display:column property="attendanceDate" title="考勤时间"  format="{0,date,yyyy-MM-dd}"></display:column>
     	<display:column property="typeName" title="考勤类型" > </display:column>
     	<display:column property="departmentName" title="部门名称" > </display:column>
-    	<display:column property="adminName" title="负责人" > </display:column>
-    	<display:column href="${pageContext.request.contextPath }/attendance/attendance/load.action" paramId="attendanceId" paramProperty="attendanceId" value="修改" title="修改"></display:column>
-    	<display:column href="${pageContext.request.contextPath }/attendance/attendance/delete.action" paramId="attendanceId" paramProperty="attendanceId" value="删除" title="删除"></display:column>
+    	<display:column property="attendanceMemo" title="备注"></display:column>
+    	<display:column media="html" href="${pageContext.request.contextPath }/attendance/attendance/load.action" paramId="attendanceId" paramProperty="attendanceId" value="修改" title="修改"></display:column>
     </display:table>
 </div>
-<script type="text/javascript">
-    $("#date").datetimepicker({
-    	 format: "yyyy-mm-dd",
-    	 weekStart: 1,  
-         autoclose: true,  
-         startView: 2,  
-         minView: 2,  
-         forceParse: false,  
-         language: 'cn' 
-    });
-    </script>
 </body>
 </html>

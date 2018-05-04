@@ -21,7 +21,9 @@
         <input type="text" class="form-control" name="departmentName" placeholder="请输入部门名称"  >
       </div>
     <input type="submit"   class="btn btn-danger"     value="查询"/>
-    <a  class="btn btn-success"  href="${pageContext.request.contextPath}/attendance/departmentrule/before.action">添加规则</a>
+    
+    <input id="right" value="${admin.adminRight}" style="display: none;">
+    <a id="d" class="btn btn-success"  href="${pageContext.request.contextPath}/attendance/departmentrule/before.action">添加规则</a>
     </form>
 </div>
 <div align="center">
@@ -49,6 +51,15 @@
     </display:table>
     
 </div>
+<script type="text/javascript">
+window.onload=function(){
+	var s=document.getElementById("right").value;	
+		if(s=="否"){
+			var list=document.getElementById("d").style.display="none";
+		}
+	};
 
+
+</script>
 </body>
 </html>

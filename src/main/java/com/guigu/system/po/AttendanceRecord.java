@@ -1,7 +1,5 @@
 package com.guigu.system.po;
 
-import java.util.Date;
-
 public class AttendanceRecord {
     private Integer attendanceId;
 
@@ -9,7 +7,7 @@ public class AttendanceRecord {
 
     private String cardNumber;
 
-    private Date attendanceDate;
+    private String attendanceDate;
 
     private Integer attendanceType;
 
@@ -45,12 +43,12 @@ public class AttendanceRecord {
         this.cardNumber = cardNumber == null ? null : cardNumber.trim();
     }
 
-    public Date getAttendanceDate() {
+    public String getAttendanceDate() {
         return attendanceDate;
     }
 
-    public void setAttendanceDate(Date attendanceDate) {
-        this.attendanceDate = attendanceDate;
+    public void setAttendanceDate(String attendanceDate) {
+        this.attendanceDate = attendanceDate == null ? null : attendanceDate.trim();
     }
 
     public Integer getAttendanceType() {

@@ -38,13 +38,7 @@ public class EmployeeController {
 		return "construct/employee/employee_list";
 	}
 	@RequestMapping("add.action")
-	public String add(Model model,@Validated EmployeesVO employeesVO,BindingResult bindingResult) {
-		if(bindingResult.hasErrors()) {
-			List<ObjectError> allErrors=bindingResult.getAllErrors();
-			model.addAttribute("allErrors",allErrors);
-			model.addAttribute("employeesVO",employeesVO);
-			return "construct/employee/employee_add";
-		}
+	public String add(Model model,EmployeesVO employeesVO) {
 		boolean result=employeeVOService.save(employeesVO);
 		if(result) {
 	        model.addAttribute("info","添加成功");
@@ -86,13 +80,8 @@ public class EmployeeController {
 		return "construct/employee/employee_update";
 	}
 	@RequestMapping("update.action")
-    public String update(Model model,@Validated EmployeesVO employeesVO,BindingResult bindingResult) {
-		if (bindingResult.hasErrors()) {
-			List<ObjectError> allErrors=bindingResult.getAllErrors();
-			model.addAttribute("allErrors", allErrors);
-			model.addAttribute("employeeVO", employeesVO);
-			return "construct/employee/employee_update";
-		}
+    public String update(Model model, EmployeesVO employeesVO) {
+		
     	boolean result=employeeVOService.update(employeesVO);
         if(result) {
             model.addAttribute("info", "修改成功");
@@ -101,5 +90,12 @@ public class EmployeeController {
         }
         return this.list(null, model);
     }
+	
+	@RequestMapping("show")
+	public String show(Model model,Integer employeeId) {
+		EmployeesVO eVo=employeeVOService.findOne(employeeId);
+		model.addAttribute("employeeVO", eVo);
+		return "construct/employee/employee_show";
+	}
 	
 }

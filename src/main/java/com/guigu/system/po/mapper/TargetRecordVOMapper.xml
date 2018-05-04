@@ -23,4 +23,9 @@
   where tr.parent_target=t.target_id and tr.target_id=t1.target_id and tr.target_id=${value}
   
   </select>
+  
+  <select id="find" parameterType="String" resultMap="BaseResultMap">
+  select tr.*,t.target_name parent_name,t1.target_name from target t1,target t,target_record tr
+  where tr.parent_target=t.target_id and tr.target_id=t1.target_id and t.target_name like '${value}'
+  </select>
 </mapper>

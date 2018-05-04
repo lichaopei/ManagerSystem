@@ -27,49 +27,11 @@
 			</c:forEach>
 		</div>
 	</div>
-<script type="text/javascript">
-function jsGetAge(){         
-    var returnAge;  
-    var strBirthday=document.getElementById("staffBirthday").value;
-    var strBirthdayArr=strBirthday.split("-");  
-    var birthYear = strBirthdayArr[0];  
-    var birthMonth = strBirthdayArr[1];  
-    var birthDay = strBirthdayArr[2];  
-    d = new Date();  
-    var nowYear = d.getYear()+1900;  
-    var nowMonth = d.getMonth() + 1;  
-    var nowDay = d.getDate();  
-    if(nowYear == birthYear)  {  
-        returnAge = 0;//同年 则为0岁  
-    }  else  {  
-        var ageDiff = nowYear - birthYear ; //年之差  
-        if(ageDiff > 0){  
-            if(nowMonth == birthMonth)  {  
-                var dayDiff = nowDay - birthDay;//日之差  
-                if(dayDiff < 0)  {  
-                    returnAge = ageDiff - 1;  
-                }  else  {  
-                    returnAge = ageDiff ;  
-                }  
-            }  else  {  
-                var monthDiff = nowMonth - birthMonth;//月之差  
-                if(monthDiff < 0)  {  
-                    returnAge = ageDiff - 1;  
-                }  else  {  
-                    returnAge = ageDiff ;  
-                }  
-            }  
-        }  else  {  
-            returnAge = -1;//返回-1 表示出生日期输入错误 晚于今天  
-        }  
-    }  
-    document.getElementById("staffAge").value=returnAge;
-}  	
-</script>
 <form action="${pageContext.request.contextPath}/construct/employee/update.action"
 		class="form-horizontal">
 		<h5 class="page-header alert-info"
 			style="padding: 10px; margin: 0px; margin-bottom: 5px;">基本信息</h5>
+			<div class="row">
 				<div class="form-group" style="display: none;">
 					<label class="col-sm-3 control-label">编号</label>
 					<div class="col-sm-9">
@@ -90,17 +52,6 @@ function jsGetAge(){
 		</div>
 		<!-- 开始2 -->
 		<div class="row">
-			<%-- <div class="col-sm-5">
-				<div class="form-group">
-					<label class="col-sm-3 control-label">年龄</label>
-					<div class="col-sm-5">
-						<input type="text" id="staffAge" name="staffAge"
-							readonly="readonly" value="${staffInfo.staffAge}"
-							class="form-control input-sm" />
-					</div>
-				</div>
-
-			</div> --%>
 			<div class="col-sm-5">
 				<div class="form-group">
 					<label class="col-sm-3 control-label">性别</label>
@@ -113,41 +64,29 @@ function jsGetAge(){
 					</div>
 				</div>
 			</div>
-		</div>
-		<!-- 结束2 -->
-		<!-- 开始3 -->
-		<div class="row">
-			<%-- <div class="col-sm-5">
-				<div class="form-group">
-					<label class="col-sm-3 control-label">籍贯</label>
-					<div class="col-sm-6">
-						<input type="text" name="staffNativePlace"
-							value="${staffInfo.staffNativePlace}"
-							class="form-control input-sm" />
-					</div>
-				</div>
-			 --%>
-			</div>
+		
 			<div class="col-sm-5">
 				<div class="form-group">
 					<label class="col-sm-3 control-label">职位</label>
 					<div class="col-sm-9">
-						<select class="form-control input-sm" name="position">
+						<select class="form-control input-sm" name="position" >
 							<c:forEach items="${list2}" var="list2">
-								<option value="${list2.positionId}">${list2.positionName}</option>							
+								<option value="${list2.positionId }" ${employeeVO.position==list2.positionId?'selected':'' }>${list2.positionName}</option>							
 							</c:forEach>
 						</select>
 					</div>
 				</div>
 			</div>
+		</div>
 			
+		<div class="row">	
 			<div class="col-sm-5">
 				<div class="form-group">
 					<label class="col-sm-3 control-label">部门</label>
 					<div class="col-sm-9">
 						<select class="form-control input-sm" name="department">
 							<c:forEach items="${list}" var="list">
-								<option value="${list.departmentId}">${list.departmentName}</option>							
+								<option value="${list.departmentId}" ${employeeVO.department==list.departmentId?'selected':'' }>${list.departmentName}</option>							
 							</c:forEach>
 						</select>
 					</div>
@@ -155,14 +94,16 @@ function jsGetAge(){
 			</div>
 			<div class="col-sm-5">
 				<div class="form-group">
-					<label class="col-sm-3 control-label">卡号</label>
+					<label class="col-sm-3 control-label">身份证号</label>
 					<div class="col-sm-9">
-						<input type="text" name="cardNumber"
+						<input type="text" name="cardNumber" required
 							value="${employeeVO.cardNumber}" class="form-control input-sm" />
 					</div>
 				</div>
 			</div>
-			
+		</div>
+		
+		<div class="row">
 			<div class="col-sm-5">
 				<div class="form-group">
 					<label class="col-sm-3 control-label">员工状态</label>
@@ -174,112 +115,30 @@ function jsGetAge(){
 					</div>
 				</div>
 			</div>
+	
+		<div class="col-sm-5">
+				<div class="form-group">
+					<label class="col-sm-3 control-label">手机号码</label>
+					<div class="col-sm-9">
+						<input type="text" name="phone"  required
+							value="${employee.phone}" class="form-control input-sm" />
+					</div>
+				</div>
+			</div>
 		</div>
-		<!-- 结束3 -->
-		<!-- 开始4 -->
-		<%-- <div class="row">
-			<div class="col-sm-5">
-				<div class="form-group">
-					<label class="col-sm-3 control-label">出生日期</label>
-					<div class="col-sm-9">
-						<input type="text" id="staffBirthday" name="staffBirthday"
-							value="${staffInfo.staffBirthday}" onfocus="WdatePicker()"
-							onblur="jsGetAge()" readonly="readonly"
-							class="form-control input-sm" />
-					</div>
-				</div>
-
-			</div>
-			<div class="col-sm-5">
-				<div class="form-group">
-					<label class="col-sm-3 control-label">办公电话</label>
-					<div class="col-sm-9">
-						<input type="text" name="staffOfficePhone"
-							value="${staffInfo.staffOfficePhone}"
-							class="form-control input-sm" />
-					</div>
-				</div>
-			</div>
-		</div> --%>
-		<!-- 结束4 -->
-		<!-- 开始4 -->
-		<%-- <div class="row">
-			<div class="col-sm-5">
-				<div class="form-group">
-					<label class="col-sm-3 control-label">电子邮件</label>
-					<div class="col-sm-9">
-						<input type="text" name="staffEmail"
-							value="${staffInfo.staffEmail}" class="form-control input-sm" />
-					</div>
-				</div>
-
-			</div>
-			<div class="col-sm-5">
-				<div class="form-group">
-					<label class="col-sm-3 control-label">移动电话</label>
-					<div class="col-sm-9">
-						<input type="text" name="staffMobilePhone"
-							value="${staffInfo.staffMobilePhone}"
-							class="form-control input-sm" />
-					</div>
-				</div>
-			</div>
-		</div> --%>
-		<!-- 结束4 -->
-		<!-- 开始5 -->
-		<%-- <div class="row">
-			<div class="col-sm-5">
-				<div class="form-group">
-					<label class="col-sm-3 control-label">家庭住址</label>
-					<div class="col-sm-9">
-						<input type="text" name="staffAddr" value="${staffInfo.staffAddr}"
-							class="form-control input-sm" />
-					</div>
-				</div>
-
-			</div>
-			<div class="col-sm-5">
-				<div class="form-group">
-					<label class="col-sm-3 control-label">QQ</label>
-					<div class="col-sm-9">
-						<input type="text" name="staffQq" value="${staffInfo.staffQq}"
-							class="form-control input-sm" />
-					</div>
-				</div>
-			</div>
-		</div> --%>
-		<!-- 结束5 -->
-		<!-- 开始6 -->
-		<%-- <div class="row">
-			<div class="col-sm-5">
-				<div class="form-group">
-					<label class="col-sm-3 control-label">入职时间</label>
-					<div class="col-sm-9">
-						<input type="text" name="staffEntryTime"
-							value="<fmt:formatDate value="${staffInfo.staffEntryTime }" pattern="yyyy-MM-dd" type="both"/>"
-							onclick="WdatePicker()" readonly="readonly"
-							class="form-control input-sm" />
-					</div>
-				</div>
-
-			</div> --%>
-		<%-- 	<div class="col-sm-5">
-				<div class="form-group">
-					<label class="col-sm-3 control-label">教育水平</label>
-					<div class="col-sm-6">
-						<select class="form-control input-sm" name="staffEducationLevel">
-							<option></option>
-							<option ${staffInfo.staffEducationLevel=='博士'?'selected':''}>博士</option>
-							<option ${staffInfo.staffEducationLevel=='博士'?'selected':''}>硕士</option>
-							<option ${staffInfo.staffEducationLevel=='博士'?'selected':''}>本科</option>
-						</select>
-					</div>
-				</div>
-			</div>
-		</div> --%>
-		<!-- 结束6 -->
+		
 		<div class="row">
-			<div class="col-sm-10">
+			<div class="col-sm-5">
+				<div class="form-group">
+					<label class="col-sm-3 control-label">地址</label>
+					<div class="col-sm-9">
+						<input type="text" name="address" required
+							value="${employee.address}" class="form-control input-sm" />
+					</div>
+				</div>
+			</div>
+		<!-- 结束6 -->
+			<div class="col-sm-7">
 				<div class="form-group">
 					<label class="col-sm-3 control-label">备注</label>
 					<div class="col-sm-9">
@@ -290,29 +149,7 @@ function jsGetAge(){
 			</div>
 
 		</div> 
-		<%-- <h5 class="page-header alert-info"
-			style="padding: 10px; margin: 0px; margin-bottom: 5px;">账号信息</h5>
-		<div class="row">
-			<div class="col-sm-5">
-				<div class="form-group">
-					<label class="col-sm-3 control-label">账号</label>
-					<div class="col-sm-9">
-						<input type="text" name="staffNumber"
-							value="${staffInfo.staffNumber}" class="form-control input-sm" />
-					</div>
-				</div>
-
-			</div>
-			<div class="col-sm-5">
-				<div class="form-group">
-					<label class="col-sm-3 control-label">密码</label>
-					<div class="col-sm-9">
-						<input type="password" name="staffPassword"
-							value="${staffInfo.staffPassword}" class="form-control input-sm" />
-					</div>
-				</div>
-			</div>
-		</div> --%>
+		
    	<div class="row">
     	<div class="col-sm-3 col-sm-offset-4">
         	<input  type="submit" class="btn btn-success" value="修改"/>

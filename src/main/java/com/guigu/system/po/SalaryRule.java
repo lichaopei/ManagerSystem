@@ -5,11 +5,17 @@ public class SalaryRule {
 
     private Integer positionId;
 
-    private Double pv;
+    private Double baseSalary;
 
-    private Double skillWage;
+    private Double positionSalary;
 
-    private String auxiliaryWage;
+    private Double targetMoney;
+
+    private Double upPercent;
+
+    private Double jxPercent;
+
+    private Double scoreMoney;
 
     public Integer getSalaryId() {
         return salaryId;
@@ -27,27 +33,51 @@ public class SalaryRule {
         this.positionId = positionId;
     }
 
-    public Double getPv() {
-        return pv;
+    public Double getBaseSalary() {
+        return baseSalary;
     }
 
-    public void setPv(Double pv) {
-        this.pv = pv;
+    public void setBaseSalary(Double baseSalary) {
+        this.baseSalary = baseSalary;
     }
 
-    public Double getSkillWage() {
-        return skillWage;
+    public Double getPositionSalary() {
+        return positionSalary;
     }
 
-    public void setSkillWage(Double skillWage) {
-        this.skillWage = skillWage;
+    public void setPositionSalary(Double positionSalary) {
+        this.positionSalary = positionSalary;
     }
 
-    public String getAuxiliaryWage() {
-        return auxiliaryWage;
+    public Double getTargetMoney() {
+        return targetMoney;
     }
 
-    public void setAuxiliaryWage(String auxiliaryWage) {
-        this.auxiliaryWage = auxiliaryWage == null ? null : auxiliaryWage.trim();
+    public void setTargetMoney(Double targetMoney) {
+        this.targetMoney = targetMoney;
+    }
+
+    public Double getUpPercent() {
+        return upPercent;
+    }
+
+    public void setUpPercent(Double upPercent) {
+        this.upPercent = upPercent;
+    }
+
+    public Double getJxPercent() {
+        return jxPercent;
+    }
+
+    public void setJxPercent(Double jxPercent) {
+        this.jxPercent = jxPercent;
+    }
+
+    public Double getScoreMoney() {
+        return scoreMoney;
+    }
+
+    public void setScoreMoney(Double scoreMoney) {
+        this.scoreMoney = scoreMoney;
     }
 }

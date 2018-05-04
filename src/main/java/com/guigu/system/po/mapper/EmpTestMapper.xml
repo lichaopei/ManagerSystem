@@ -4,8 +4,13 @@
   <resultMap id="BaseResultMap" type="com.guigu.system.po.EmpTest" >
     <id column="Test_Id" property="testId" jdbcType="INTEGER" />
     <result column="Emp_ID" property="empId" jdbcType="INTEGER" />
+    <result column="Base_Salary" property="baseSalary" jdbcType="DOUBLE" />
+    <result column="Position_Salary" property="positionSalary" jdbcType="DOUBLE" />
+    <result column="Up_Salary" property="upSalary" jdbcType="DOUBLE" />
+    <result column="JX_Salary" property="jxSalary" jdbcType="DOUBLE" />
+    <result column="All_Salary" property="allSalary" jdbcType="DOUBLE" />
     <result column="Test_Score" property="testScore" jdbcType="DOUBLE" />
-    <result column="Test_Date" property="testDate" jdbcType="DATE" />
+    <result column="Test_Date" property="testDate" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -66,7 +71,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    Test_Id, Emp_ID, Test_Score, Test_Date
+    Test_Id, Emp_ID, Base_Salary, Position_Salary, Up_Salary, JX_Salary, All_Salary, 
+    Test_Score, Test_Date
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.guigu.system.po.EmpTestExample" >
     select
@@ -99,10 +105,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.guigu.system.po.EmpTest" >
-    insert into emp_test (Test_Id, Emp_ID, Test_Score, 
-      Test_Date)
-    values (#{testId,jdbcType=INTEGER}, #{empId,jdbcType=INTEGER}, #{testScore,jdbcType=DOUBLE}, 
-      #{testDate,jdbcType=DATE})
+    insert into emp_test (Test_Id, Emp_ID, Base_Salary, 
+      Position_Salary, Up_Salary, JX_Salary, 
+      All_Salary, Test_Score, Test_Date
+      )
+    values (#{testId,jdbcType=INTEGER}, #{empId,jdbcType=INTEGER}, #{baseSalary,jdbcType=DOUBLE}, 
+      #{positionSalary,jdbcType=DOUBLE}, #{upSalary,jdbcType=DOUBLE}, #{jxSalary,jdbcType=DOUBLE}, 
+      #{allSalary,jdbcType=DOUBLE}, #{testScore,jdbcType=DOUBLE}, #{testDate,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.guigu.system.po.EmpTest" >
     insert into emp_test
@@ -112,6 +122,21 @@
       </if>
       <if test="empId != null" >
         Emp_ID,
+      </if>
+      <if test="baseSalary != null" >
+        Base_Salary,
+      </if>
+      <if test="positionSalary != null" >
+        Position_Salary,
+      </if>
+      <if test="upSalary != null" >
+        Up_Salary,
+      </if>
+      <if test="jxSalary != null" >
+        JX_Salary,
+      </if>
+      <if test="allSalary != null" >
+        All_Salary,
       </if>
       <if test="testScore != null" >
         Test_Score,
@@ -127,11 +152,26 @@
       <if test="empId != null" >
         #{empId,jdbcType=INTEGER},
       </if>
+      <if test="baseSalary != null" >
+        #{baseSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="positionSalary != null" >
+        #{positionSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="upSalary != null" >
+        #{upSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="jxSalary != null" >
+        #{jxSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="allSalary != null" >
+        #{allSalary,jdbcType=DOUBLE},
+      </if>
       <if test="testScore != null" >
         #{testScore,jdbcType=DOUBLE},
       </if>
       <if test="testDate != null" >
-        #{testDate,jdbcType=DATE},
+        #{testDate,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -150,11 +190,26 @@
       <if test="record.empId != null" >
         Emp_ID = #{record.empId,jdbcType=INTEGER},
       </if>
+      <if test="record.baseSalary != null" >
+        Base_Salary = #{record.baseSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="record.positionSalary != null" >
+        Position_Salary = #{record.positionSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="record.upSalary != null" >
+        Up_Salary = #{record.upSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="record.jxSalary != null" >
+        JX_Salary = #{record.jxSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="record.allSalary != null" >
+        All_Salary = #{record.allSalary,jdbcType=DOUBLE},
+      </if>
       <if test="record.testScore != null" >
         Test_Score = #{record.testScore,jdbcType=DOUBLE},
       </if>
       <if test="record.testDate != null" >
-        Test_Date = #{record.testDate,jdbcType=DATE},
+        Test_Date = #{record.testDate,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -165,8 +220,13 @@
     update emp_test
     set Test_Id = #{record.testId,jdbcType=INTEGER},
       Emp_ID = #{record.empId,jdbcType=INTEGER},
+      Base_Salary = #{record.baseSalary,jdbcType=DOUBLE},
+      Position_Salary = #{record.positionSalary,jdbcType=DOUBLE},
+      Up_Salary = #{record.upSalary,jdbcType=DOUBLE},
+      JX_Salary = #{record.jxSalary,jdbcType=DOUBLE},
+      All_Salary = #{record.allSalary,jdbcType=DOUBLE},
       Test_Score = #{record.testScore,jdbcType=DOUBLE},
-      Test_Date = #{record.testDate,jdbcType=DATE}
+      Test_Date = #{record.testDate,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -177,11 +237,26 @@
       <if test="empId != null" >
         Emp_ID = #{empId,jdbcType=INTEGER},
       </if>
+      <if test="baseSalary != null" >
+        Base_Salary = #{baseSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="positionSalary != null" >
+        Position_Salary = #{positionSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="upSalary != null" >
+        Up_Salary = #{upSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="jxSalary != null" >
+        JX_Salary = #{jxSalary,jdbcType=DOUBLE},
+      </if>
+      <if test="allSalary != null" >
+        All_Salary = #{allSalary,jdbcType=DOUBLE},
+      </if>
       <if test="testScore != null" >
         Test_Score = #{testScore,jdbcType=DOUBLE},
       </if>
       <if test="testDate != null" >
-        Test_Date = #{testDate,jdbcType=DATE},
+        Test_Date = #{testDate,jdbcType=VARCHAR},
       </if>
     </set>
     where Test_Id = #{testId,jdbcType=INTEGER}
@@ -189,8 +264,13 @@
   <update id="updateByPrimaryKey" parameterType="com.guigu.system.po.EmpTest" >
     update emp_test
     set Emp_ID = #{empId,jdbcType=INTEGER},
+      Base_Salary = #{baseSalary,jdbcType=DOUBLE},
+      Position_Salary = #{positionSalary,jdbcType=DOUBLE},
+      Up_Salary = #{upSalary,jdbcType=DOUBLE},
+      JX_Salary = #{jxSalary,jdbcType=DOUBLE},
+      All_Salary = #{allSalary,jdbcType=DOUBLE},
       Test_Score = #{testScore,jdbcType=DOUBLE},
-      Test_Date = #{testDate,jdbcType=DATE}
+      Test_Date = #{testDate,jdbcType=VARCHAR}
     where Test_Id = #{testId,jdbcType=INTEGER}
   </update>
 </mapper>

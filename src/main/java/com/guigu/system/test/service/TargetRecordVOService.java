@@ -15,5 +15,7 @@ public interface TargetRecordVOService {
 	public  boolean delete(int targetId);
 	
 	public  TargetRecordVO findOnet(int targetId);
+	
+	public  List<TargetRecordVO> find(String  parentName);
 
 }

@@ -21,6 +21,8 @@
         <input type="text" class="form-control" name="customer" placeholder="请输入顾客姓名"  >
       </div>
     <input type="submit"   class="btn btn-danger"     value="查询"/>
+    
+     <input id="right" value="${admin.adminRight}" style="display: none;">
     <a  class="btn btn-success"  href="${pageContext.request.contextPath}/order/order/beforeAdd.action">添加订单</a>
     </form>
 </div>
@@ -38,7 +40,7 @@
 <div class="row" style="padding:15px; padding-top:0px; " align="right">
 	<table class="table  table-condensed table-striped">
     </table>
-    <display:table class="table table-condensed table-striped" name="list" pagesize="10" requestURI="${pageContext.request.contextPath }/order/order/list.action">
+    <display:table  export="true"   class="table table-condensed table-striped" name="list" pagesize="10" requestURI="${pageContext.request.contextPath }/order/order/list.action">
     	<display:column property="typeName" title="订单类型"></display:column>
     	<display:column property="customer" title="客户姓名"
     	href="${pageContext.request.contextPath}/order/order/show.action"  paramId="orderId" paramProperty="orderId"></display:column>
@@ -49,6 +51,5 @@
     </display:table>
     
 </div>
-
 </body>
 </html>

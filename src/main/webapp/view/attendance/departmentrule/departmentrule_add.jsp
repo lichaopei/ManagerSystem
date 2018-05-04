@@ -37,7 +37,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">部门名称</label>
 					<div class="col-sm-4">
-						<select name="departmentId" class="form-control input-sm">	
+						<select name="departmentId" class="form-control input-sm"  required>	
 							<c:forEach items="${findlist}" var="dept">
 								<option value="${dept.departmentId}">${dept.departmentName}</option>
 							</c:forEach>
@@ -53,7 +53,7 @@
 					<label class="col-sm-3 control-label">上午开始时间</label>
 					<div class="col-sm-9">
 						<div class="input-append date form_datetime">
-    						<input size="16" type="text" id="datetimeStartAM" name="startTimeAm" value="${department.startTimeAm}" readonly class="form_datetime">
+    						<input size="16" type="text" id="datetimeStartAM"  required name="startTimeAm" value="${department.startTimeAm}" readonly class="form_datetime">
     						<span class="add-on"><i class="icon-th"></i></span>
 						</div>
 					</div>
@@ -66,7 +66,7 @@
 					<label class="col-sm-3 control-label">上午结束时间</label>
 					<div class="col-sm-9">
 						<div class="input-append date form_datetime">
-    						<input size="16" type="text" id="datetimeEndAM" name="endTimeAm" value="${department.endTimeAm}" readonly class="form_datetime">
+    						<input size="16" type="text" id="datetimeEndAM" required name="endTimeAm" value="${department.endTimeAm}" readonly class="form_datetime">
     						<span class="add-on"><i class="icon-th"></i></span>
 						</div>
 					</div>
@@ -79,7 +79,7 @@
 					<label class="col-sm-3 control-label">下午开始时间</label>
 					<div class="col-sm-9">
 						<div class="input-append date form_datetime">
-    						<input size="16" type="text" id="datetimeStartPM" name="startTimePm" value="${department.startTimePm}" readonly class="form_datetime">
+    						<input size="16" type="text" id="datetimeStartPM" required name="startTimePm" value="${department.startTimePm}" readonly class="form_datetime">
     						<span class="add-on"><i class="icon-th"></i></span>
 						</div>
 					</div>
@@ -94,7 +94,7 @@
 					<label class="col-sm-3 control-label">下午结束时间</label>
 					<div class="col-sm-9">
 						<div class="input-append date form_datetime">
-    						<input size="16" type="text" id="datetimeEndPM" name="endTimePm" value="${department.endTimePm}" readonly class="form_datetime">
+    						<input size="16" type="text" id="datetimeEndPM"  required name="endTimePm" value="${department.endTimePm}" readonly class="form_datetime">
     						<span class="add-on"><i class="icon-th"></i></span>
 						</div>
 					</div>

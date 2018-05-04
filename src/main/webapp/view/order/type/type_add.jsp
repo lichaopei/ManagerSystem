@@ -37,8 +37,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">类型名称</label>
 					<div class="col-sm-6">
-						
-    						<input type="text" name="typeName" value="${photoType.typeName}" class="form-control input-sm">
+    						<input type="text" name="typeName" required value="${photoType.typeName}" class="form-control input-sm">
 					</div>
 				</div>
 				
@@ -50,7 +49,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">价格</label>
 					<div class="col-sm-6">
-    						<input  type="text" name="cost" value="${photoType.cost}" class="form-control input-sm">
+    						<input  type="text" name="cost" value="${photoType.cost}" required class="form-control input-sm">
    
 					</div>
 				</div>

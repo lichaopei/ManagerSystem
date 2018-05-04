@@ -36,9 +36,7 @@
 
 
 <div class="row" style="padding:15px; padding-top:0px; " align="right">
-	<table class="table  table-condensed table-striped">
-    </table>
-    <display:table class="table table-condensed table-striped" name="list" pagesize="10" requestURI="${pageContext.request.contextPath }/order/type/list.action">
+    <display:table id="d" class="table table-condensed table-striped" name="list" pagesize="10" requestURI="${pageContext.request.contextPath }/order/type/list.action">
     	<display:column property="typeName" title="类型名称"></display:column>
     	<display:column property="cost" title="价格"></display:column>
     	<display:column href="${pageContext.request.contextPath }/order/type/load.action" paramId="typeId" paramProperty="typeId" value="修改" title="修改"></display:column>
@@ -46,6 +44,12 @@
     </display:table>
     
 </div>
+<script type="text/javascript">
+	window.onload=function(){
+		 var theadCells = document.getElementById("d").getElementsByTagName("display:column");
+		 alert(dispObjs.length); 
+	};
 
+</script>
 </body>
 </html>

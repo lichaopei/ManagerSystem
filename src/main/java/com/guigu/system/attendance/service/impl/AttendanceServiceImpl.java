@@ -3,11 +3,14 @@ package com.guigu.system.attendance.service.impl;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import com.guigu.system.attendance.service.AttendanceService;
+import com.guigu.system.po.Admin;
 import com.guigu.system.po.AttendanceRecord;
 import com.guigu.system.po.AttendanceRecordVO;
 import com.guigu.system.po.mapper.AttendanceRecordMapper;
@@ -27,6 +30,9 @@ public class AttendanceServiceImpl implements AttendanceService{
 			}
 			if (attendanceRecordVO.getEmployeeName()!=null) {
 				attendanceRecordVO.setEmployeeName("%"+attendanceRecordVO.getEmployeeName()+"%");
+			}
+			if (attendanceRecordVO.getAttendanceDate()!=null) {
+				attendanceRecordVO.setAttendanceDate(attendanceRecordVO.getAttendanceDate()+"%");
 			}
 		}
 		return attendanceRecordVOMapper.findList(attendanceRecordVO);

@@ -8,10 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <%@ include file="/view/public/common.jspf"%>
-
 </head>
  <style>
-      
         .nav1>li{
              float: left;
          }
@@ -39,6 +37,8 @@
              display: block;
          }
  </style>
+	
+ 
 <body>
 	<div class="navbar navbar-default" id="navbar">
 		<script type="text/javascript">
@@ -67,7 +67,7 @@
 									<small>欢迎光临,</small>
 									${loginadmin.adminName}
 								</span>
-
+									<input type="text"   id="right" value="${loginadmin.adminRight}" style="display: none;">
 								<i class="icon-caret-down"></i>
 							</a>
 
@@ -144,7 +144,7 @@
 							class="menu-text"> 系统菜单 </span>
 					</a></li>
 
-					<li><a href="javascript:void(0)" target="mainframe"
+					<li class="d"><a href="javascript:void(0)" target="mainframe"
 						class="dropdown-toggle"> <i class="icon-desktop"></i> <span
 							class="menu-text"> 组织管理</span> <b class="arrow icon-angle-down"></b>
 					</a>
@@ -164,9 +164,10 @@
 								target="mainframe"> <i class="icon-double-angle-right"></i>
 									部门管理
 							</a></li>
-						</ul></li>
+						</ul>
+					</li>
 						
-							<li><a href="javascript:void(0)" target="mainframe"
+					<li class="d"><a href="javascript:void(0)" target="mainframe"
 						class="dropdown-toggle"> <i class="icon-desktop"></i> <span
 							class="menu-text"> 指标管理 </span> <b class="arrow icon-angle-down"></b>
 					</a>
@@ -200,7 +201,7 @@
 							</a></li>
 						</ul></li>
 
-					<li><a href="javascript:void(0)" target="mainframe"
+					<li class="d"><a href="javascript:void(0)" target="mainframe"
 						class="dropdown-toggle"> <i class="icon-desktop"></i> <span
 							class="menu-text"> 考核管理 </span> <b class="arrow icon-angle-down"></b>
 					</a>
@@ -214,12 +215,12 @@
 							<li><a
 								href="${pageContext.request.contextPath}/test/first.action"
 								target="mainframe"> <i class="icon-double-angle-right"></i>
-									考核查询
+									考核指标
 							</a></li>
 							<li><a
-								href="${pageContext.request.contextPath}/classinfo/syllabusinfo/list.action"
+								href="${pageContext.request.contextPath}/empTest/list.action"
 								target="mainframe"> <i class="icon-double-angle-right"></i>
-									员工考核
+									考核查询
 							</a></li>
 							<li><a
 								href="${pageContext.request.contextPath}/classinfo/teacher/list.action"
@@ -236,7 +237,7 @@
 							<li><a
 								href="${pageContext.request.contextPath}/order/type/list.action"
 								target="mainframe"> <i class="icon-double-angle-right"></i>
-									类型设置
+									订单类型
 							</a></li>
 							<li><a
 								href="${pageContext.request.contextPath}/order/order/list.action"
@@ -245,23 +246,18 @@
 							</a></li>
 						</ul></li> 
 
-					<li><a href="javascript:void(0)" target="mainframe"
+					<li class="d"><a href="javascript:void(0)" target="mainframe"
 						class="dropdown-toggle"> <i class="icon-desktop"></i> <span
 							class="menu-text"> 工资管理 </span> <b class="arrow icon-angle-down"></b>
 					</a>
 
 						<ul class="submenu">
-							<li><a href="view/student/student/student_list.html"
+							<li><a href="${pageContext.request.contextPath}/salaryrule/list.action"
 								target="mainframe"> <i class="icon-double-angle-right"></i>
 									工资设置
 							</a></li>
 							<li><a
-								href="view/student/evaluationinfo/evaluationinfo_list.html"
-								target="mainframe"> <i class="icon-double-angle-right"></i>
-									工资计算
-							</a></li>
-							<li><a
-								href="view/student/communicateinfo/communicateinfo_list.html"
+								href="${pageContext.request.contextPath}/empTest/main.action"
 								target="mainframe"> <i class="icon-double-angle-right"></i>
 									工资查询
 							</a></li>
@@ -274,19 +270,15 @@
 
 						<ul class="submenu">
 							<li><a
-								href="${pageContext.request.contextPath}/transaction/class_transaction/list.action"
-								target="mainframe"> <i class="icon-double-angle-right"></i>
+								href="${pageContext.request.contextPath}/view/info/info_main.jsp"
+								target="mainframe"> 
+								密码修改
+								<i class="icon-double-angle-right"></i>
 									
 							</a></li>
-							<li><a
-								href="${pageContext.request.contextPath}/transaction/transaction/list.action"
-								target="mainframe"> <i class="icon-double-angle-right"></i>
-									
-							</a></li>
-
 						</ul></li>
 						
-						<li><a href="javascript:void(0)" target="mainframe"
+						<li class="d"><a href="javascript:void(0)" target="mainframe"
 						class="dropdown-toggle"> <i class="icon-desktop"></i> <span
 							class="menu-text">系统管理</span> <b class="arrow icon-angle-down"></b>
 					</a>
@@ -304,23 +296,7 @@
 							</a></li>
 						</ul></li>
 
-					<%-- <li><a href="javascript:void(0)" target="mainframe"
-						class="dropdown-toggle"> <i class="icon-desktop"></i> <span
-							class="menu-text"> 财务管理 </span> <b class="arrow icon-angle-down"></b>
-					</a>
-						<ul class="submenu">
-							<li><a
-								href="${pageContext.request.contextPath}/finance/tuition/list.action"
-								target="mainframe"> <i class="icon-double-angle-right"></i>
-									学员缴费
-							</a></li>
-							<li><a
-								href="${pageContext.request.contextPath}/finance/salary/list.action"
-								target="mainframe"> <i class="icon-double-angle-right"></i>
-									员工薪水
-							</a></li>
-						</ul></li> --%>
-					<!-- /.nav-list -->
+			
 
 					<div class="sidebar-collapse" id="sidebar-collapse">
 						<i class="icon-double-angle-left"
@@ -645,7 +621,21 @@
 						else
 							$(this).closest('li').removeClass('selected');
 					});
-		})
+		});
+		
+		
+		window.onload=function(){
+		var s=document.getElementById("right").value;	
+			if(s=="否"){
+				var list=document.getElementsByClassName("d");
+				for(var i=0;i<list.length;i++){
+					list[i].style.display="none";
+					
+				}
+			}
+	};
+		
 	</script>
+	
 </body>
 </html>

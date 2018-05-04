@@ -10,4 +10,11 @@ public class EmpTestVO extends EmpTest{
 	public void setEmployeeName(String employeeName) {
 		this.employeeName = employeeName;
 	}
+
+	@Override
+	public String toString() {
+		return "EmpTestVO [employeeName=" + employeeName + ", toString()=" + super.toString() + "]";
+	}
+	
+	
 }

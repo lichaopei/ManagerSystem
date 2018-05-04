@@ -74,7 +74,7 @@
 					<div class="col-sm-9">
 						<div class="input-append date form_datetime">
 							<input type="text" size="16" name="endTimeAm" 
-							 value=<fmt:formatDate value="${department.endTimeAm}"  pattern="HH:mm:ss"/>
+								 value=<fmt:formatDate value="${department.endTimeAm}"  pattern="HH:mm:ss"/>
 							 class="form_datetime" /> 
 						</div>
 					</div>

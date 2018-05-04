@@ -35,6 +35,7 @@ public class OrderVOserviceImpl implements OrderVOService {
 
 	@Override
 	public boolean save(Orders order) {
+		order.setSecondCost(0.00);
 		try {
 			int i = ordersMapper.insert(order);
 			if (i > 0) {

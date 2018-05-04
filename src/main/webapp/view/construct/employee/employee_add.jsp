@@ -11,26 +11,7 @@
 <%@ include file="/view/public/common.jspf"%>
 
 </head>
-<script type="text/javascript">
-	function jsGetAge() {
-		document.getElementById("staffAge").value = null;
-		var returnAge;
-		var strBirthday = document.getElementById("staffBirthday").value;
-		var strBirthdayArr = strBirthday.split("-");
-		var birthYear = strBirthdayArr[0];
-		d = new Date();
-		var nowYear = d.getYear();
-		if (nowYear == birthYear) {
-			returnAge = 0;//同年 则为0岁  
-		} else {
-			returnAge = nowYear - birthYear + 1900; //年之差 ;
-		}
-		if (returnAge < birthYear) {
-			document.getElementById("staffAge").value = returnAge;
-		}
 
-	}
-</script>
 <body>
 	<div style="padding: 0px; margin: 0px;">
 		<ul class="breadcrumb" style="margin: 0px;">
@@ -65,7 +46,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">姓名</label>
 					<div class="col-sm-9">
-						<input type="text" name="employeeName" value="${employee.employeeName}"
+						<input type="text" name="employeeName" value="${employee.employeeName}" required
 							class="form-control input-sm" />
 					</div>
 				</div>
@@ -74,22 +55,11 @@
 		</div>
 		<!-- 开始2 -->
 		<div class="row">
-			<%-- <div class="col-sm-5">
-				<div class="form-group">
-					<label class="col-sm-3 control-label">年龄</label>
-					<div class="col-sm-5">
-						<input type="text" id="staffAge" name="staffAge"
-							readonly="readonly" value="${staffInfo.staffAge}"
-							class="form-control input-sm" />
-					</div>
-				</div>
-
-			</div> --%>
 			<div class="col-sm-5">
 				<div class="form-group">
 					<label class="col-sm-3 control-label">性别</label>
 					<div class="col-sm-4">
-						<select class="form-control input-sm" name="employeeGender">
+						<select class="form-control input-sm" name="employeeGender" required>
 							<option></option>
 							<option ${employee.employeeGender=='男'?'selected':''}>男</option>
 							<option ${employee.employeeGender=='女'?'selected':''}>女</option>
@@ -100,23 +70,12 @@
 		</div>
 		<!-- 结束2 -->
 		<!-- 开始3 -->
-		<div class="row">
-			<%-- <div class="col-sm-5">
-				<div class="form-group">
-					<label class="col-sm-3 control-label">籍贯</label>
-					<div class="col-sm-6">
-						<input type="text" name="staffNativePlace"
-							value="${staffInfo.staffNativePlace}"
-							class="form-control input-sm" />
-					</div>
-				</div>
-			 --%>
-			</div>
 			<div class="col-sm-5">
 				<div class="form-group">
 					<label class="col-sm-3 control-label">职位</label>
 					<div class="col-sm-9">
-						<select class="form-control input-sm" name="position">
+						<select class="form-control input-sm" name="position" required>
+							<option></option>
 							<c:forEach items="${list2}" var="list2">
 								<option value="${list2.positionId}">${list2.positionName}</option>							
 							</c:forEach>
@@ -129,8 +88,10 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">部门</label>
 					<div class="col-sm-9">
-						<select class="form-control input-sm" name="department">
+						<select class="form-control input-sm" name="department" required>
+							<option></option>
 							<c:forEach items="${list}" var="list">
+							
 								<option value="${list.departmentId}">${list.departmentName}</option>							
 							</c:forEach>
 						</select>
@@ -141,7 +102,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">身份证号</label>
 					<div class="col-sm-9">
-						<input type="text" name="cardNumber"
+						<input type="text" name="cardNumber" required
 							value="${employee.cardNumber}" class="form-control input-sm" />
 					</div>
 				</div>
@@ -150,7 +111,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">手机号码</label>
 					<div class="col-sm-9">
-						<input type="text" name="phone"
+						<input type="text" name="phone" required
 							value="${employee.phone}" class="form-control input-sm" />
 					</div>
 				</div>
@@ -159,7 +120,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">地址</label>
 					<div class="col-sm-9">
-						<input type="text" name="address"
+						<input type="text" name="address" required
 							value="${employee.address}" class="form-control input-sm" />
 					</div>
 				</div>
@@ -170,8 +131,8 @@
 					<label class="col-sm-3 control-label">员工状态</label>
 					<div class="col-sm-9">
 						<select class="form-control input-sm" name="employeeState">
-							<option value="0" ${employee.employeeState=='0'?'selected':'' }>停用</option>
-							<option value="1" ${employee.employeeState=='1'?'selected':''}>正常      </option>
+						<option value="1" ${employee.employeeState=='1'?'selected':''}>正常      </option>
+						<option value="0" ${employee.employeeState=='0'?'selected':''}>停用</option>
 						</select>
 					</div>
 				</div>

@@ -224,193 +224,363 @@ public class SalaryRuleExample {
             return (Criteria) this;
         }
 
-        public Criteria andPvIsNull() {
-            addCriterion("PV is null");
+        public Criteria andBaseSalaryIsNull() {
+            addCriterion("Base_Salary is null");
             return (Criteria) this;
         }
 
-        public Criteria andPvIsNotNull() {
-            addCriterion("PV is not null");
+        public Criteria andBaseSalaryIsNotNull() {
+            addCriterion("Base_Salary is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPvEqualTo(Double value) {
-            addCriterion("PV =", value, "pv");
+        public Criteria andBaseSalaryEqualTo(Double value) {
+            addCriterion("Base_Salary =", value, "baseSalary");
             return (Criteria) this;
         }
 
-        public Criteria andPvNotEqualTo(Double value) {
-            addCriterion("PV <>", value, "pv");
+        public Criteria andBaseSalaryNotEqualTo(Double value) {
+            addCriterion("Base_Salary <>", value, "baseSalary");
             return (Criteria) this;
         }
 
-        public Criteria andPvGreaterThan(Double value) {
-            addCriterion("PV >", value, "pv");
+        public Criteria andBaseSalaryGreaterThan(Double value) {
+            addCriterion("Base_Salary >", value, "baseSalary");
             return (Criteria) this;
         }
 
-        public Criteria andPvGreaterThanOrEqualTo(Double value) {
-            addCriterion("PV >=", value, "pv");
+        public Criteria andBaseSalaryGreaterThanOrEqualTo(Double value) {
+            addCriterion("Base_Salary >=", value, "baseSalary");
             return (Criteria) this;
         }
 
-        public Criteria andPvLessThan(Double value) {
-            addCriterion("PV <", value, "pv");
+        public Criteria andBaseSalaryLessThan(Double value) {
+            addCriterion("Base_Salary <", value, "baseSalary");
             return (Criteria) this;
         }
 
-        public Criteria andPvLessThanOrEqualTo(Double value) {
-            addCriterion("PV <=", value, "pv");
+        public Criteria andBaseSalaryLessThanOrEqualTo(Double value) {
+            addCriterion("Base_Salary <=", value, "baseSalary");
             return (Criteria) this;
         }
 
-        public Criteria andPvIn(List<Double> values) {
-            addCriterion("PV in", values, "pv");
+        public Criteria andBaseSalaryIn(List<Double> values) {
+            addCriterion("Base_Salary in", values, "baseSalary");
             return (Criteria) this;
         }
 
-        public Criteria andPvNotIn(List<Double> values) {
-            addCriterion("PV not in", values, "pv");
+        public Criteria andBaseSalaryNotIn(List<Double> values) {
+            addCriterion("Base_Salary not in", values, "baseSalary");
             return (Criteria) this;
         }
 
-        public Criteria andPvBetween(Double value1, Double value2) {
-            addCriterion("PV between", value1, value2, "pv");
+        public Criteria andBaseSalaryBetween(Double value1, Double value2) {
+            addCriterion("Base_Salary between", value1, value2, "baseSalary");
             return (Criteria) this;
         }
 
-        public Criteria andPvNotBetween(Double value1, Double value2) {
-            addCriterion("PV not between", value1, value2, "pv");
+        public Criteria andBaseSalaryNotBetween(Double value1, Double value2) {
+            addCriterion("Base_Salary not between", value1, value2, "baseSalary");
             return (Criteria) this;
         }
 
-        public Criteria andSkillWageIsNull() {
-            addCriterion("Skill_Wage is null");
+        public Criteria andPositionSalaryIsNull() {
+            addCriterion("Position_Salary is null");
             return (Criteria) this;
         }
 
-        public Criteria andSkillWageIsNotNull() {
-            addCriterion("Skill_Wage is not null");
+        public Criteria andPositionSalaryIsNotNull() {
+            addCriterion("Position_Salary is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSkillWageEqualTo(Double value) {
-            addCriterion("Skill_Wage =", value, "skillWage");
+        public Criteria andPositionSalaryEqualTo(Double value) {
+            addCriterion("Position_Salary =", value, "positionSalary");
             return (Criteria) this;
         }
 
-        public Criteria andSkillWageNotEqualTo(Double value) {
-            addCriterion("Skill_Wage <>", value, "skillWage");
+        public Criteria andPositionSalaryNotEqualTo(Double value) {
+            addCriterion("Position_Salary <>", value, "positionSalary");
             return (Criteria) this;
         }
 
-        public Criteria andSkillWageGreaterThan(Double value) {
-            addCriterion("Skill_Wage >", value, "skillWage");
+        public Criteria andPositionSalaryGreaterThan(Double value) {
+            addCriterion("Position_Salary >", value, "positionSalary");
             return (Criteria) this;
         }
 
-        public Criteria andSkillWageGreaterThanOrEqualTo(Double value) {
-            addCriterion("Skill_Wage >=", value, "skillWage");
+        public Criteria andPositionSalaryGreaterThanOrEqualTo(Double value) {
+            addCriterion("Position_Salary >=", value, "positionSalary");
             return (Criteria) this;
         }
 
-        public Criteria andSkillWageLessThan(Double value) {
-            addCriterion("Skill_Wage <", value, "skillWage");
+        public Criteria andPositionSalaryLessThan(Double value) {
+            addCriterion("Position_Salary <", value, "positionSalary");
             return (Criteria) this;
         }
 
-        public Criteria andSkillWageLessThanOrEqualTo(Double value) {
-            addCriterion("Skill_Wage <=", value, "skillWage");
+        public Criteria andPositionSalaryLessThanOrEqualTo(Double value) {
+            addCriterion("Position_Salary <=", value, "positionSalary");
             return (Criteria) this;
         }
 
-        public Criteria andSkillWageIn(List<Double> values) {
-            addCriterion("Skill_Wage in", values, "skillWage");
+        public Criteria andPositionSalaryIn(List<Double> values) {
+            addCriterion("Position_Salary in", values, "positionSalary");
             return (Criteria) this;
         }
 
-        public Criteria andSkillWageNotIn(List<Double> values) {
-            addCriterion("Skill_Wage not in", values, "skillWage");
+        public Criteria andPositionSalaryNotIn(List<Double> values) {
+            addCriterion("Position_Salary not in", values, "positionSalary");
             return (Criteria) this;
         }
 
-        public Criteria andSkillWageBetween(Double value1, Double value2) {
-            addCriterion("Skill_Wage between", value1, value2, "skillWage");
+        public Criteria andPositionSalaryBetween(Double value1, Double value2) {
+            addCriterion("Position_Salary between", value1, value2, "positionSalary");
             return (Criteria) this;
         }
 
-        public Criteria andSkillWageNotBetween(Double value1, Double value2) {
-            addCriterion("Skill_Wage not between", value1, value2, "skillWage");
+        public Criteria andPositionSalaryNotBetween(Double value1, Double value2) {
+            addCriterion("Position_Salary not between", value1, value2, "positionSalary");
             return (Criteria) this;
         }
 
-        public Criteria andAuxiliaryWageIsNull() {
-            addCriterion("Auxiliary_Wage is null");
+        public Criteria andTargetMoneyIsNull() {
+            addCriterion("Target_Money is null");
             return (Criteria) this;
         }
 
-        public Criteria andAuxiliaryWageIsNotNull() {
-            addCriterion("Auxiliary_Wage is not null");
+        public Criteria andTargetMoneyIsNotNull() {
+            addCriterion("Target_Money is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAuxiliaryWageEqualTo(String value) {
-            addCriterion("Auxiliary_Wage =", value, "auxiliaryWage");
+        public Criteria andTargetMoneyEqualTo(Double value) {
+            addCriterion("Target_Money =", value, "targetMoney");
             return (Criteria) this;
         }
 
-        public Criteria andAuxiliaryWageNotEqualTo(String value) {
-            addCriterion("Auxiliary_Wage <>", value, "auxiliaryWage");
+        public Criteria andTargetMoneyNotEqualTo(Double value) {
+            addCriterion("Target_Money <>", value, "targetMoney");
             return (Criteria) this;
         }
 
-        public Criteria andAuxiliaryWageGreaterThan(String value) {
-            addCriterion("Auxiliary_Wage >", value, "auxiliaryWage");
+        public Criteria andTargetMoneyGreaterThan(Double value) {
+            addCriterion("Target_Money >", value, "targetMoney");
             return (Criteria) this;
         }
 
-        public Criteria andAuxiliaryWageGreaterThanOrEqualTo(String value) {
-            addCriterion("Auxiliary_Wage >=", value, "auxiliaryWage");
+        public Criteria andTargetMoneyGreaterThanOrEqualTo(Double value) {
+            addCriterion("Target_Money >=", value, "targetMoney");
             return (Criteria) this;
         }
 
-        public Criteria andAuxiliaryWageLessThan(String value) {
-            addCriterion("Auxiliary_Wage <", value, "auxiliaryWage");
+        public Criteria andTargetMoneyLessThan(Double value) {
+            addCriterion("Target_Money <", value, "targetMoney");
             return (Criteria) this;
         }
 
-        public Criteria andAuxiliaryWageLessThanOrEqualTo(String value) {
-            addCriterion("Auxiliary_Wage <=", value, "auxiliaryWage");
+        public Criteria andTargetMoneyLessThanOrEqualTo(Double value) {
+            addCriterion("Target_Money <=", value, "targetMoney");
             return (Criteria) this;
         }
 
-        public Criteria andAuxiliaryWageLike(String value) {
-            addCriterion("Auxiliary_Wage like", value, "auxiliaryWage");
+        public Criteria andTargetMoneyIn(List<Double> values) {
+            addCriterion("Target_Money in", values, "targetMoney");
             return (Criteria) this;
         }
 
-        public Criteria andAuxiliaryWageNotLike(String value) {
-            addCriterion("Auxiliary_Wage not like", value, "auxiliaryWage");
+        public Criteria andTargetMoneyNotIn(List<Double> values) {
+            addCriterion("Target_Money not in", values, "targetMoney");
             return (Criteria) this;
         }
 
-        public Criteria andAuxiliaryWageIn(List<String> values) {
-            addCriterion("Auxiliary_Wage in", values, "auxiliaryWage");
+        public Criteria andTargetMoneyBetween(Double value1, Double value2) {
+            addCriterion("Target_Money between", value1, value2, "targetMoney");
             return (Criteria) this;
         }
 
-        public Criteria andAuxiliaryWageNotIn(List<String> values) {
-            addCriterion("Auxiliary_Wage not in", values, "auxiliaryWage");
+        public Criteria andTargetMoneyNotBetween(Double value1, Double value2) {
+            addCriterion("Target_Money not between", value1, value2, "targetMoney");
             return (Criteria) this;
         }
 
-        public Criteria andAuxiliaryWageBetween(String value1, String value2) {
-            addCriterion("Auxiliary_Wage between", value1, value2, "auxiliaryWage");
+        public Criteria andUpPercentIsNull() {
+            addCriterion("Up_Percent is null");
             return (Criteria) this;
         }
 
-        public Criteria andAuxiliaryWageNotBetween(String value1, String value2) {
-            addCriterion("Auxiliary_Wage not between", value1, value2, "auxiliaryWage");
+        public Criteria andUpPercentIsNotNull() {
+            addCriterion("Up_Percent is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpPercentEqualTo(Double value) {
+            addCriterion("Up_Percent =", value, "upPercent");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpPercentNotEqualTo(Double value) {
+            addCriterion("Up_Percent <>", value, "upPercent");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpPercentGreaterThan(Double value) {
+            addCriterion("Up_Percent >", value, "upPercent");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpPercentGreaterThanOrEqualTo(Double value) {
+            addCriterion("Up_Percent >=", value, "upPercent");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpPercentLessThan(Double value) {
+            addCriterion("Up_Percent <", value, "upPercent");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpPercentLessThanOrEqualTo(Double value) {
+            addCriterion("Up_Percent <=", value, "upPercent");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpPercentIn(List<Double> values) {
+            addCriterion("Up_Percent in", values, "upPercent");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpPercentNotIn(List<Double> values) {
+            addCriterion("Up_Percent not in", values, "upPercent");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpPercentBetween(Double value1, Double value2) {
+            addCriterion("Up_Percent between", value1, value2, "upPercent");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpPercentNotBetween(Double value1, Double value2) {
+            addCriterion("Up_Percent not between", value1, value2, "upPercent");
+            return (Criteria) this;
+        }
+
+        public Criteria andJxPercentIsNull() {
+            addCriterion("Jx_Percent is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andJxPercentIsNotNull() {
+            addCriterion("Jx_Percent is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andJxPercentEqualTo(Double value) {
+            addCriterion("Jx_Percent =", value, "jxPercent");
+            return (Criteria) this;
+        }
+
+        public Criteria andJxPercentNotEqualTo(Double value) {
+            addCriterion("Jx_Percent <>", value, "jxPercent");
+            return (Criteria) this;
+        }
+
+        public Criteria andJxPercentGreaterThan(Double value) {
+            addCriterion("Jx_Percent >", value, "jxPercent");
+            return (Criteria) this;
+        }
+
+        public Criteria andJxPercentGreaterThanOrEqualTo(Double value) {
+            addCriterion("Jx_Percent >=", value, "jxPercent");
+            return (Criteria) this;
+        }
+
+        public Criteria andJxPercentLessThan(Double value) {
+            addCriterion("Jx_Percent <", value, "jxPercent");
+            return (Criteria) this;
+        }
+
+        public Criteria andJxPercentLessThanOrEqualTo(Double value) {
+            addCriterion("Jx_Percent <=", value, "jxPercent");
+            return (Criteria) this;
+        }
+
+        public Criteria andJxPercentIn(List<Double> values) {
+            addCriterion("Jx_Percent in", values, "jxPercent");
+            return (Criteria) this;
+        }
+
+        public Criteria andJxPercentNotIn(List<Double> values) {
+            addCriterion("Jx_Percent not in", values, "jxPercent");
+            return (Criteria) this;
+        }
+
+        public Criteria andJxPercentBetween(Double value1, Double value2) {
+            addCriterion("Jx_Percent between", value1, value2, "jxPercent");
+            return (Criteria) this;
+        }
+
+        public Criteria andJxPercentNotBetween(Double value1, Double value2) {
+            addCriterion("Jx_Percent not between", value1, value2, "jxPercent");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreMoneyIsNull() {
+            addCriterion("Score_money is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreMoneyIsNotNull() {
+            addCriterion("Score_money is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreMoneyEqualTo(Double value) {
+            addCriterion("Score_money =", value, "scoreMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreMoneyNotEqualTo(Double value) {
+            addCriterion("Score_money <>", value, "scoreMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreMoneyGreaterThan(Double value) {
+            addCriterion("Score_money >", value, "scoreMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreMoneyGreaterThanOrEqualTo(Double value) {
+            addCriterion("Score_money >=", value, "scoreMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreMoneyLessThan(Double value) {
+            addCriterion("Score_money <", value, "scoreMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreMoneyLessThanOrEqualTo(Double value) {
+            addCriterion("Score_money <=", value, "scoreMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreMoneyIn(List<Double> values) {
+            addCriterion("Score_money in", values, "scoreMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreMoneyNotIn(List<Double> values) {
+            addCriterion("Score_money not in", values, "scoreMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreMoneyBetween(Double value1, Double value2) {
+            addCriterion("Score_money between", value1, value2, "scoreMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreMoneyNotBetween(Double value1, Double value2) {
+            addCriterion("Score_money not between", value1, value2, "scoreMoney");
             return (Criteria) this;
         }
     }

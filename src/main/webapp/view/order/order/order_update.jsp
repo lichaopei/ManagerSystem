@@ -42,9 +42,9 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">订单类型</label>
 					<div class="col-sm-4">
-						<select name="typeId" class="form-control input-sm">	
+						<select name="typeId" class="form-control input-sm" >	
 							<c:forEach items="${types}" var="type">
-								<option value="${type.typeId}"}>${type.typeName}</option>
+								<option value="${type.typeId}"}  ${order.typeId==type.typeId?'selected':''} >${type.typeName}</option>
 							</c:forEach>
 						</select>
 					</div>
@@ -55,7 +55,7 @@
 					<label class="col-sm-3 control-label">预约时间</label>
 					<div class="col-sm-9">
 						<div class="input-append date form_datetime">
-    						<input type="text"  name="date"  value='<fmt:formatDate value="${order.date}" pattern="yyyy-MM-dd HH:mm:ss"/>'  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" readonly class="form_datetime">
+    						<input type="text"  name="date"  value='<fmt:formatDate value="${order.date}" pattern="yyyy-MM-dd HH:mm:ss"/>'  onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:00'})" readonly class="form_datetime">
     						<span class="add-on"><i class="icon-th"></i></span>
 						</div>
 					</div>
@@ -68,7 +68,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">客户姓名</label>
 					<div class="col-sm-9">
-    						<input  type="text" name="customer" value="${order.customer}">
+    						<input  type="text" name="customer" value="${order.customer}" required>
 						</div>
 					</div>
 				</div>
@@ -76,7 +76,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">客户电话</label>
 					<div class="col-sm-9">
-    						<input  type="text" name="phone" value="${order.phone}">
+    						<input  type="text" name="phone" value="${order.phone}" required>
 						</div>
 					</div>
 				</div>
@@ -86,11 +86,9 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">门市部</label>
 					<div class="col-sm-5">
-						<select name="floor" class="form-control input-sm">	
-							<c:forEach items="${floor}" var="floor">
-								<option value="${floor.employeeId}"}>${floor.employeeName}</option>
-							</c:forEach>
-						</select>
+							<input  type="text" name="floorName" value="${order.floorName}" readonly="readonly">
+							
+							<input  type="text" name="floor" value="${order.floor}" style="display: none;">
 					</div>
 				</div>
 			</div>
@@ -98,7 +96,8 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">化妆部</label>
 					<div class="col-sm-5">
-						<select name="makeUp" class="form-control input-sm">	
+						<select name="makeUp" class="form-control input-sm">
+							<option value=" ">-请选择-</option>	
 							<c:forEach items="${makeUp}" var="makeUp">
 								<option value="${makeUp.employeeId}"}>${makeUp.employeeName}</option>
 							</c:forEach>
@@ -113,6 +112,7 @@
 					<label class="col-sm-3 control-label">摄影部</label>
 					<div class="col-sm-5">
 						<select name="photo" class="form-control input-sm">	
+							<option value=" ">-请选择-</option>
 							<c:forEach items="${photo}" var="photo">
 								<option value="${photo.employeeId}"}>${photo.employeeName}</option>
 							</c:forEach>
@@ -125,6 +125,7 @@
 					<label class="col-sm-3 control-label">数码部</label>
 					<div class="col-sm-5">
 						<select name="ps" class="form-control input-sm">	
+							<option value=" ">-请选择-</option>
 							<c:forEach items="${ps}" var="ps">
 								<option value="${ps.employeeId}"}>${ps.employeeName}</option>
 							</c:forEach>
@@ -138,7 +139,8 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">看样部</label>
 					<div class="col-sm-5">
-						<select name="choose" class="form-control input-sm">	
+						<select name="choose" class="form-control input-sm">
+							<option value=" ">-请选择-</option>	
 							<c:forEach items="${choose}" var="choose">
 								<option value="${choose.employeeId}"}>${choose.employeeName}</option>
 							</c:forEach>

@@ -24,9 +24,7 @@
 	<div align="center">
 		<div class="alert alert-warning"
 			style="margin: 0px; padding: 5px; width: 100%;display:${empty allErrors?'none':'block'} ">
-			<c:forEach items="${allErrors}" var="error">
-			 	${error.defaultMessage }<br />
-			</c:forEach>
+			 	${allErrors}<br />
 		</div>
 	</div>
 
@@ -40,7 +38,7 @@
 					<label class="col-sm-3 control-label">账号</label>
 					<div class="col-sm-9">
 						<input type="text" name="adminId" value="${admin.adminId}" style="display: none;">
-						<input type="text" name="adminAccount" value="${admin.adminAccount}"
+						<input type="text" name="adminAccount" value="${admin.adminAccount}"  required
 							class="form-control input-sm" />
 					</div>
 				</div>
@@ -54,7 +52,7 @@
 					<label class="col-sm-3 control-label">密码</label>
 					<div class="col-sm-5">
 						<input type="text" id="adminpwd" name="adminPwd"
-							 value="${admin.adminPwd}"
+							 value="${admin.adminPwd}" required
 							class="form-control input-sm" />
 					</div>
 				</div>
@@ -79,19 +77,15 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">超级管理员</label>
 					<div class="col-sm-6">
-						<select class="form-control input-sm" name="adminRight">
-							<option value="否"  ${admin.adminRight=='否'?'selected':''}>否</option>
-							<option value="是"   ${admin.adminRight=='是'?'selected':''}>是</option>
-						</select>
+						<input type="text" name="adminRight" value="${admin.adminRight}" readonly="readonly">
 					</div>
 				</div>
-
 			</div>
 			<div class="col-sm-5">
 				<div class="form-group">
 					<label class="col-sm-3 control-label">姓名</label>
 					<div class="col-sm-9">
-						<input type="text" name="adminName"
+						<input type="text" name="adminName" required
 							value="${admin.adminName}" class="form-control input-sm" />
 					</div>
 				</div>

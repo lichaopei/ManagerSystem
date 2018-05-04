@@ -1,8 +1,6 @@
 package com.guigu.system.po;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 public class EmpTestExample {
@@ -104,32 +102,6 @@ public class EmpTestExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
-        }
-
-        protected void addCriterionForJDBCDate(String condition, Date value, String property) {
-            if (value == null) {
-                throw new RuntimeException("Value for " + property + " cannot be null");
-            }
-            addCriterion(condition, new java.sql.Date(value.getTime()), property);
-        }
-
-        protected void addCriterionForJDBCDate(String condition, List<Date> values, String property) {
-            if (values == null || values.size() == 0) {
-                throw new RuntimeException("Value list for " + property + " cannot be null or empty");
-            }
-            List<java.sql.Date> dateList = new ArrayList<java.sql.Date>();
-            Iterator<Date> iter = values.iterator();
-            while (iter.hasNext()) {
-                dateList.add(new java.sql.Date(iter.next().getTime()));
-            }
-            addCriterion(condition, dateList, property);
-        }
-
-        protected void addCriterionForJDBCDate(String condition, Date value1, Date value2, String property) {
-            if (value1 == null || value2 == null) {
-                throw new RuntimeException("Between values for " + property + " cannot be null");
-            }
-            addCriterion(condition, new java.sql.Date(value1.getTime()), new java.sql.Date(value2.getTime()), property);
         }
 
         public Criteria andTestIdIsNull() {
@@ -252,6 +224,306 @@ public class EmpTestExample {
             return (Criteria) this;
         }
 
+        public Criteria andBaseSalaryIsNull() {
+            addCriterion("Base_Salary is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBaseSalaryIsNotNull() {
+            addCriterion("Base_Salary is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andBaseSalaryEqualTo(Double value) {
+            addCriterion("Base_Salary =", value, "baseSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andBaseSalaryNotEqualTo(Double value) {
+            addCriterion("Base_Salary <>", value, "baseSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andBaseSalaryGreaterThan(Double value) {
+            addCriterion("Base_Salary >", value, "baseSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andBaseSalaryGreaterThanOrEqualTo(Double value) {
+            addCriterion("Base_Salary >=", value, "baseSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andBaseSalaryLessThan(Double value) {
+            addCriterion("Base_Salary <", value, "baseSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andBaseSalaryLessThanOrEqualTo(Double value) {
+            addCriterion("Base_Salary <=", value, "baseSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andBaseSalaryIn(List<Double> values) {
+            addCriterion("Base_Salary in", values, "baseSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andBaseSalaryNotIn(List<Double> values) {
+            addCriterion("Base_Salary not in", values, "baseSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andBaseSalaryBetween(Double value1, Double value2) {
+            addCriterion("Base_Salary between", value1, value2, "baseSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andBaseSalaryNotBetween(Double value1, Double value2) {
+            addCriterion("Base_Salary not between", value1, value2, "baseSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andPositionSalaryIsNull() {
+            addCriterion("Position_Salary is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPositionSalaryIsNotNull() {
+            addCriterion("Position_Salary is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPositionSalaryEqualTo(Double value) {
+            addCriterion("Position_Salary =", value, "positionSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andPositionSalaryNotEqualTo(Double value) {
+            addCriterion("Position_Salary <>", value, "positionSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andPositionSalaryGreaterThan(Double value) {
+            addCriterion("Position_Salary >", value, "positionSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andPositionSalaryGreaterThanOrEqualTo(Double value) {
+            addCriterion("Position_Salary >=", value, "positionSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andPositionSalaryLessThan(Double value) {
+            addCriterion("Position_Salary <", value, "positionSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andPositionSalaryLessThanOrEqualTo(Double value) {
+            addCriterion("Position_Salary <=", value, "positionSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andPositionSalaryIn(List<Double> values) {
+            addCriterion("Position_Salary in", values, "positionSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andPositionSalaryNotIn(List<Double> values) {
+            addCriterion("Position_Salary not in", values, "positionSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andPositionSalaryBetween(Double value1, Double value2) {
+            addCriterion("Position_Salary between", value1, value2, "positionSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andPositionSalaryNotBetween(Double value1, Double value2) {
+            addCriterion("Position_Salary not between", value1, value2, "positionSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpSalaryIsNull() {
+            addCriterion("Up_Salary is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpSalaryIsNotNull() {
+            addCriterion("Up_Salary is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpSalaryEqualTo(Double value) {
+            addCriterion("Up_Salary =", value, "upSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpSalaryNotEqualTo(Double value) {
+            addCriterion("Up_Salary <>", value, "upSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpSalaryGreaterThan(Double value) {
+            addCriterion("Up_Salary >", value, "upSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpSalaryGreaterThanOrEqualTo(Double value) {
+            addCriterion("Up_Salary >=", value, "upSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpSalaryLessThan(Double value) {
+            addCriterion("Up_Salary <", value, "upSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpSalaryLessThanOrEqualTo(Double value) {
+            addCriterion("Up_Salary <=", value, "upSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpSalaryIn(List<Double> values) {
+            addCriterion("Up_Salary in", values, "upSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpSalaryNotIn(List<Double> values) {
+            addCriterion("Up_Salary not in", values, "upSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpSalaryBetween(Double value1, Double value2) {
+            addCriterion("Up_Salary between", value1, value2, "upSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpSalaryNotBetween(Double value1, Double value2) {
+            addCriterion("Up_Salary not between", value1, value2, "upSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andJxSalaryIsNull() {
+            addCriterion("JX_Salary is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andJxSalaryIsNotNull() {
+            addCriterion("JX_Salary is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andJxSalaryEqualTo(Double value) {
+            addCriterion("JX_Salary =", value, "jxSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andJxSalaryNotEqualTo(Double value) {
+            addCriterion("JX_Salary <>", value, "jxSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andJxSalaryGreaterThan(Double value) {
+            addCriterion("JX_Salary >", value, "jxSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andJxSalaryGreaterThanOrEqualTo(Double value) {
+            addCriterion("JX_Salary >=", value, "jxSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andJxSalaryLessThan(Double value) {
+            addCriterion("JX_Salary <", value, "jxSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andJxSalaryLessThanOrEqualTo(Double value) {
+            addCriterion("JX_Salary <=", value, "jxSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andJxSalaryIn(List<Double> values) {
+            addCriterion("JX_Salary in", values, "jxSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andJxSalaryNotIn(List<Double> values) {
+            addCriterion("JX_Salary not in", values, "jxSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andJxSalaryBetween(Double value1, Double value2) {
+            addCriterion("JX_Salary between", value1, value2, "jxSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andJxSalaryNotBetween(Double value1, Double value2) {
+            addCriterion("JX_Salary not between", value1, value2, "jxSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andAllSalaryIsNull() {
+            addCriterion("All_Salary is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAllSalaryIsNotNull() {
+            addCriterion("All_Salary is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAllSalaryEqualTo(Double value) {
+            addCriterion("All_Salary =", value, "allSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andAllSalaryNotEqualTo(Double value) {
+            addCriterion("All_Salary <>", value, "allSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andAllSalaryGreaterThan(Double value) {
+            addCriterion("All_Salary >", value, "allSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andAllSalaryGreaterThanOrEqualTo(Double value) {
+            addCriterion("All_Salary >=", value, "allSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andAllSalaryLessThan(Double value) {
+            addCriterion("All_Salary <", value, "allSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andAllSalaryLessThanOrEqualTo(Double value) {
+            addCriterion("All_Salary <=", value, "allSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andAllSalaryIn(List<Double> values) {
+            addCriterion("All_Salary in", values, "allSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andAllSalaryNotIn(List<Double> values) {
+            addCriterion("All_Salary not in", values, "allSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andAllSalaryBetween(Double value1, Double value2) {
+            addCriterion("All_Salary between", value1, value2, "allSalary");
+            return (Criteria) this;
+        }
+
+        public Criteria andAllSalaryNotBetween(Double value1, Double value2) {
+            addCriterion("All_Salary not between", value1, value2, "allSalary");
+            return (Criteria) this;
+        }
+
         public Criteria andTestScoreIsNull() {
             addCriterion("Test_Score is null");
             return (Criteria) this;
@@ -322,53 +594,63 @@ public class EmpTestExample {
             return (Criteria) this;
         }
 
-        public Criteria andTestDateEqualTo(Date value) {
-            addCriterionForJDBCDate("Test_Date =", value, "testDate");
+        public Criteria andTestDateEqualTo(String value) {
+            addCriterion("Test_Date =", value, "testDate");
             return (Criteria) this;
         }
 
-        public Criteria andTestDateNotEqualTo(Date value) {
-            addCriterionForJDBCDate("Test_Date <>", value, "testDate");
+        public Criteria andTestDateNotEqualTo(String value) {
+            addCriterion("Test_Date <>", value, "testDate");
             return (Criteria) this;
         }
 
-        public Criteria andTestDateGreaterThan(Date value) {
-            addCriterionForJDBCDate("Test_Date >", value, "testDate");
+        public Criteria andTestDateGreaterThan(String value) {
+            addCriterion("Test_Date >", value, "testDate");
             return (Criteria) this;
         }
 
-        public Criteria andTestDateGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("Test_Date >=", value, "testDate");
+        public Criteria andTestDateGreaterThanOrEqualTo(String value) {
+            addCriterion("Test_Date >=", value, "testDate");
             return (Criteria) this;
         }
 
-        public Criteria andTestDateLessThan(Date value) {
-            addCriterionForJDBCDate("Test_Date <", value, "testDate");
+        public Criteria andTestDateLessThan(String value) {
+            addCriterion("Test_Date <", value, "testDate");
             return (Criteria) this;
         }
 
-        public Criteria andTestDateLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("Test_Date <=", value, "testDate");
+        public Criteria andTestDateLessThanOrEqualTo(String value) {
+            addCriterion("Test_Date <=", value, "testDate");
             return (Criteria) this;
         }
 
-        public Criteria andTestDateIn(List<Date> values) {
-            addCriterionForJDBCDate("Test_Date in", values, "testDate");
+        public Criteria andTestDateLike(String value) {
+            addCriterion("Test_Date like", value, "testDate");
             return (Criteria) this;
         }
 
-        public Criteria andTestDateNotIn(List<Date> values) {
-            addCriterionForJDBCDate("Test_Date not in", values, "testDate");
+        public Criteria andTestDateNotLike(String value) {
+            addCriterion("Test_Date not like", value, "testDate");
             return (Criteria) this;
         }
 
-        public Criteria andTestDateBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("Test_Date between", value1, value2, "testDate");
+        public Criteria andTestDateIn(List<String> values) {
+            addCriterion("Test_Date in", values, "testDate");
             return (Criteria) this;
         }
 
-        public Criteria andTestDateNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("Test_Date not between", value1, value2, "testDate");
+        public Criteria andTestDateNotIn(List<String> values) {
+            addCriterion("Test_Date not in", values, "testDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andTestDateBetween(String value1, String value2) {
+            addCriterion("Test_Date between", value1, value2, "testDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andTestDateNotBetween(String value1, String value2) {
+            addCriterion("Test_Date not between", value1, value2, "testDate");
             return (Criteria) this;
         }
     }

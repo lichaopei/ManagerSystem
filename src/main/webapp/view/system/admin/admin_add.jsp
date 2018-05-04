@@ -39,7 +39,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">账号</label>
 					<div class="col-sm-9">
-						<input type="text" name="adminaccount" value="${admin.adminAccount}"
+						<input type="text" name="adminAccount" required
 							class="form-control input-sm" />
 					</div>
 				</div>
@@ -51,9 +51,9 @@
 			<div class="col-sm-5">
 				<div class="form-group">
 					<label class="col-sm-3 control-label">密码</label>
-					<div class="col-sm-5">
-						<input type="text" id="adminpwd" name="adminpwd"
-							 value="${admin.adminPwd}"
+					<div class="col-sm-9">
+						<input type="text" id="adminpwd" name="adminPwd"
+							required
 							class="form-control input-sm" />
 					</div>
 				</div>
@@ -62,10 +62,10 @@
 			<div class="col-sm-5">
 				<div class="form-group">
 					<label class="col-sm-3 control-label">状态</label>
-					<div class="col-sm-4">
-						<select class="form-control input-sm" name="adminstate">
-							<option value="否" ${admin.adminState=='否'?'selected':''}>否</option>
-							<option value="是" ${admin.adminState=='是'?'selected':''}>是</option>
+					<div class="col-sm-9">
+						<select class="form-control input-sm" name="adminState">
+							<option value="否" >否</option>
+							<option value="是" >是</option>
 						</select>
 					</div>
 				</div>
@@ -77,11 +77,8 @@
 			<div class="col-sm-5">
 				<div class="form-group">
 					<label class="col-sm-3 control-label">超级管理员</label>
-					<div class="col-sm-6">
-						<select class="form-control input-sm" name="adminright">
-							<option value="否" ${admin.adminRight=='否'?'selected':''}>否</option>
-							<option value="是" ${admin.adminRight=='是'?'selected':''}>是</option>
-						</select>
+					<div class="col-sm-9">
+						<input type="text" value="否" name="adminRight" readonly="readonly">
 					</div>
 				</div>
 
@@ -90,8 +87,8 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">姓名</label>
 					<div class="col-sm-9">
-						<input type="text" name="adminname"
-							value="${admin.adminName}" class="form-control input-sm" />
+						<input type="text" name="adminName"
+						required	 class="form-control input-sm" />
 					</div>
 				</div>
 			</div>

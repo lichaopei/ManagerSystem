@@ -1,7 +1,6 @@
 package com.guigu.system.po;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class AttendanceRecordExample {
@@ -305,52 +304,62 @@ public class AttendanceRecordExample {
             return (Criteria) this;
         }
 
-        public Criteria andAttendanceDateEqualTo(Date value) {
+        public Criteria andAttendanceDateEqualTo(String value) {
             addCriterion("Attendance_Date =", value, "attendanceDate");
             return (Criteria) this;
         }
 
-        public Criteria andAttendanceDateNotEqualTo(Date value) {
+        public Criteria andAttendanceDateNotEqualTo(String value) {
             addCriterion("Attendance_Date <>", value, "attendanceDate");
             return (Criteria) this;
         }
 
-        public Criteria andAttendanceDateGreaterThan(Date value) {
+        public Criteria andAttendanceDateGreaterThan(String value) {
             addCriterion("Attendance_Date >", value, "attendanceDate");
             return (Criteria) this;
         }
 
-        public Criteria andAttendanceDateGreaterThanOrEqualTo(Date value) {
+        public Criteria andAttendanceDateGreaterThanOrEqualTo(String value) {
             addCriterion("Attendance_Date >=", value, "attendanceDate");
             return (Criteria) this;
         }
 
-        public Criteria andAttendanceDateLessThan(Date value) {
+        public Criteria andAttendanceDateLessThan(String value) {
             addCriterion("Attendance_Date <", value, "attendanceDate");
             return (Criteria) this;
         }
 
-        public Criteria andAttendanceDateLessThanOrEqualTo(Date value) {
+        public Criteria andAttendanceDateLessThanOrEqualTo(String value) {
             addCriterion("Attendance_Date <=", value, "attendanceDate");
             return (Criteria) this;
         }
 
-        public Criteria andAttendanceDateIn(List<Date> values) {
+        public Criteria andAttendanceDateLike(String value) {
+            addCriterion("Attendance_Date like", value, "attendanceDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttendanceDateNotLike(String value) {
+            addCriterion("Attendance_Date not like", value, "attendanceDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttendanceDateIn(List<String> values) {
             addCriterion("Attendance_Date in", values, "attendanceDate");
             return (Criteria) this;
         }
 
-        public Criteria andAttendanceDateNotIn(List<Date> values) {
+        public Criteria andAttendanceDateNotIn(List<String> values) {
             addCriterion("Attendance_Date not in", values, "attendanceDate");
             return (Criteria) this;
         }
 
-        public Criteria andAttendanceDateBetween(Date value1, Date value2) {
+        public Criteria andAttendanceDateBetween(String value1, String value2) {
             addCriterion("Attendance_Date between", value1, value2, "attendanceDate");
             return (Criteria) this;
         }
 
-        public Criteria andAttendanceDateNotBetween(Date value1, Date value2) {
+        public Criteria andAttendanceDateNotBetween(String value1, String value2) {
             addCriterion("Attendance_Date not between", value1, value2, "attendanceDate");
             return (Criteria) this;
         }

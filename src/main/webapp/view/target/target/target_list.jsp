@@ -35,8 +35,6 @@
 
 
 <div class="row" style="padding:15px; padding-top:0px; " align="right">
-	<table class="table  table-condensed table-striped">
-    </table>
     <display:table class="table table-condensed table-striped" name="list" pagesize="10" requestURI="${pageContext.request.contextPath }/target/list.action">
     	<display:column property="targetName" title="指标名称"></display:column>
     	<display:column property="targetLevel" title="指标级别"></display:column>

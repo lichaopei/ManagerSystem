@@ -86,6 +86,9 @@ public class AdminController {
 			model.addAttribute("admin", admin);
 			return "login";
 		 }
+		 
+		 
+		 
 		 session.setAttribute("admin", admin);  
 		 model.addAttribute("loginadmin", admin);
 		 return "index";

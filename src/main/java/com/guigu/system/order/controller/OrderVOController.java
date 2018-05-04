@@ -1,10 +1,12 @@
 package com.guigu.system.order.controller;
-
-import java.util.HashMap;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,7 @@ import com.guigu.system.po.EmployeesVO;
 import com.guigu.system.po.OrderVO;
 import com.guigu.system.po.Orders;
 import com.guigu.system.po.PhotoType;
+import com.guigu.system.po.mapper.OrderVOMapper;
 @Controller
 @RequestMapping("/order/order/")
 public class OrderVOController {
@@ -30,6 +33,7 @@ public class OrderVOController {
 	private EmployeeVOService eService;
 	@Resource(name="photoTypeServiceImpl")
 	private PhotoTypeService pService;
+	
 	private EmployeesVO employeesVO=new EmployeesVO(); 
 	private PhotoType photoType=new PhotoType();
 	
@@ -109,10 +113,12 @@ public class OrderVOController {
 	        }
 	        return this.list(null, model,session);
 	}
-	@RequestMapping("show")
+	@RequestMapping("show.action")
 	public String show(int orderId,Model model) {
 		OrderVO orderVO=orderVOService.findOne(orderId);
 		model.addAttribute("order",orderVO);
 		return "order/order/order_show";
 	}
+	
+	
 }

@@ -82,4 +82,15 @@
 	and o.choose=#{empId}  and o.date like #{testDate}
   </select>
   
+  <select id="date" parameterType="String" resultType="String">
+   	select DISTINCT DATE_FORMAT(o.date,'%m') from orders o
+	where o.flag="是" and  o.date like  '${value}'
+	ORDER BY o.date
+  </select>
+  
+  <select id="countMoney" parameterType="String" resultType="Double">
+ 		select IFNULL(SUM(front_cost+o.second_cost),0) from orders o 
+		where o.flag="是" and   o.date like '${value}'
+		
+  </select>
  </mapper>

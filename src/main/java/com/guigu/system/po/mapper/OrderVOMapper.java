@@ -27,4 +27,10 @@ public interface OrderVOMapper {
 	public double psMoney(EmpTestVO empTestVO);
 	
 	public double chooseMoney(EmpTestVO empTestVO);
+	
+	public String[] date(String date);
+	
+	public double countMoney(String date);
+	
+	
 }

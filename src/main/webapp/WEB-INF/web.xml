@@ -15,7 +15,6 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 	
 	<listener>
 		<listener-class>org.jfree.chart.servlet.ChartDeleter</listener-class>
-	
 	</listener>
 
 

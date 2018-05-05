@@ -1,9 +1,11 @@
 package com.guigu.system.test.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import com.guigu.system.construct.service.DepartmentService;
 import com.guigu.system.construct.service.EmployeeVOService;
 import com.guigu.system.construct.service.PositionService;
 import com.guigu.system.order.service.OrderVOService;
+import com.guigu.system.po.Admin;
 import com.guigu.system.po.AttendanceRecordVO;
 import com.guigu.system.po.Department;
 import com.guigu.system.po.EmpTestVO;
@@ -23,6 +26,7 @@ import com.guigu.system.po.SalaryRuleVO;
 import com.guigu.system.po.TargetRecordVO;
 import com.guigu.system.po.mapper.AttendanceRecordVOMapper;
 import com.guigu.system.po.mapper.OrderVOMapper;
+import com.guigu.system.system.service.PopedomVOService;
 import com.guigu.system.test.service.EmpTestVOService;
 import com.guigu.system.test.service.SalaryRuleService;
 import com.guigu.system.test.service.TargetRecordVOService;
@@ -58,9 +62,23 @@ public class EmpTestController {
 	@Resource(name="attendanceRecordVOMapper")
 	private AttendanceRecordVOMapper attendanceRecordVOMapper;
 	
+	@Resource(name="popedomVOServiceImpl")
+	private PopedomVOService popedomVOService;
+	
 	@RequestMapping("list.action")
-	public String list(Model model,EmpTestVO empTestVO) {
-		List<EmpTestVO> list=empTestVOService.findList(empTestVO);
+	public String list(Model model,EmpTestVO empTestVO,HttpSession session) {
+		Admin admin=(Admin) session.getAttribute("admin");
+		List<EmpTestVO> list=new ArrayList<>();
+		if("·ñ".equals(admin.getAdminRight())){
+			List<Integer> integers=popedomVOService.findDept(admin);
+			for (Integer integer : integers) {
+				EmployeesVO employeeVO=new EmployeesVO();
+				employeeVO.setDepartment(integer);
+				list=empTestVOService.findList(empTestVO);
+			}	
+		}else {
+			list=empTestVOService.findList(empTestVO);
+		}
 		model.addAttribute("list", list);
 		return "test/empTest_list";
 	}
@@ -84,7 +102,7 @@ public class EmpTestController {
 	}
 	
 	@RequestMapping("add.action")
-	public String add(Model model,EmpTestVO empTestVO) {
+	public String add(Model model,EmpTestVO empTestVO,HttpSession session) {
 		
         EmployeesVO employeesVO= employeeVOService.findOne(empTestVO.getEmpId());
 		SalaryRuleVO salaryRuleVO=new SalaryRuleVO();
@@ -142,18 +160,18 @@ public class EmpTestController {
 		}else {
 			model.addAttribute("info", "Ìí¼ÓÊ§°Ü");
 		}
-		return this.list(model, null);
+		return this.list(model, null, session);
 	}
 	
 	@RequestMapping("delete.action")
-	public String delete(Model model,int testId) {
+	public String delete(Model model,int testId,HttpSession session) {
 		boolean result=empTestVOService.delete(testId);
 		if(result) {
 			model.addAttribute("info", "É¾³ý³É¹¦");
 		}else {
 			model.addAttribute("info", "É¾³ýÊ§°Ü");
 		}
-		return this.list(model, null);
+		return this.list(model, null,session);
 		
 	}
 	

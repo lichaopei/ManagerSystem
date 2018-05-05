@@ -2,6 +2,8 @@ package com.guigu.system.po;
 
 public class EmpTestVO extends EmpTest{
 	private String employeeName;
+	
+	private Integer department;
 
 	public String getEmployeeName() {
 		return employeeName;
@@ -9,6 +11,14 @@ public class EmpTestVO extends EmpTest{
 
 	public void setEmployeeName(String employeeName) {
 		this.employeeName = employeeName;
+	}
+
+	public Integer getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Integer department) {
+		this.department = department;
 	}
 
 	@Override

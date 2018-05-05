@@ -12,11 +12,12 @@
     <result column="Test_Score" property="testScore" jdbcType="DOUBLE" />
     <result column="Test_Date" property="testDate" jdbcType="VARCHAR" />
     <result column="Employee_Name" property="employeeName" jdbcType="VARCHAR" />
+    <result column="Department" property="department" javaType="INTEGER"/>
   </resultMap>
   
   
   <select id="findList" parameterType="com.guigu.system.po.EmpTestVO" resultMap="BaseResultMap">
-  	select * from (select et.*,e.employee_Name from Emp_Test et,Employees e
+  	select * from (select et.*,e.employee_Name,e.department from Emp_Test et,Employees e
   	where et.Emp_Id=e.Employee_ID) s
  	<where>
  		<if test="employeeName!=null">
@@ -24,6 +25,9 @@
   		</if>
   		<if test="testDate!=null and !testDate.trim.equals('')">
 			and s.test_date=#{testDate}  	
+  		</if>
+  		<if test="department!=null">
+  			and e.Department=#{department}
   		</if>
  	
  	</where>

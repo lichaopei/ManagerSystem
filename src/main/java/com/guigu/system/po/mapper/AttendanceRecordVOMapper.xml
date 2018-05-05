@@ -60,8 +60,14 @@
   
   <select id="findDept" parameterType="com.guigu.system.po.Admin" resultMap="BaseResultMap">
    select s.* from (select r.*,e.Employee_Name,t.Type_Name,t.Type_Category,d.Department_Name,a.Admin_Name from Attendance_Record r,Employees e,Attendance_Type t,Department d,
-	Admin a	where r.Employee_ID=e.Employee_ID  and r.Attendance_Type=t.Type_ID and r.Temp_Department_ID=d.Department_ID and r.Admin_ID=a.Admin_ID) s,Admin_Popedom ap
-    where s.Temp_Department_ID=ap.Department_Id and ap.Admin_id=#{adminId}
+	Admin a	where r.Employee_ID=e.Employee_ID  and r.Attendance_Type=t.Type_ID and r.Temp_Department_ID=d.Department_ID and r.Admin_ID=a.Admin_ID and e.employee_state=1) s,Admin_Popedom ap
+    where s.Temp_Department_ID=ap.Department_Id 
+    <where>
+    	<if test="adminId!=null">
+    	
+    	    and ap.Admin_id=#{adminId}
+    	</if>
+    </where>
   </select>
   
   <select id="find" parameterType="com.guigu.system.po.EmpTestVO" resultMap="BaseResultMap">

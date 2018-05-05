@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.guigu.system.construct.service.DepartmentService;
 import com.guigu.system.construct.service.EmployeeVOService;
 import com.guigu.system.construct.service.PositionService;
+import com.guigu.system.po.Admin;
 import com.guigu.system.po.Department;
 import com.guigu.system.po.EmployeesVO;
 import com.guigu.system.po.Position;
+import com.guigu.system.system.service.PopedomVOService;
 
 @Controller
 @RequestMapping("/construct/employee/")
@@ -31,21 +34,35 @@ public class EmployeeController {
 	@Resource(name="positionServiceImpl")
 	private PositionService positionService;
 	
+	@Resource(name="popedomVOServiceImpl")
+	private PopedomVOService popedomVOService;
+	
 	@RequestMapping("list.action")
-	public String list(EmployeesVO employeesVO,Model model) {
-		List<EmployeesVO> list=employeeVOService.findEmployees(employeesVO);
-		model.addAttribute("list", list);
+	public String list(EmployeesVO employeesVO,Model model,HttpSession session) {
+		List<EmployeesVO> temps = null;
+		Admin admin=(Admin) session.getAttribute("admin");
+		if("·ñ".equals(admin.getAdminRight())) {
+			List<Integer> integers=popedomVOService.findDept(admin);
+			for (Integer integer : integers) {
+				EmployeesVO employeeVO=new EmployeesVO();
+				employeeVO.setDepartment(integer);
+				temps=employeeVOService.findEmployees(employeeVO);
+			}
+		}else {
+			temps=employeeVOService.findEmployees(employeesVO);
+		}
+		model.addAttribute("list", temps);
 		return "construct/employee/employee_list";
 	}
 	@RequestMapping("add.action")
-	public String add(Model model,EmployeesVO employeesVO) {
+	public String add(Model model,EmployeesVO employeesVO,HttpSession session) {
 		boolean result=employeeVOService.save(employeesVO);
 		if(result) {
 	        model.addAttribute("info","Ìí¼Ó³É¹¦");
 	    }else {
 	        model.addAttribute("info","Ìí¼ÓÊ§°Ü");
 	    }
-	    return this.list(null, model);
+	    return this.list(null, model,session);
 	}
 	@RequestMapping("beforeadd.action")
 	public String before(Model model) {
@@ -56,14 +73,14 @@ public class EmployeeController {
 		return "construct/employee/employee_add";
 	}
 	@RequestMapping("delete.action")
-    public String delete(Integer employeeId,Model model) {
+    public String delete(Integer employeeId,Model model,HttpSession session) {
         boolean result =employeeVOService.delete(employeeId);
         if(result) {
             model.addAttribute("info", "É¾³ý³É¹¦");
         }else {
             model.addAttribute("info", "É¾³ýÊ§°Ü");
         }
-        return this.list(null, model);
+        return this.list(null, model,session);
     }
 	@RequestMapping("load.action")
     public String load(Integer employeeId,Model model) {
@@ -80,7 +97,7 @@ public class EmployeeController {
 		return "construct/employee/employee_update";
 	}
 	@RequestMapping("update.action")
-    public String update(Model model, EmployeesVO employeesVO) {
+    public String update(Model model, EmployeesVO employeesVO, HttpSession session) {
 		
     	boolean result=employeeVOService.update(employeesVO);
         if(result) {
@@ -88,7 +105,7 @@ public class EmployeeController {
         }else {
             model.addAttribute("info", "ÐÞ¸ÄÊ§°Ü");
         }
-        return this.list(null, model);
+        return this.list(null, model,session);
     }
 	
 	@RequestMapping("show")

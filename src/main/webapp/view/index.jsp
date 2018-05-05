@@ -144,7 +144,7 @@
 							class="menu-text"> 系统菜单 </span>
 					</a></li>
 
-					<li class="d"><a href="javascript:void(0)" target="mainframe"
+					<li><a href="javascript:void(0)" target="mainframe"
 						class="dropdown-toggle"> <i class="icon-desktop"></i> <span
 							class="menu-text"> 组织管理</span> <b class="arrow icon-angle-down"></b>
 					</a>
@@ -154,12 +154,12 @@
 								target="mainframe"> <i class="icon-double-angle-right"></i>
 									员工管理
 							</a></li>
-							<li><a
+							<li class="d"><a
 								href="${pageContext.request.contextPath}/construct/position/list.action"
 								target="mainframe"> <i class="icon-double-angle-right"></i>
 									职务管理
 							</a></li>
-							<li><a
+							<li class="d"><a
 								href="${pageContext.request.contextPath}/construct/department/list.action"
 								target="mainframe"> <i class="icon-double-angle-right"></i>
 									部门管理
@@ -201,37 +201,32 @@
 							</a></li>
 						</ul></li>
 
-					<li class="d"><a href="javascript:void(0)" target="mainframe"
+					<li><a href="javascript:void(0)" target="mainframe"
 						class="dropdown-toggle"> <i class="icon-desktop"></i> <span
 							class="menu-text"> 考核管理 </span> <b class="arrow icon-angle-down"></b>
 					</a>
 						<ul class="submenu">
 
-							<li><a
+							<li class="d"><a
 								href="${pageContext.request.contextPath}/test/create.action"
 								target="mainframe"> <i class="icon-double-angle-right"></i>
 									业务设置
 							</a></li>
-							<li><a
+							<li class="d"><a
 								href="${pageContext.request.contextPath}/test/first.action"
 								target="mainframe"> <i class="icon-double-angle-right"></i>
-									考核指标
+									考核设置
 							</a></li>
 							<li><a
 								href="${pageContext.request.contextPath}/empTest/list.action"
 								target="mainframe"> <i class="icon-double-angle-right"></i>
 									考核查询
 							</a></li>
-							<li><a
-								href="${pageContext.request.contextPath}/classinfo/teacher/list.action"
-								target="mainframe"> <i class="icon-double-angle-right"></i>
-									考核统计
-							</a></li>
 						</ul></li>
 						
 						<li><a href="javascript:void(0)" target="mainframe"
 						class="dropdown-toggle"> <i class="icon-desktop"></i> <span
-							class="menu-text"> 订单模块 </span> <b class="arrow icon-angle-down"></b>
+							class="menu-text"> 订单管理 </span> <b class="arrow icon-angle-down"></b>
 					</a>
 						<ul class="submenu">
 							<li><a

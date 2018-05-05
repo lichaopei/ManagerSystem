@@ -1,5 +1,6 @@
 package com.guigu.system.attendance.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -31,9 +32,15 @@ public class AttendanceRecordController {
 		if(attendanceRecordVO==null) {
 			attendanceRecordVO=new AttendanceRecordVO();
 		}
+		List<AttendanceRecordVO> list=new ArrayList<>();
 		Admin admin =(Admin) session.getAttribute("admin");
-		attendanceRecordVO.setAdminId(admin.getAdminId());
-		List<AttendanceRecordVO> list=attendanceService.findList(attendanceRecordVO);
+		if("·ñ".equals(admin.getAdminRight())) {
+			attendanceRecordVO.setAdminId(admin.getAdminId());
+			list=attendanceService.findList(attendanceRecordVO);
+			
+		}else {
+			list=attendanceService.findList(attendanceRecordVO);
+		}
 		model.addAttribute("list", list);
 		return "attendance/attendance/attendance_list";
 	}
@@ -41,12 +48,17 @@ public class AttendanceRecordController {
 	public String beforeAdd(Model model,HttpSession session) {
 		List<EmployeesVO> temps = null;
 		Admin admin=(Admin) session.getAttribute("admin");
-		List<Integer> integers=popedomVOService.findDept(admin);
-		for (Integer integer : integers) {
-			EmployeesVO employeeVO=new EmployeesVO();
-			employeeVO.setDepartment(integer);
-			temps=eService.findEmployees(employeeVO);
+		if("·ñ".equals(admin.getAdminRight())) {
+			List<Integer> integers=popedomVOService.findDept(admin);
+			for (Integer integer : integers) {
+				EmployeesVO employeeVO=new EmployeesVO();
+				employeeVO.setDepartment(integer);
+				temps=eService.findEmployees(employeeVO);
+			}
+		}else {
+			temps=eService.findEmployees(null);
 		}
+		
 		model.addAttribute("tempVO", temps);
 		return "attendance/attendance/attendance_add";
 	}

@@ -9,4 +9,6 @@ public interface PopedomVOMapper {
 	public List<PopedomVO> findList(PopedomVO popedomVO);
 	
 	public int save(PopedomVO popedomVO);
+	
+	public int findCount(int adminId);
 }

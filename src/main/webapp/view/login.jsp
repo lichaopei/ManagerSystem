@@ -18,8 +18,7 @@
 					<div class="login-container">
 						<div class="center">
 							<h1>
-								<i class="icon-leaf green"></i> <span class="red">员工绩效考核系统</span>
-
+								<i class="icon-leaf green"></i> <span class="red">儿童咿呀绩效考核系统</span>
 							</h1>
 						</div>
 						<div class="space-6"></div>
@@ -42,14 +41,15 @@
 											method="post">
 											<fieldset>
 												<label class="block clearfix"> <span
-													class="block input-icon input-icon-right"> <input
+													class="block input-icon input-icon-right"> 
+													<input
 														id="userId" name="adminAccount" type="text" class="form-control"
-														placeholder="请输入账号" /> <i class="icon-user"></i>
+														placeholder="请输入账号"  required /> <i class="icon-user"></i>
 												</span>
 												</label> <label class="block clearfix"> <span
 													class="block input-icon input-icon-right"> <input
 														id="userPw" name="adminPwd" type="password"
-														class="form-control" placeholder="请输入密码" /> <i
+														class="form-control" placeholder="请输入密码"  required/> <i
 														class="icon-lock"></i>
 												</span>
 												</label>

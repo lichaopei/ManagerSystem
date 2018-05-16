@@ -37,7 +37,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">指标级别</label>
 					<div class="col-sm-6">
-    						<input type="text" required name="targetLevel" value="${target.targetLevel}" class="form-control input-sm">
+    						<input type="number" required name="targetLevel" min=1  max=2 value="${target.targetLevel}" class="form-control input-sm">
 					</div>
 				</div>
 				

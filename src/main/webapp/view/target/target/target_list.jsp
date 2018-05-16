@@ -29,7 +29,7 @@
 		<button type="button" class="close" data-dismiss="alert">
 			<span aria-hidden="true">&times;</span>
 		</button>
-		<p align="center" style="color: red;">类型信息-${info}</p>
+		<p align="center" style="color: red;">指标信息-${info}</p>
 	</div>	
 </div>
 

@@ -65,9 +65,7 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public boolean delete(Integer adminId) {
 		try {
-			Admin admin=adminMapper.selectByPrimaryKey(adminId);
-			admin.setAdminState("·ñ");
-			int i=adminMapper.updateByPrimaryKey(admin);
+		int i=adminMapper.deleteByPrimaryKey(adminId);
 			if (i > 0) {
 				return true;
 			}

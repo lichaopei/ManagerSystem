@@ -64,17 +64,18 @@ $("#datetimeStartAM").datetimepicker({
 					<td><input type="text" name="list[${t.index }].departmentName"
 						value="${temp.departmentName}" readonly="readonly" style="border:0;outline:0;"/></td>
 					<td><input type="text" required  name="list[${t.index }].attendanceDate"
-						onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"
+						onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:00'})"
 						class="Wdate" style="width: 250px ;height:28px;border:0;outline:0;" readonly="readonly" /></td>
 					<td>
 						<select class="form-control" name="list[${t.index }].attendanceType"  required
 							style="width: 100px;height: 28px">
 							<option></option>
 							<option value="1">出勤</option>
-							<option value="2">公休</option>
+							<option value="2">休假</option>
 							<option value="3">迟到</option>
 							<option value="4">旷工</option>
 							<option value="5">事假</option>
+							<option value="6">半天</option>
 					</select></td>
 				</tr>
 			</c:forEach>

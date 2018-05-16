@@ -11,8 +11,10 @@ import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.guigu.system.construct.service.EmployeeVOService;
 import com.guigu.system.construct.service.PositionService;
 import com.guigu.system.po.Position;
+import com.guigu.system.po.mapper.EmployeesVOMapper;
 
 @Controller
 @RequestMapping("/construct/position/")
@@ -20,6 +22,9 @@ public class PositionController {
 	
 		@Resource(name="positionServiceImpl")
 		private PositionService positionService;
+		
+		@Resource(name="employeesVOMapper")
+		private EmployeesVOMapper employeesVOMapper;
 		
 		@RequestMapping("list.action")
 		public String list(Position position,Model model) {
@@ -71,13 +76,13 @@ public class PositionController {
 		
 		 @RequestMapping("delete.action")
 		    public String delete(Integer positionId,Model model) {
-		        boolean result =positionService.delete(positionId);
-		        
-		        if(result) {
-		            model.addAttribute("info", "删除成功");
-		        }else {
-		            model.addAttribute("info", "删除失败");
-		        }
+			  int i=employeesVOMapper.findAll(positionId);
+			  if (i>0) {
+		        	 model.addAttribute("info", "该职位有员工，不能删除！");
+		        	 return this.list(null, model);
+				}
+		        positionService.delete(positionId);
+		        model.addAttribute("info", "删除成功");
 		        return this.list(null, model);
 		    }
 

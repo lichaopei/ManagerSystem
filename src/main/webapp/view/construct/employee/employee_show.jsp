@@ -63,7 +63,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">职位</label>
 					<div class="col-sm-9">
-						<input type="text" name="positionName" required
+						<input type="text" name="positionName" 
 							value="${employeeVO.positionName}" class="form-control input-sm" readonly="readonly"/>
 					</div>
 				</div>
@@ -90,36 +90,24 @@
 					</div>
 				</div>
 			</div>
-		
-		
 			<div class="col-sm-5">
 				<div class="form-group">
-					<label class="col-sm-3 control-label">员工状态</label>
+					<label class="col-sm-3 control-label">手机号码</label>
 					<div class="col-sm-9">
-						<input id="t1" value="${employeeVO.employeeState}" class="form-control input-sm" readonly="readonly">
-						
+						<input type="text" name="phone"  required  readonly="readonly"
+							value="${employeeVO.phone}" class="form-control input-sm" />
 					</div>
 				</div>
 			</div>
 	</div>
 	
 	<div class="row">
-		<div class="col-sm-5">
-				<div class="form-group">
-					<label class="col-sm-3 control-label">手机号码</label>
-					<div class="col-sm-9">
-						<input type="text" name="phone"  required  readonly="readonly"
-							value="${employee.phone}" class="form-control input-sm" />
-					</div>
-				</div>
-			</div>
-		
 			<div class="col-sm-5">
 				<div class="form-group">
 					<label class="col-sm-3 control-label">地址</label>
 					<div class="col-sm-9">
 						<input type="text" name="address" required
-							value="${employee.address}" class="form-control input-sm" readonly="readonly" />
+							value="${employeeVO.address}" class="form-control input-sm" readonly="readonly" />
 					</div>
 				</div>
 			</div>

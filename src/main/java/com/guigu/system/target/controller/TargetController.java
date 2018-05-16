@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.guigu.system.po.Target;
 import com.guigu.system.po.TargetLevel;
+import com.guigu.system.po.mapper.TargetRecordVOMapper;
 import com.guigu.system.target.service.TargetLevelService;
 import com.guigu.system.target.service.TargetService;
 
@@ -22,6 +23,9 @@ public class TargetController {
 	@Resource(name = "targetServiceImpl")
 	private TargetService targetService;
 
+	@Resource(name="targetRecordVOMapper")
+	private TargetRecordVOMapper targetRecordVOMapper;
+	
 	@RequestMapping("list.action")
 	public String list(Model model,Target target) {
 		List<Target> list = targetService.findList(target);
@@ -31,13 +35,7 @@ public class TargetController {
 	
 	
 	@RequestMapping("add.action")
-	public String addTemplate(Model model, @Validated Target target, BindingResult bindingResult) {
-		if (bindingResult.hasErrors()) {
-			List<ObjectError> allErrors = bindingResult.getAllErrors();
-			model.addAttribute("allErrors", allErrors);
-			model.addAttribute("target", target);
-			return "target/target/target_add";
-		}
+	public String addTemplate(Model model,Target target) {
 		boolean result = targetService.save(target);
 		if (result) {
 			model.addAttribute("info", "添加成功");
@@ -74,13 +72,15 @@ public class TargetController {
 
 	@RequestMapping("delete.action")
 	public String delete(Integer targetId, Model model) {
-		boolean result = targetService.delete(targetId);
-
-		if (result) {
-			model.addAttribute("info", "删除成功");
-		} else {
-			model.addAttribute("info", "删除失败");
+		
+		 int i=targetRecordVOMapper.findCount(targetId);
+		 if (i>0) {
+        	 model.addAttribute("info", "该指标被引用，不能删除！");
+        	 return this.list( model,null);
 		}
+		 targetService.delete(targetId);
+			model.addAttribute("info", "删除成功");
+		
 		return this.list(model,null);
 	}
 

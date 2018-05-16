@@ -9,6 +9,12 @@
 <title>首页</title>
 	<%@ include file="/view/public/common.jspf" %>
 </head>
+<style type="text/css">
+      .header{
+           display: none;
+       }
+
+</style>
 <body>
 <div style="padding:0px; margin:0px;">
  <ul class="breadcrumb" style="  margin:0px; " >
@@ -36,18 +42,17 @@
 	
 	
 	<div class="row" style="padding:15px; padding-top:0px; " align="right">
-    <display:table  class="table table-condensed table-striped" name="target"   id="t" pagesize="10" requestURI="${pageContext.request.contextPath }/test/create.action">
+    <display:table   class="table table-condensed table-striped" name="target"   id="t" pagesize="10" requestURI="${pageContext.request.contextPath }/test/create.action">
     	<display:column title="指标选择">
 			<input  id="h"  type='checkbox' name="targetId" value="${t.targetId}" onclick='ChkSonClick()'/>
 		</display:column> 
-		<display:column style="display:none">
+		<display:column headerClass="header"  style="display:none;" >
 			<input id="t1" type='checkbox' name="parentTarget"/>
 		</display:column>
     	<display:column property="targetName" title="指标名称"></display:column>
     	<display:column property="remarks" title="内容"></display:column>
     </display:table>
-    
-</div>
+	</div>
 		<input type="submit"   class="btn btn-danger"     value="确认"/>
 </form>
 </div>

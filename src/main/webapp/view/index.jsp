@@ -74,7 +74,7 @@
 							<ul class="drop-down-content">
 
 								<li>
-									<a href="${pageContext.request.contextPath}/view/login.jsp">
+									<a href="${pageContext.request.contextPath}/system/admin/logout.action">
 										<i class="icon-off"></i>
 										退出
 									</a>
@@ -175,7 +175,7 @@
 							<li><a
 								href="${pageContext.request.contextPath}/targetlevel/list.action"
 								target="mainframe"> <i class="icon-double-angle-right"></i>
-								级别设置	
+								级别查询	
 							</a></li>
 							<li><a
 								href="${pageContext.request.contextPath}/target/list.action"
@@ -198,6 +198,11 @@
 								href="${pageContext.request.contextPath}/attendance/departmentrule/list.action"
 								target="mainframe"> <i class="icon-double-angle-right"></i>
 									考勤规则
+							</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/view/attendance/attendance/attendance_total.jsp"
+								target="mainframe"> <i class="icon-double-angle-right"></i>
+									考勤统计
 							</a></li>
 						</ul></li>
 
@@ -258,7 +263,7 @@
 							</a></li>
 						</ul></li>
 
-					<li><a href="javascript:void(0)" target="mainframe"
+					<li id="info"><a href="javascript:void(0)" target="mainframe"
 						class="dropdown-toggle"> <i class="icon-desktop"></i> <span
 							class="menu-text"> 信息管理 </span> <b class="arrow icon-angle-down"></b>
 					</a>
@@ -625,8 +630,10 @@
 				var list=document.getElementsByClassName("d");
 				for(var i=0;i<list.length;i++){
 					list[i].style.display="none";
-					
 				}
+			}else{
+				var info=document.getElementById("info");
+				info.style.display="none";
 			}
 	};
 		

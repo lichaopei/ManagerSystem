@@ -102,7 +102,7 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">身份证号</label>
 					<div class="col-sm-9">
-						<input type="text" name="cardNumber" required
+						<input type="text" name="cardNumber" required  maxlength=18
 							value="${employee.cardNumber}" class="form-control input-sm" />
 					</div>
 				</div>
@@ -120,19 +120,18 @@
 				<div class="form-group">
 					<label class="col-sm-3 control-label">地址</label>
 					<div class="col-sm-9">
-						<input type="text" name="address" required
+						<input type="text" name="address" 
 							value="${employee.address}" class="form-control input-sm" />
 					</div>
 				</div>
 			</div>
 			
-			<div class="col-sm-5">
+			<div class="col-sm-5" style="display:none;">
 				<div class="form-group">
 					<label class="col-sm-3 control-label">员工状态</label>
 					<div class="col-sm-9">
 						<select class="form-control input-sm" name="employeeState">
-						<option value="1" ${employee.employeeState=='1'?'selected':''}>正常      </option>
-						<option value="0" ${employee.employeeState=='0'?'selected':''}>停用</option>
+						<option value="1"></option>
 						</select>
 					</div>
 				</div>
@@ -279,7 +278,7 @@
 		<div class="row">
 			<div class="col-sm-3 col-sm-offset-4">
 				<input type="submit" class="btn btn-success" value="保存" /> 
-				<input type="reset" class="btn  btn-danger" value="取消" />
+				<input type="reset" class="btn  btn-danger" value="重置" />
 			</div>
 		</div> 
 	</form>

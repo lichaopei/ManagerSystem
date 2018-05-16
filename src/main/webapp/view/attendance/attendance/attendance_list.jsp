@@ -24,10 +24,10 @@
       	 <select class="form-control" name="typeName" style="width: 20%">
       						 	<option value="">--请选择状态--</option>
        							<option value="出勤">出勤</option>
-       							<option value="公休">公休</option>
+       							<option value="休假">休假</option>
        							<option value="迟到">迟到</option>
        							<option value="旷工">旷工</option>
-       							<option value="事假">事假</option>
+       							<option value="请假">请假</option>
        							<option value="半天">半天</option>
        							
        			</select>
@@ -52,7 +52,6 @@
     </table>
     <display:table export="true" class="table table-condensed table-striped" name="list" pagesize="10" requestURI="${pageContext.request.contextPath }/attendance/attendance/list.action">
     	<display:column property="employeeName" title="员工名称"></display:column>
-    	<display:column property="cardNumber" title="卡号" ></display:column>
     	<display:column property="attendanceDate" title="考勤时间"  format="{0,date,yyyy-MM-dd}"></display:column>
     	<display:column property="typeName" title="考勤类型" > </display:column>
     	<display:column property="departmentName" title="部门名称" > </display:column>

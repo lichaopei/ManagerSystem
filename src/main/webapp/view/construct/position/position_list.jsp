@@ -40,7 +40,7 @@
 </div>
 <div class="row" style="padding:15px; padding-top:0px; ">
     <display:table class="table  table-condensed table-striped" name="list" requestURI="${pageContext.request.contextPath}/construct/position/list.action" pagesize="10">
-    	<display:column property="positionName" title="职务名称"></display:column>
+    	<display:column property="positionName" title="职位名称"></display:column>
     	<display:column property="positionMemo" title="职务描述"></display:column>
     	<display:column href="${pageContext.request.contextPath }/construct/position/load.action" paramId="positionId" paramProperty="positionId" value="修改" title="修改"></display:column>
     	<display:column href="${pageContext.request.contextPath }/construct/position/delete.action" paramId="positionId" paramProperty="positionId" value="删除" title="删除"></display:column>

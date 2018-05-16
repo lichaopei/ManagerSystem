@@ -97,7 +97,7 @@
 					<label class="col-sm-3 control-label">化妆部</label>
 					<div class="col-sm-5">
 						<select name="makeUp" class="form-control input-sm">
-							<option value=" ">-请选择-</option>	
+							<option value="">-请选择-</option>	
 							<c:forEach items="${makeUp}" var="makeUp">
 								<option value="${makeUp.employeeId}"}>${makeUp.employeeName}</option>
 							</c:forEach>
@@ -112,7 +112,7 @@
 					<label class="col-sm-3 control-label">摄影部</label>
 					<div class="col-sm-5">
 						<select name="photo" class="form-control input-sm">	
-							<option value=" ">-请选择-</option>
+							<option value="">-请选择-</option>
 							<c:forEach items="${photo}" var="photo">
 								<option value="${photo.employeeId}"}>${photo.employeeName}</option>
 							</c:forEach>
@@ -125,7 +125,7 @@
 					<label class="col-sm-3 control-label">数码部</label>
 					<div class="col-sm-5">
 						<select name="ps" class="form-control input-sm">	
-							<option value=" ">-请选择-</option>
+							<option value="">-请选择-</option>
 							<c:forEach items="${ps}" var="ps">
 								<option value="${ps.employeeId}"}>${ps.employeeName}</option>
 							</c:forEach>
@@ -140,7 +140,7 @@
 					<label class="col-sm-3 control-label">看样部</label>
 					<div class="col-sm-5">
 						<select name="choose" class="form-control input-sm">
-							<option value=" ">-请选择-</option>	
+							<option value="">-请选择-</option>	
 							<c:forEach items="${choose}" var="choose">
 								<option value="${choose.employeeId}"}>${choose.employeeName}</option>
 							</c:forEach>

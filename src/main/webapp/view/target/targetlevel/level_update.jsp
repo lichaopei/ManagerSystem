@@ -42,7 +42,7 @@
 					<label class="col-sm-3 control-label">指标级别</label>
 					<div class="col-sm-6">
 							
-    						<input type="text" name="levelIndex" value="${targetLevel.levelIndex}" class="form-control input-sm">
+    						<input type="text" name="levelIndex" value="${targetLevel.levelIndex}" readonly="readonly" class="form-control input-sm">
 					</div>
 				</div>
 				

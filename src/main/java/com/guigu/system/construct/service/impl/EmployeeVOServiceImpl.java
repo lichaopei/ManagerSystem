@@ -69,7 +69,7 @@ public class EmployeeVOServiceImpl implements EmployeeVOService {
 			e.printStackTrace();
 		}
 		employeesVO.setDepartmentName(departmentMapper.selectByPrimaryKey(employees.getDepartment()).getDepartmentName());
-		employeesVO.setPositionName(positionMapper.selectByPrimaryKey(employees.getPosition()).getPositionMemo());
+		employeesVO.setPositionName(positionMapper.selectByPrimaryKey(employees.getPosition()).getPositionName());
 		return employeesVO;
 	}
 

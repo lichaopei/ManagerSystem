@@ -64,7 +64,6 @@
     where s.Temp_Department_ID=ap.Department_Id 
     <where>
     	<if test="adminId!=null">
-    	
     	    and ap.Admin_id=#{adminId}
     	</if>
     </where>
@@ -78,6 +77,10 @@
 		 s.Employee_Name like #{employeeName}  and	s.attendance_Date like #{testDate}
 		</if>
 	</where>
-</select>
-  
+	</select>
+	
+	<select id="attendanceTotal" parameterType="com.guigu.system.po.AttendanceRecordVO" resultType="Integer">
+		select IFNULL(COUNT(a.attendance_type),0) from attendance_record a,employees e
+		where a.Employee_ID=e.Employee_ID  and  e.Employee_Name = #{employeeName}  and a.Attendance_Type=#{attendanceType} and  a.Attendance_Date like #{attendanceDate} 
+	</select>
   </mapper>

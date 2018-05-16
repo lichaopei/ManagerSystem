@@ -25,4 +25,9 @@
 	insert into Admin_Popedom(Department_ID,Admin_ID) values(#{departmentId},#{adminId})
 </insert>
 
+<select id="findCount" parameterType="Integer" resultType="Integer">
+	select count(*) from  Admin_Popedom ap where ap.admin_Id=${value} 
+
+</select>
+
 </mapper>

@@ -4,13 +4,13 @@ Navicat MySQL Data Transfer
 Source Server         : localhost_3306
 Source Server Version : 50720
 Source Host           : localhost:3306
-Source Database       : test
+Source Database       : system
 
 Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2018-04-26 19:27:45
+Date: 2018-05-16 22:49:49
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -33,7 +33,7 @@ CREATE TABLE `admin` (
 -- Records of admin
 -- ----------------------------
 INSERT INTO `admin` VALUES ('1', 'qwe', 'qwe', '是', '是', '王五');
-INSERT INTO `admin` VALUES ('2', 'aaa', 'aaa', '否', '否', '李四');
+INSERT INTO `admin` VALUES ('2', 'aaa', 'aaa', '是', '否', '李四');
 
 -- ----------------------------
 -- Table structure for admin_popedom
@@ -51,7 +51,6 @@ CREATE TABLE `admin_popedom` (
 -- ----------------------------
 -- Records of admin_popedom
 -- ----------------------------
-INSERT INTO `admin_popedom` VALUES ('3', '2', '1');
 INSERT INTO `admin_popedom` VALUES ('6', '1', '2');
 
 -- ----------------------------
@@ -62,7 +61,7 @@ CREATE TABLE `attendance_record` (
   `Attendance_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Employee_ID` int(11) NOT NULL,
   `Card_Number` varchar(50) NOT NULL,
-  `Attendance_Date` datetime DEFAULT NULL,
+  `Attendance_Date` varchar(20) DEFAULT NULL,
   `Attendance_Type` int(11) DEFAULT NULL,
   `Attendance_Memo` varchar(255) DEFAULT NULL,
   `Admin_ID` int(11) NOT NULL,
@@ -74,16 +73,16 @@ CREATE TABLE `attendance_record` (
   KEY `AdminID` (`Admin_ID`),
   KEY `TempDepartmentID` (`Temp_Department_ID`),
   KEY `NodeID` (`Node_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COMMENT='考勤记录表';
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8 COMMENT='考勤记录表';
 
 -- ----------------------------
 -- Records of attendance_record
 -- ----------------------------
-INSERT INTO `attendance_record` VALUES ('20', '9', '', null, '3', null, '1', '2', null);
-INSERT INTO `attendance_record` VALUES ('21', '2', '1212', null, '1', null, '1', '2', null);
-INSERT INTO `attendance_record` VALUES ('22', '7', '', null, '1', null, '1', '2', null);
-INSERT INTO `attendance_record` VALUES ('23', '2', '1212', null, '1', null, '1', '2', null);
-INSERT INTO `attendance_record` VALUES ('24', '7', '', null, '1', null, '1', '2', null);
+INSERT INTO `attendance_record` VALUES ('43', '24', '122222222222222222', '2018-05-13 15:59:00', '1', null, '1', '3', null);
+INSERT INTO `attendance_record` VALUES ('44', '25', '122222333333333333', '2018-05-13 15:59:00', '1', null, '1', '2', null);
+INSERT INTO `attendance_record` VALUES ('45', '27', '122222222222222222', '2018-05-13 15:59:00', '4', '', '1', '5', null);
+INSERT INTO `attendance_record` VALUES ('46', '28', '122222333333333333', '2018-05-13 15:59:00', '1', null, '1', '1', null);
+INSERT INTO `attendance_record` VALUES ('47', '28', '122222333333333333', '2018-05-13 16:05:00', '1', null, '2', '1', null);
 
 -- ----------------------------
 -- Table structure for attendance_rule
@@ -114,16 +113,17 @@ CREATE TABLE `attendance_type` (
   `Type_Name` varchar(20) NOT NULL,
   `Type_Category` int(11) NOT NULL,
   PRIMARY KEY (`Type_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='考勤状态表';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='考勤状态表';
 
 -- ----------------------------
 -- Records of attendance_type
 -- ----------------------------
 INSERT INTO `attendance_type` VALUES ('1', '出勤', '0');
-INSERT INTO `attendance_type` VALUES ('2', '公休', '0');
+INSERT INTO `attendance_type` VALUES ('2', '休假', '0');
 INSERT INTO `attendance_type` VALUES ('3', '迟到', '0');
-INSERT INTO `attendance_type` VALUES ('4', '旷工', '0');
-INSERT INTO `attendance_type` VALUES ('5', '事假', '0');
+INSERT INTO `attendance_type` VALUES ('4', '旷工', '2');
+INSERT INTO `attendance_type` VALUES ('5', '请假', '2');
+INSERT INTO `attendance_type` VALUES ('6', '半天', '1');
 
 -- ----------------------------
 -- Table structure for department
@@ -136,36 +136,16 @@ CREATE TABLE `department` (
   `Emp_Number` int(10) NOT NULL,
   `Remarks` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`Department_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COMMENT='部门表';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='部门表';
 
 -- ----------------------------
 -- Records of department
 -- ----------------------------
-INSERT INTO `department` VALUES ('1', '门市', '1231212', '2', '');
-INSERT INTO `department` VALUES ('2', '化妆', '17826855606', '2', '');
-INSERT INTO `department` VALUES ('3', '摄影', '123213', '2', null);
-INSERT INTO `department` VALUES ('4', '数码', '121313', '0', null);
-INSERT INTO `department` VALUES ('5', '选片', '123421', '-1', null);
-
--- ----------------------------
--- Table structure for emp_salary
--- ----------------------------
-DROP TABLE IF EXISTS `emp_salary`;
-CREATE TABLE `emp_salary` (
-  `salary_id` int(20) NOT NULL AUTO_INCREMENT,
-  `emp_Id` varchar(20) NOT NULL,
-  `base_Salary` double NOT NULL,
-  `test_Salary` double NOT NULL,
-  `benefits` double NOT NULL,
-  `scottare` double NOT NULL,
-  `real_salary` double NOT NULL,
-  `year_month` varchar(20) NOT NULL,
-  PRIMARY KEY (`salary_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of emp_salary
--- ----------------------------
+INSERT INTO `department` VALUES ('1', '门市部', '1231212', '2', '');
+INSERT INTO `department` VALUES ('2', '化妆部', '17826855606', '1', '');
+INSERT INTO `department` VALUES ('3', '摄影部', '123213', '1', null);
+INSERT INTO `department` VALUES ('5', '看样部', '1231231', '1', '');
+INSERT INTO `department` VALUES ('7', '数码部', '12321321', '0', '');
 
 -- ----------------------------
 -- Table structure for emp_test
@@ -174,14 +154,20 @@ DROP TABLE IF EXISTS `emp_test`;
 CREATE TABLE `emp_test` (
   `Test_Id` int(11) NOT NULL AUTO_INCREMENT,
   `Emp_ID` int(11) NOT NULL,
-  `Test_Score` double(3,0) DEFAULT NULL,
-  `Test_Date` date DEFAULT NULL,
+  `Base_Salary` double(10,0) DEFAULT NULL,
+  `Position_Salary` double(10,1) DEFAULT NULL,
+  `Up_Salary` double(10,1) DEFAULT NULL,
+  `JX_Salary` double DEFAULT NULL,
+  `All_Salary` double(10,1) DEFAULT NULL,
+  `Test_Score` double(4,1) DEFAULT NULL,
+  `Test_Date` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`Test_Id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of emp_test
 -- ----------------------------
+INSERT INTO `emp_test` VALUES ('45', '28', '100', '0.0', '2.0', '-100', '2.0', '90.0', '2018-05');
 
 -- ----------------------------
 -- Table structure for employees
@@ -201,18 +187,16 @@ CREATE TABLE `employees` (
   PRIMARY KEY (`Employee_ID`),
   KEY `att_employees_ibfk_2` (`Department`),
   KEY `att_employees_ibfk_1` (`Position`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='员工表';
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COMMENT='员工表';
 
 -- ----------------------------
 -- Records of employees
 -- ----------------------------
-INSERT INTO `employees` VALUES ('1', '赵六', '男', '1', '1', '123', '1', '', '', '');
-INSERT INTO `employees` VALUES ('2', '网w', '男', '1', '2', '1212', '1', null, null, null);
-INSERT INTO `employees` VALUES ('3', 'sdsf', '男', '1', '3', '121', '1', null, null, null);
-INSERT INTO `employees` VALUES ('4', 'haha', '女', '1', '4', '12331', '1', null, null, null);
-INSERT INTO `employees` VALUES ('7', '明小莉', '女', '1', '2', '', '1', null, null, '');
-INSERT INTO `employees` VALUES ('8', '明大莉', '男', '1', '1', '', '1', '', '', '');
-INSERT INTO `employees` VALUES ('9', '张三', '男', '1', '1', '', '0', null, null, '');
+INSERT INTO `employees` VALUES ('24', '张飞', '男', '6', '3', '122222222222222222', '1', '11231231', '', '');
+INSERT INTO `employees` VALUES ('25', '貂蝉', '女', '9', '2', '122222333333333333', '1', '2123213213', '重庆', '');
+INSERT INTO `employees` VALUES ('27', '赵云', '男', '14', '5', '122222222222222222', '1', '2123213213', '', '');
+INSERT INTO `employees` VALUES ('28', '吕布', '男', '3', '1', '122222333333333333', '1', '11231231', '', '');
+INSERT INTO `employees` VALUES ('29', 'zhang', '男', '3', '1', '12321321', '1', '2131231', '123', '');
 
 -- ----------------------------
 -- Table structure for orders
@@ -233,14 +217,11 @@ CREATE TABLE `orders` (
   `ps` int(11) DEFAULT NULL,
   `choose` int(11) DEFAULT NULL,
   PRIMARY KEY (`order_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of orders
 -- ----------------------------
-INSERT INTO `orders` VALUES ('1', '6', '里', '23242', '2018-04-10 19:40:42', '3000', '1000', '是', '1', '2', '3', '4', '5');
-INSERT INTO `orders` VALUES ('3', '6', '李朝培', '123213', '2018-04-12 19:45:48', '200', null, '否', '4', null, null, null, null);
-INSERT INTO `orders` VALUES ('4', '6', '莉', '123213', '2018-04-12 20:29:40', '200', null, '否', '5', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for photo_type
@@ -268,30 +249,46 @@ CREATE TABLE `position` (
   `Position_Name` varchar(50) NOT NULL,
   `Position_Memo` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`Position_Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='职位表';
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='职位表';
 
 -- ----------------------------
 -- Records of position
 -- ----------------------------
-INSERT INTO `position` VALUES ('1', '扫地', '1232');
-INSERT INTO `position` VALUES ('2', '会计', '计算');
+INSERT INTO `position` VALUES ('3', '门市人员', '');
+INSERT INTO `position` VALUES ('4', '门市主管', '');
+INSERT INTO `position` VALUES ('6', '摄影师', '');
+INSERT INTO `position` VALUES ('7', '摄影主管', '');
+INSERT INTO `position` VALUES ('8', '摄影助理', '');
+INSERT INTO `position` VALUES ('9', '化妆师', '');
+INSERT INTO `position` VALUES ('10', '化妆主管', '');
+INSERT INTO `position` VALUES ('11', '化妆助理', '');
+INSERT INTO `position` VALUES ('12', '数码师', '');
+INSERT INTO `position` VALUES ('13', '数码主管', '');
+INSERT INTO `position` VALUES ('14', '看样师', '');
+INSERT INTO `position` VALUES ('15', '看样主管', '');
 
 -- ----------------------------
 -- Table structure for salary_rule
 -- ----------------------------
 DROP TABLE IF EXISTS `salary_rule`;
 CREATE TABLE `salary_rule` (
-  `Salary_ID` int(11) NOT NULL,
+  `Salary_ID` int(11) NOT NULL AUTO_INCREMENT,
   `Position_ID` int(11) NOT NULL,
-  `PV` double NOT NULL,
-  `Skill_Wage` double NOT NULL,
-  `Auxiliary_Wage` varchar(255) NOT NULL,
+  `Base_Salary` double DEFAULT NULL,
+  `Position_Salary` double DEFAULT NULL,
+  `Target_Money` double DEFAULT NULL,
+  `Up_Percent` double DEFAULT NULL,
+  `Jx_Percent` double DEFAULT NULL,
+  `Score_money` double DEFAULT NULL,
   PRIMARY KEY (`Salary_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of salary_rule
 -- ----------------------------
+INSERT INTO `salary_rule` VALUES ('2', '1', '10000', '1000', '20000', '0.1', '0.1', '10');
+INSERT INTO `salary_rule` VALUES ('3', '2', '12', '0', '123', '0.1', '0.1', '1');
+INSERT INTO `salary_rule` VALUES ('6', '3', '1500', '0', '300', '0.01', '0.01', '10');
 
 -- ----------------------------
 -- Table structure for target
@@ -303,20 +300,20 @@ CREATE TABLE `target` (
   `target_level` int(11) NOT NULL,
   `Remarks` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`target_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of target
 -- ----------------------------
-INSERT INTO `target` VALUES ('1', '化妆部', '1', '第一级');
-INSERT INTO `target` VALUES ('2', '门市部', '1', '');
 INSERT INTO `target` VALUES ('3', '迟到', '2', '');
 INSERT INTO `target` VALUES ('4', '旷工', '2', '');
 INSERT INTO `target` VALUES ('5', '穿着', '2', '');
-INSERT INTO `target` VALUES ('6', '化妆', '2', '');
-INSERT INTO `target` VALUES ('7', '投诉', '2', '');
-INSERT INTO `target` VALUES ('8', '业绩', '2', '是否完成每月业绩');
-INSERT INTO `target` VALUES ('9', '工作主动性', '2', '');
+INSERT INTO `target` VALUES ('11', '门市部', '1', '');
+INSERT INTO `target` VALUES ('12', '化妆部', '1', '');
+INSERT INTO `target` VALUES ('13', '摄影部', '1', '');
+INSERT INTO `target` VALUES ('14', '看样部', '1', '');
+INSERT INTO `target` VALUES ('15', '数码部', '1', '');
+INSERT INTO `target` VALUES ('16', '吃蛋', '2', '');
 
 -- ----------------------------
 -- Table structure for target_level
@@ -347,30 +344,14 @@ CREATE TABLE `target_record` (
   `score` double DEFAULT NULL,
   `Remarks` varchar(30) DEFAULT NULL,
   PRIMARY KEY (`record_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of target_record
 -- ----------------------------
-INSERT INTO `target_record` VALUES ('14', '4', '1', null, null, '');
-INSERT INTO `target_record` VALUES ('15', '6', '1', null, null, '');
-INSERT INTO `target_record` VALUES ('19', '8', '1', null, null, '是否完成每月业绩');
-INSERT INTO `target_record` VALUES ('22', '3', '2', '30', '30', '');
-
--- ----------------------------
--- Table structure for temp
--- ----------------------------
-DROP TABLE IF EXISTS `temp`;
-CREATE TABLE `temp` (
-  `Temp_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `Employee_Id` int(11) NOT NULL,
-  `Card_Number` varchar(20) NOT NULL,
-  `Temp_Department_ID` int(11) NOT NULL,
-  PRIMARY KEY (`Temp_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Records of temp
--- ----------------------------
-INSERT INTO `temp` VALUES ('9', '8', '', '1');
-INSERT INTO `temp` VALUES ('10', '9', '', '2');
+INSERT INTO `target_record` VALUES ('33', '3', '11', '30', '30', '');
+INSERT INTO `target_record` VALUES ('34', '4', '11', '40', '40', '');
+INSERT INTO `target_record` VALUES ('35', '5', '11', '30', '30', '');
+INSERT INTO `target_record` VALUES ('36', '3', '12', null, null, '');
+INSERT INTO `target_record` VALUES ('37', '4', '12', null, null, '');
+INSERT INTO `target_record` VALUES ('38', '5', '12', null, null, '');

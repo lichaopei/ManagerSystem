@@ -53,32 +53,32 @@
   </select>
   
   <select id="floorMoney" parameterType="com.guigu.system.po.EmpTestVO" resultType="double">
-  	select  IFNULL(SUM(o.front_cost),0) from orders o,emp_test et
-	where o.flag="是"  and et.Emp_ID=o.floor
+  	select  IFNULL(SUM(o.front_cost),0) from orders o,employees et
+	where o.flag="是"  and et.Employee_ID=o.floor
 	and o.floor=#{empId}  and o.date like #{testDate}
   </select>
   
   <select id="makeUpMoney" parameterType="com.guigu.system.po.EmpTestVO" resultType="double">
-  	select  IFNULL(SUM(o.second_cost),0) from orders o,emp_test et
-	where o.flag="是"  and et.Emp_ID=o.make_Up
+  	select  IFNULL(SUM(o.second_cost),0) from orders o,employees et
+	where o.flag="是"  and et.Employee_ID=o.make_Up
 	and o.make_Up=#{empId}  and o.date like #{testDate}
   </select>
   
   <select id="photoMoney" parameterType="com.guigu.system.po.EmpTestVO" resultType="double">
-  	select  IFNULL(SUM(o.second_cost),0) from orders o,emp_test et
-	where o.flag="是"  and et.Emp_ID=o.photo
+  	select  IFNULL(SUM(o.second_cost),0) from orders o,employees et
+	where o.flag="是"  and et.Employee_ID=o.photo
 	and o.photo=#{empId}  and o.date like #{testDate}
   </select>
   
   <select id="psMoney" parameterType="com.guigu.system.po.EmpTestVO" resultType="double">
-  	select  IFNULL(SUM(o.second_cost),0) from orders o,emp_test et
-	where o.flag="是"  and et.Emp_ID=o.ps
+  	select  IFNULL(SUM(o.second_cost),0) from orders o,employees et
+	where o.flag="是"  and et.Employee_ID=o.ps
 	and o.ps=#{empId}  and o.date like #{testDate}
   </select>
   
   <select id="chooseMoney" parameterType="com.guigu.system.po.EmpTestVO" resultType="double">
-  	select  IFNULL(SUM(o.second_cost),0) from orders o,emp_test et
-	where o.flag="是"  and et.Emp_ID=o.choose
+  	select  IFNULL(SUM(o.second_cost),0) from orders o,employees et
+	where o.flag="是"  and et.Employee_ID=o.choose
 	and o.choose=#{empId}  and o.date like #{testDate}
   </select>
   

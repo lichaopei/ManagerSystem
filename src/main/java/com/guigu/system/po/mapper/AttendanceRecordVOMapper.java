@@ -17,4 +17,6 @@ public interface AttendanceRecordVOMapper {
 	public List<AttendanceRecordVO> findDept(Admin admin);
 	
 	public List<AttendanceRecordVO> find(EmpTestVO empTestVO);
+	
+	public Integer attendanceTotal(AttendanceRecordVO attendanceRecordVO);
 }

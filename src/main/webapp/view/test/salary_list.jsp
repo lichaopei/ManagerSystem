@@ -22,7 +22,7 @@
 		<input type="text" name="employeeName" placeholder="请输入员工姓名">
 		<input type="text" name="testDate" 
 						onfocus="WdatePicker({dateFmt:'yyyy-MM'})"
-						class="Wdate" placeholder="请选择查询年月" readonly="readonly"/>
+						class="form_datetime form-control" style="width: 30%; height:28%" placeholder="请选择年月" readonly="readonly"/>
 	</div>
 	<input type="submit" class="btn btn-danger"  value="查询"/>
 </form>

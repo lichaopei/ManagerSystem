@@ -46,8 +46,8 @@
     	href="${pageContext.request.contextPath}/order/order/show.action"  paramId="orderId" paramProperty="orderId"></display:column>
     	<display:column property="date" title="预订时间"  format="{0,date,yyyy-MM-dd HH:mm:ss}"></display:column>
     	<display:column property="flag" title="完成状态"></display:column>
-    	<display:column href="${pageContext.request.contextPath }/order/order/load.action" paramId="orderId" paramProperty="orderId" value="修改" title="修改"></display:column>
-    	<display:column href="${pageContext.request.contextPath }/order/order/delete.action" paramId="orderId" paramProperty="orderId" value="删除" title="删除"></display:column>
+    	<display:column media="html" href="${pageContext.request.contextPath }/order/order/load.action" paramId="orderId" paramProperty="orderId" value="修改" title="修改"></display:column>
+    	<display:column media="html" href="${pageContext.request.contextPath }/order/order/delete.action" paramId="orderId" paramProperty="orderId" value="删除" title="删除"></display:column>
     </display:table>
     
 </div>

@@ -44,7 +44,10 @@
 </insert>
 
 <select id="findCount" parameterType="Integer" resultType="Integer">
-  select count(*) from employees e where e.Department=${departmentId} 
+  select count(*) from employees e where e.Department=${value} and e.Employee_State=1 
+</select>
 
+<select id="findAll" parameterType="Integer" resultType="Integer">
+  select count(*) from employees e where e.position=${value} and e.Employee_State=1 
 </select>
 </mapper>

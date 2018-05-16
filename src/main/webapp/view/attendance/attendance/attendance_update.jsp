@@ -77,7 +77,7 @@ $("#datetimeStartAM").datetimepicker({
 					<div class="col-sm-3">
 						<div class="input-append date form_datetime">
     						<input type="text" name="attendanceDate" value="${temp.attendanceDate}"
-						onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"
+						onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:00'})"
 						class="Wdate" style="width: 250px ;height:28px;border:0;outline:0;" readonly="readonly" />
 						</div>
 					</div>
@@ -91,10 +91,11 @@ $("#datetimeStartAM").datetimepicker({
 						<div class="col-sm-6">
     					<select class="form-control" name="attendanceType" >
 							<option value="1" ${temp.attendanceType=='1'?'selected':'' }>出勤</option>
-							<option value="2" ${temp.attendanceType=='2'?'selected':'' }>公休</option>
+							<option value="2" ${temp.attendanceType=='2'?'selected':'' }>休假</option>
 							<option value="3" ${temp.attendanceType=='3'?'selected':'' }>迟到</option>
 							<option value="4" ${temp.attendanceType=='4'?'selected':'' }>旷工</option>
 							<option value="5" ${temp.attendanceType=='5'?'selected':'' }>事假</option>
+							<option value="6" ${temp.attendanceType=='6'?'selected':'' }>半天</option>
 					  </select>
 						</div>
 					</div>

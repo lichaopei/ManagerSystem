@@ -22,7 +22,7 @@
 		<input type="text" name="employeeName" placeholder="请输入员工姓名">
 		<input type="text" name="testDate" 
 						onfocus="WdatePicker({dateFmt:'yyyy-MM'})"
-						class="Wdate" placeholder="请选择考核年月" readonly="readonly"/>
+						class="form_datetime form-control" placeholder="请选择考核年月" style="width: 30%; height:28%" readonly="readonly"/>
 	</div>
 	<input type="submit" class="btn btn-danger"  value="查询"/>
 </form>
@@ -36,11 +36,11 @@
 	</div>	
 </div>
 <div class="row" style="padding:15px; padding-top:0px; " align="right">
-  	<display:table class="table table-condensed table-striped" name="list" pagesize="10" requestURI="${pageContext.request.contextPath }/empTest/list.action">
+  	<display:table export="true" class="table table-condensed table-striped" name="list" pagesize="10" requestURI="${pageContext.request.contextPath }/empTest/list.action">
     	<display:column property="employeeName" title="员工姓名"></display:column>
     	<display:column property="testScore" title="分数"></display:column> 
     	<display:column property="testDate" title="日期"></display:column>
-    	<display:column href="${pageContext.request.contextPath }/empTest/delete.action" paramId="testId" paramProperty="testId" value="删除" title="删除"></display:column>
+    	<display:column media="html" href="${pageContext.request.contextPath }/empTest/delete.action" paramId="testId" paramProperty="testId" value="删除" title="删除"></display:column>
     </display:table>
 </div>
 </body>

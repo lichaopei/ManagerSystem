@@ -12,5 +12,7 @@ public interface EmployeesVOMapper {
 	public int save(EmployeesVO employeesVO);
 	
 	public int findCount(Integer departmentId);
+	
+	public int findAll(Integer positionId);
 
 }

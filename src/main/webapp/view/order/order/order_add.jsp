@@ -74,7 +74,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-5">
+		<div class="col-sm-5">
 				<div class="form-group">
 					<label class="col-sm-3 control-label">客户电话</label>
 					<div class="col-sm-9">
@@ -83,6 +83,8 @@
 					</div>
 				</div>
 		</div>
+		
+		<div class="row">
 			<div class="col-sm-5">
 				<div class="form-group">
 					<label class="col-sm-3 control-label">门市</label>

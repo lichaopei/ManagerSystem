@@ -8,6 +8,19 @@
 <title>首页</title>
 	<%@ include file="/view/public/common.jspf" %>
 </head>
+<style>
+		input::-webkit-outer-spin-button, 
+		input::-webkit-inner-spin-button{
+		    -webkit-appearance: none !important;
+		}
+		input[type="number"]{-moz-appearance:textfield;}
+
+
+
+</style>
+
+
+
 <body>
 <div style="padding:0px; margin:0px;">
  <ul class="breadcrumb" style="  margin:0px; " >
@@ -33,10 +46,10 @@
     	<display:column property="parentName" title="上级指标" ></display:column>
     	<display:column property="remarks" title="指标详细"></display:column>
     	<display:column title="权重">
-			<input type='text' name="list[${t_rowNum-1}].weight" value="${t.weight}"/>
+			<input type='number' name="list[${t_rowNum-1}].weight" value="${t.weight}" required/>
 		</display:column> 
 		<display:column  title="分数">
-			<input type='text' name='list[${t_rowNum-1}].score' value="${t.score}"/>
+			<input type='number' name='list[${t_rowNum-1}].score' value="${t.score}" required/>
 		</display:column>
     	<display:column href="${pageContext.request.contextPath }/test/delete.action" paramId="recordId" paramProperty="recordId" value="删除" title="删除"></display:column>
 		<display:column style="display:none">

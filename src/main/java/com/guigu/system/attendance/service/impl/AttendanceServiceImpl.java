@@ -72,4 +72,10 @@ public class AttendanceServiceImpl implements AttendanceService{
 		return false;
 	}
 
+	@Override
+	public Integer totalAll(AttendanceRecordVO attendanceRecordVO) {
+		int i=attendanceRecordVOMapper.attendanceTotal(attendanceRecordVO);
+		return i;
+	}
+
 }

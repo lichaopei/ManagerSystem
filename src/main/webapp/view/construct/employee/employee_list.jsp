@@ -6,11 +6,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>首页</title>
-
 <%@ include file="/view/public/common.jspf"%>
 
 </head>
+<style type="text/css">
+      .header{
+           display: none;
+       }
 
+</style>
 <body>
 	<div style="padding: 0px; margin: 0px;">
 		<ul class="breadcrumb" style="margin: 0px;">
@@ -55,7 +59,7 @@
 				<span aria-hidden="true">&times;</span>
 
 			</button>
-			<p align="center" style="color: red;">员工信息-${info}</p>
+			<p align="center" style="color: red;">${info}</p>
 		</div>
 	</div>
 
@@ -63,7 +67,7 @@
 	<div class="row" style="padding: 15px; padding-top: 0px;" align="right">
 		<table class="table  table-condensed table-striped">
 		</table>
-		<display:table class="table table-condensed table-striped" name="list"
+		<display:table  export="true"  class="table table-condensed table-striped" name="list"
 			pagesize="10"
 			requestURI="${pageContext.request.contextPath }/construct/employee/list.action">
 			<display:column property="employeeName" title="姓名"
@@ -73,20 +77,18 @@
 			<display:column property="positionName" title="职位"></display:column>
 			<display:column property="departmentName" title="部门"></display:column>
 			<display:column property="cardNumber" title="身份证号"></display:column>
-			<%-- <display:column property="staffEntryTime" title="入职时间"
-				format="{0,date,yyyy年MM月dd日}"></display:column> --%>
-				
-				
-			<display:column
+			<display:column headerClass="header"  style="display:none;" property="phone" title="电话"></display:column>
+			<display:column headerClass="header" style="display:none;" property="address" title="地址"></display:column>
+			<display:column headerClass="header"  style="display:none;" property="employeeMemo" title="备注"></display:column>
+			<display:column media="html"
 				href="${pageContext.request.contextPath }/empTest/load.action"
 				paramId="employeeId" paramProperty="employeeId" value="考核" title="考核"></display:column>
-			<display:column
+			<display:column media="html"
 				href="${pageContext.request.contextPath }/construct/employee/load.action"
 				paramId="employeeId" paramProperty="employeeId" value="修改" title="修改"></display:column>
-			<display:column
+			<display:column media="html"
 				href="${pageContext.request.contextPath }/construct/employee/delete.action"
 				paramId="employeeId" paramProperty="employeeId" value="删除" title="删除"></display:column>
-
 		</display:table>
 
 

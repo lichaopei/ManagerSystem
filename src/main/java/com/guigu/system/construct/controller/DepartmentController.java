@@ -75,13 +75,14 @@ public class DepartmentController {
 	
 	 @RequestMapping("delete.action")
 	    public String delete(Integer departmentId,Model model) {
-	        boolean result =departmentService.delete(departmentId);
+	        int i=employeeVOService.findCount(departmentId);
+	        if (i>0) {
+	        	 model.addAttribute("info", "该部门有员工，不能删除！");
+	        	 return this.list(null, model);
+			}
+	        	departmentService.delete(departmentId);
+	           model.addAttribute("info", "删除成功");
 	        
-	        if(result) {
-	            model.addAttribute("info", "删除成功");
-	        }else {
-	            model.addAttribute("info", "删除失败");
-	        }
 	        return this.list(null, model);
 	    }
 

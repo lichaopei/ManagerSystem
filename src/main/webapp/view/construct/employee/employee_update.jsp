@@ -48,6 +48,16 @@
 					</div>
 				</div>
 			</div>
+			<div class="col-sm-5">
+				<div class="form-group">
+					<label class="col-sm-3 control-label">手机号码</label>
+					<div class="col-sm-9">
+						<input type="text" name="phone"  required
+							value="${employeeVO.phone}" class="form-control input-sm" />
+					</div>
+				</div>
+			</div>
+		</div>
 
 		</div>
 		<!-- 开始2 -->
@@ -102,9 +112,7 @@
 				</div>
 			</div>
 		</div>
-		
-		<div class="row">
-			<div class="col-sm-5">
+			<div class="col-sm-5" style="display: none;">
 				<div class="form-group">
 					<label class="col-sm-3 control-label">员工状态</label>
 					<div class="col-sm-9">
@@ -115,30 +123,19 @@
 					</div>
 				</div>
 			</div>
-	
-		<div class="col-sm-5">
-				<div class="form-group">
-					<label class="col-sm-3 control-label">手机号码</label>
-					<div class="col-sm-9">
-						<input type="text" name="phone"  required
-							value="${employee.phone}" class="form-control input-sm" />
-					</div>
-				</div>
-			</div>
-		</div>
 		
 		<div class="row">
 			<div class="col-sm-5">
 				<div class="form-group">
 					<label class="col-sm-3 control-label">地址</label>
 					<div class="col-sm-9">
-						<input type="text" name="address" required
-							value="${employee.address}" class="form-control input-sm" />
+						<input type="text" name="address" 
+							value="${employeeVO.address}" class="form-control input-sm" />
 					</div>
 				</div>
 			</div>
 		<!-- 结束6 -->
-			<div class="col-sm-7">
+			<div class="col-sm-5">
 				<div class="form-group">
 					<label class="col-sm-3 control-label">备注</label>
 					<div class="col-sm-9">

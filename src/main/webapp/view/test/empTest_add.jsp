@@ -21,8 +21,8 @@
 	<div class="form-group" >
 		<label >考核对象</label>
 		<input type="text" readonly="readonly" value="${emp.employeeName}" >
-		<input type="text" required="required"   name="testDate" onfocus="WdatePicker({dateFmt:'yyyy-MM'})"
-		class="Wdate" placeholder="请选择考核年月" />
+		<input type="text"   name="testDate" class="form_datetime form-control"  style="width: 30%;height: 30%"  readonly="readonly" required  onfocus="WdatePicker({dateFmt:'yyyy-MM'})"
+		 placeholder="请选择考核年月"  />
 		<input type="text" style="display: none;" name="empId" value="${emp.employeeId }">
 	</div>
 	<div align="center">
@@ -34,7 +34,7 @@
 		</div>	
 	</div>
 	<div class="row" style="padding:15px; padding-top:0px; " align="right">
-  	<display:table class="table table-condensed table-striped" name="list" pagesize="10" requestURI="${pageContext.request.contextPath }/empTest/load.action">
+  	<display:table  export="true" class="table table-condensed table-striped" name="list" pagesize="10" requestURI="${pageContext.request.contextPath }/empTest/load.action">
     	<display:column property="targetName" title="指标名称"></display:column>
     	<display:column property="parentName" title="上级指标" ></display:column>
     	<display:column property="remarks" title="指标详细"></display:column>

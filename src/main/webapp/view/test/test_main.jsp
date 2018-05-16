@@ -40,7 +40,7 @@
 	</div>	
 </div>
 	<div class="row" style="padding:15px; padding-top:0px; " align="right">
-  	<display:table class="table table-condensed table-striped" name="list" pagesize="10" requestURI="${pageContext.request.contextPath }/test/load.action">
+  	<display:table export="true" class="table table-condensed table-striped" name="list" pagesize="10" requestURI="${pageContext.request.contextPath }/test/load.action">
     	<display:column property="targetName" title="指标名称"></display:column>
     	<display:column property="parentName" title="上级指标" ></display:column>
     	<display:column property="remarks" title="指标详细"></display:column>

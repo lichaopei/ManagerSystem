@@ -2,8 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.guigu.system.po.mapper.TargetRecordVOMapper" >
   <resultMap id="BaseResultMap" type="com.guigu.system.po.TargetRecordVO" >
-    <id column="target_id" property="targetId" jdbcType="INTEGER" />
-      <id column="record_id" property="recordId" jdbcType="INTEGER" />
+    <id column="record_id" property="recordId" jdbcType="INTEGER" />
     <result column="target_id" property="targetId" jdbcType="INTEGER" />
     <result column="parent_target" property="parentTarget" jdbcType="INTEGER" />
     <result column="weight" property="weight" jdbcType="DOUBLE" />
@@ -27,5 +26,9 @@
   <select id="find" parameterType="String" resultMap="BaseResultMap">
   select tr.*,t.target_name parent_name,t1.target_name from target t1,target t,target_record tr
   where tr.parent_target=t.target_id and tr.target_id=t1.target_id and t.target_name like '${value}'
+  </select>
+  
+  <select id="findCount" parameterType="Integer" resultType="Integer">
+		select count(*) from Target_record t where t.target_id=${value} or t.parent_target=${value}
   </select>
 </mapper>

@@ -1,9 +1,12 @@
 package com.guigu.system.test.controller;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.print.attribute.standard.RequestingUserName;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -65,6 +68,8 @@ public class EmpTestController {
 	@Resource(name="popedomVOServiceImpl")
 	private PopedomVOService popedomVOService;
 	
+	private double money=0.0;
+	
 	@RequestMapping("list.action")
 	public String list(Model model,EmpTestVO empTestVO,HttpSession session) {
 		Admin admin=(Admin) session.getAttribute("admin");
@@ -108,17 +113,21 @@ public class EmpTestController {
 		SalaryRuleVO salaryRuleVO=new SalaryRuleVO();
 		salaryRuleVO.setPositionId(employeesVO.getPosition());
 		salaryRuleVO=salaryRuleService.findOne(salaryRuleVO);
+		if(salaryRuleVO==null){
+			model.addAttribute("info", "操作失败，请先设置工资规则！");
+			return "test/salaryrule_list";
+		}
 		empTestVO.setEmployeeName(employeesVO.getEmployeeName());
 		empTestVO.setPositionSalary(salaryRuleVO.getPositionSalary());
 		Department department= departmentService.findOne(employeesVO.getDepartment());
 		//基本工资
-		empTestVO.setBaseSalary(salaryRuleVO.getBaseSalary());
+		empTestVO.setBaseSalary(0.0);
 		String date=empTestVO.getTestDate();
 		empTestVO.setTestDate(date+"%");
 		List<AttendanceRecordVO> attendanceRecordVOs=attendanceRecordVOMapper.find(empTestVO);
 		for (AttendanceRecordVO attendanceRecordVO : attendanceRecordVOs) {
-			if (attendanceRecordVO.getTypeCategory()==2) {
-				empTestVO.setBaseSalary(empTestVO.getBaseSalary()-salaryRuleVO.getBaseSalary()/30);
+			if (attendanceRecordVO.getTypeCategory()==0) {
+				empTestVO.setBaseSalary(empTestVO.getBaseSalary()+salaryRuleVO.getBaseSalary()/30);
 			}
 			if(attendanceRecordVO.getTypeCategory()==1) {
 				empTestVO.setBaseSalary(empTestVO.getBaseSalary()-salaryRuleVO.getBaseSalary()/30*0.5);
@@ -127,24 +136,24 @@ public class EmpTestController {
 		//提成工资
 		//绩效工资
 		if ("门市部".equals(department.getDepartmentName())) {
-			double money=orderVOMapper.floorMoney(empTestVO);
+			 money=orderVOMapper.floorMoney(empTestVO);
 			empTestVO=this.function(empTestVO, salaryRuleVO,money);
 		}
 		if ("化妆部".equals(department.getDepartmentName())) {
-			double money=orderVOMapper.makeUpMoney(empTestVO);
+			 money=orderVOMapper.makeUpMoney(empTestVO);
 			empTestVO=this.function(empTestVO, salaryRuleVO,money);
 		}
 		if ("摄影部".equals(department.getDepartmentName())) {
-			double money=orderVOMapper.photoMoney(empTestVO);
+			 money=orderVOMapper.photoMoney(empTestVO);
 			empTestVO=this.function(empTestVO, salaryRuleVO,money);	
 		}
 		if ("数码部".equals(department.getDepartmentName())) {
-			double money=orderVOMapper.psMoney(empTestVO);
+			money=orderVOMapper.psMoney(empTestVO);
 			empTestVO=this.function(empTestVO, salaryRuleVO,money);
 		}
 
 		if ("看样部".equals(department.getDepartmentName())) {
-			double money=orderVOMapper.chooseMoney(empTestVO);
+			 money=orderVOMapper.chooseMoney(empTestVO);
 			empTestVO=this.function(empTestVO, salaryRuleVO,money);
 		}
 		
@@ -191,8 +200,10 @@ public class EmpTestController {
 		empTestVO.setUpSalary(money*salaryRuleVO.getUpPercent());
 		if(money<salaryRuleVO.getTargetMoney()) {
 			empTestVO.setJxSalary(-(100-empTestVO.getTestScore())*salaryRuleVO.getScoreMoney());
-		}else {
-			empTestVO.setJxSalary((empTestVO.getTestScore()/100)*(money-salaryRuleVO.getTargetMoney())*salaryRuleVO.getJxPercent());
+		}else { 
+			 BigDecimal bg = new BigDecimal((empTestVO.getTestScore()/100)*(money-salaryRuleVO.getTargetMoney())*salaryRuleVO.getJxPercent());    
+	         double jxgz = bg.setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();  
+			 empTestVO.setJxSalary(jxgz);
 		}
 		return empTestVO;
 	}

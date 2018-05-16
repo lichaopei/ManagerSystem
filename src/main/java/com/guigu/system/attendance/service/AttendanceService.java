@@ -10,6 +10,8 @@ public interface AttendanceService {
 	
 	public AttendanceRecordVO findOne(Integer attendanceRecordId);
 	
+	public Integer totalAll(AttendanceRecordVO attendanceRecordVO);
+	
 	public boolean save(AttendanceRecordVO attendanceRecordVO);
 	
 	public boolean update(AttendanceRecordVO attendanceRecordVO);

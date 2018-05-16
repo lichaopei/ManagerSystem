@@ -16,9 +16,7 @@
     </ul>
 </div>
 
-<div class="row alert alert-info"  style="margin:0px; padding:3px;text-align: center;" >
-    <a  class="btn btn-success"  href="${pageContext.request.contextPath}/view/target/targetlevel/level_add.jsp">添加级别</a>
-</div>
+
 <div align="center">
 	<div class="alert alert-warning" style="margin: 0px; padding: 5px; width: 80%;display:${empty info?'none':'block'} ">
 		<button type="button" class="close" data-dismiss="alert">
@@ -37,7 +35,6 @@
     	<display:column property="levelIndex" title="指标级别"></display:column>
     	<display:column property="remarks" title="内容"></display:column>
     	<display:column href="${pageContext.request.contextPath }/targetlevel/load.action" paramId="levelId" paramProperty="levelId" value="修改" title="修改"></display:column>
-    	<display:column href="${pageContext.request.contextPath }/targetlevel/delete.action" paramId="levelId" paramProperty="levelId" value="删除" title="删除"></display:column>
     </display:table>
 </div>
 
